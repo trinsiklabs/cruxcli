@@ -41,6 +41,7 @@ import { TaskTool } from "@/tool/task"
 import { Tool } from "@/tool/tool"
 import { PermissionNext } from "@/permission/next"
 import { SessionStatus } from "./status"
+import { TokenBudget } from "./token-budget"
 import { LLM } from "./llm"
 import { iife } from "@/util/iife"
 import { Shell } from "@/shell/shell"
@@ -647,6 +648,13 @@ export namespace SessionPrompt {
         system.push(STRUCTURED_OUTPUT_SYSTEM_PROMPT)
       }
 
+      // Token budget check
+      const budgetCheck = await TokenBudget.check(sessionID)
+      if (budgetCheck.status === "warning") {
+        system.push(TokenBudget.warningMessage(budgetCheck))
+      }
+      const budgetExceeded = budgetCheck.status === "exceeded"
+
       const result = await processor.process({
         user: lastUser,
         agent,
@@ -655,7 +663,7 @@ export namespace SessionPrompt {
         system,
         messages: [
           ...MessageV2.toModelMessages(msgs, model),
-          ...(isLastStep
+          ...((isLastStep || budgetExceeded)
             ? [
                 {
                   role: "assistant" as const,
@@ -666,7 +674,7 @@ export namespace SessionPrompt {
         ],
         tools,
         model,
-        toolChoice: format.type === "json_schema" ? "required" : undefined,
+        toolChoice: budgetExceeded ? ("none" as const) : format.type === "json_schema" ? "required" : undefined,
       })
 
       // If structured output was captured, save it and exit immediately
