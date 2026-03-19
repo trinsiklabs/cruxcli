@@ -1,6 +1,7 @@
 import { Installation } from "@/installation"
 import { Provider } from "@/provider/provider"
 import { Log } from "@/util/log"
+import { SystemPrompt } from "./system"
 import {
   streamText,
   wrapLanguageModel,
@@ -121,10 +122,17 @@ export namespace LLM {
         message: input.user,
       },
       {
-        temperature: input.model.capabilities.temperature
-          ? (input.agent.temperature ?? ProviderTransform.temperature(input.model))
-          : undefined,
-        topP: input.agent.topP ?? ProviderTransform.topP(input.model),
+        temperature: await (async () => {
+          if (!input.model.capabilities.temperature) return undefined
+          const crux = await SystemPrompt.cruxState()
+          const cruxParams = crux ? SystemPrompt.cruxModelParams(crux) : undefined
+          return cruxParams?.temperature ?? input.agent.temperature ?? ProviderTransform.temperature(input.model)
+        })(),
+        topP: await (async () => {
+          const crux = await SystemPrompt.cruxState()
+          const cruxParams = crux ? SystemPrompt.cruxModelParams(crux) : undefined
+          return cruxParams?.topP ?? input.agent.topP ?? ProviderTransform.topP(input.model)
+        })(),
         topK: ProviderTransform.topK(input.model),
         options,
       },

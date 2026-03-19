@@ -31,16 +31,33 @@ export namespace SystemPrompt {
     return [PROMPT_ANTHROPIC_WITHOUT_TODO]
   }
 
+  const THINK_MODES = new Set(["plan", "review", "debug", "explain", "strategist", "legal", "psych"])
+
+  export interface CruxState {
+    active_mode?: string
+    working_on?: string
+    context_summary?: string
+    pending?: string[]
+  }
+
   /**
-   * Read the active Crux mode prompt, if Crux is installed.
-   * Looks for .crux/sessions/state.json in the project directory,
-   * then loads the mode prompt from ~/.crux/modes/<mode>.md.
+   * Read Crux session state, if Crux is installed.
    */
-  export async function cruxModePrompt(): Promise<string | undefined> {
+  export async function cruxState(): Promise<CruxState | undefined> {
     try {
       const stateFile = path.join(Instance.directory, ".crux", "sessions", "state.json")
       const raw = await fs.readFile(stateFile, "utf-8")
-      const state = JSON.parse(raw)
+      return JSON.parse(raw)
+    } catch {
+      return undefined
+    }
+  }
+
+  /**
+   * Read the active Crux mode prompt.
+   */
+  export async function cruxModePrompt(state: CruxState): Promise<string | undefined> {
+    try {
       const activeMode = state?.active_mode
       if (!activeMode) return undefined
 
@@ -54,9 +71,33 @@ export namespace SystemPrompt {
     }
   }
 
+  /**
+   * Format session context (working_on, context_summary, pending) for system prompt.
+   */
+  export function cruxSessionContext(state: CruxState): string | undefined {
+    const parts: string[] = []
+    if (state.working_on) parts.push(`Working on: ${state.working_on}`)
+    if (state.context_summary) parts.push(state.context_summary)
+    if (state.pending && state.pending.length > 0) parts.push(`Pending: ${state.pending.join(", ")}`)
+    return parts.length > 0 ? parts.join("\n") : undefined
+  }
+
+  /**
+   * Get mode-aware temperature/topP overrides.
+   */
+  export function cruxModelParams(state: CruxState): { temperature?: number; topP?: number } | undefined {
+    if (!state.active_mode) return undefined
+    if (THINK_MODES.has(state.active_mode)) {
+      return { temperature: 0.6, topP: 0.95 }
+    }
+    return { topP: 0.8 }
+  }
+
   export async function environment(model: Provider.Model) {
     const project = Instance.project
-    const modePrompt = await cruxModePrompt()
+    const state = await cruxState()
+    const modePrompt = state ? await cruxModePrompt(state) : undefined
+    const sessionContext = state ? cruxSessionContext(state) : undefined
     const parts = [
       [
         `You are powered by the model named ${model.api.id}. The exact model ID is ${model.providerID}/${model.api.id}`,
@@ -81,6 +122,9 @@ export namespace SystemPrompt {
     ]
     if (modePrompt) {
       parts.unshift(modePrompt)
+    }
+    if (sessionContext) {
+      parts.push(sessionContext)
     }
     return parts
   }
