@@ -9,11 +9,11 @@ CruxCLI Phases 3-6 from BUILD_PLAN_001_HARD_FORK.md. Everything else waits until
 | Phase | What | Status |
 |-------|------|--------|
 | Phase 1: Fork + Strip | Copy OpenCode, remove dead packages | Done |
-| Phase 2: Rebrand | opencode → cruxcli everywhere | Done (pending commit) |
-| Phase 3: Prompt Replacement | Replace 6 OpenCode prompt injection points with Crux mode-driven prompts | Not started |
-| Phase 4: Bridge Absorption | Move crux-bridge.js hooks into native source (prompt.ts, llm.ts) | Not started |
-| Phase 5: Token Budget | Replace step-count limits with per-mode token budgets | Not started |
-| Phase 6: Build + Verify | Binary compiles, tests pass, MCP connects, E2E verified | Not started |
+| Phase 2: Rebrand | opencode → cruxcli everywhere | Done |
+| Phase 3: Prompt Replacement | Replace 6 prompt injection points with Crux mode-driven prompts | Done |
+| Phase 4: Bridge Absorption | Move crux-bridge.js hooks into native source | Done |
+| Phase 5: Token Budget | Replace step-count limits with per-mode token budgets | Done |
+| Phase 6: Build + Verify | Binary compiles, tests pass, E2E verified | Done |
 
 ## Next: Competitive Gaps
 
