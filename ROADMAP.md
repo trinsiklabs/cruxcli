@@ -1,88 +1,70 @@
 # CruxCLI Roadmap
 
-## Vision
+**Last Updated:** 2026-03-19
 
-CruxCLI is a config-layer distribution of [OpenCode](https://github.com/anomalyco/opencode) powered by the Crux prompt engine. It replaces OpenCode's default prompt system with Crux's mode-driven architecture — dynamic mode prompts, session state, knowledge injection, and safety infrastructure — without modifying OpenCode's source.
+## Now: Ship the Binary
 
-The end goal is a branded, Crux-native coding CLI that ships as a standalone binary with full control over prompts, branding, and behavior.
+CruxCLI Phases 3-6 from BUILD_PLAN_001_HARD_FORK.md. Everything else waits until the binary ships.
 
----
+| Phase | What | Status |
+|-------|------|--------|
+| Phase 1: Fork + Strip | Copy OpenCode, remove dead packages | Done |
+| Phase 2: Rebrand | opencode → cruxcli everywhere | Done (pending commit) |
+| Phase 3: Prompt Replacement | Replace 6 OpenCode prompt injection points with Crux mode-driven prompts | Not started |
+| Phase 4: Bridge Absorption | Move crux-bridge.js hooks into native source (prompt.ts, llm.ts) | Not started |
+| Phase 5: Token Budget | Replace step-count limits with per-mode token budgets | Not started |
+| Phase 6: Build + Verify | Binary compiles, tests pass, MCP connects, E2E verified | Not started |
 
-## Completed
+## Next: Competitive Gaps
 
-### Prompt Analysis and Decisions
-- Audited all 11 OpenCode prompt injection points
-- Decided per-point: REPLACE (via config), ACCEPT (for now), or BUILD (bridge plugin)
-- Designed universal base prompt (~130 words, 90% reduction from OpenCode defaults)
-- Salvaged valuable content from OpenCode prompts into Crux knowledge entries
+Prioritized by impact. None of these start until the binary ships.
 
-### Bridge Plugin (`crux-bridge.js`)
-- Built with TDD — 28 tests, 100% line coverage, 97.5% branch, 92.3% function
-- Three hooks:
-  - `experimental.chat.system.transform` — injects active Crux mode prompt, reformats XML env blocks, appends session context
-  - `experimental.chat.messages.transform` — strips `<system-reminder>` tags
-  - `chat.params` — sets temperature/topP per mode type (think vs no-think)
-- Dependency-injected IO for testability (no mocking needed)
-- Zero runtime dependencies (pure JS, Node built-in test runner)
+### 1. Repo/AST Impact Analysis
 
-### OpenCode Configuration
-- Agent prompt overrides for `build`, `plan`, `explore`, `compaction`, `title`
-- Crux MCP server registered with Ollama provider
-- Bridge plugin auto-discovered via symlink chain into OpenCode's plugins directory
-- Interaction rules: numbered lists, sequential review with user confirmation
+**Gap:** Aider's repo map proactively selects relevant files for a task. CruxCLI has LSP (30+ servers) but no proactive "given this task, which files matter?" capability.
 
-### Architecture Decision: v1 Scope
-- Bridge reads filesystem only (same source as Crux MCP internals)
-- Knowledge injection and session write-back handled by LLM calling MCP tools directly
-- System prompt injection is the only capability impossible via MCP — bridge handles it
+**Approach:** Build as a Crux MCP tool (`analyze_impact`) rather than CruxCLI-specific. Uses LSP symbol data + git history to rank files by relevance to a prompt. Works across any agent connected to Crux, not just CruxCLI.
 
----
+**Effort:** Medium. LSP data is already flowing; the work is ranking and context selection.
 
-## Current Phase: Dogfooding
+### 2. Workspace Checkpoints
 
-Running CruxCLI (stock OpenCode + config overrides + bridge plugin) against the `local_llm` project to validate:
+**Gap:** No automatic snapshotting before risky operations. Can't roll back to a known-good state.
 
-1. Bridge plugin loads and transforms prompts correctly
-2. Mode switching works end-to-end (Crux MCP sets mode, bridge injects prompt)
-3. Agent prompt overrides produce good results with local models (Ollama)
-4. Session state flows through: Crux hooks -> state.json -> bridge -> system prompt
-5. No regressions from reduced prompt sizes
+**Approach:** CruxCLI already has git worktree support. Add automatic checkpoint creation before convergence rounds (CruxDev engine already specs rollback). Add a `cruxcli checkpoint` command that creates a lightweight git stash or tagged commit. Low effort, high trust signal for users.
 
----
+**Effort:** Low. Plumbing exists (worktree.ts), just needs orchestration.
 
-## Planned: Approach 2 (Source Fork)
+### 3. VS Code Native Experience
 
-Config-layer (Approach 1) has hard limits. A maintained fork unlocks:
+**Gap:** No polished VS Code extension. Users expect to stay in their editor.
 
-### Branding
-- Binary name: `crux` instead of `opencode`
-- Launch banner, TUI header, status bar
-- Custom about/help text
+**Approach:** `sdks/vscode/` already has an extension that launches the binary and connects to its server. The plumbing exists — the gap is polish, keybindings, inline diff display, and distribution via VS Code marketplace. Becomes relevant after the binary ships and stabilizes.
 
-### Prompt Replacements (currently "ACCEPT, replace on hard fork")
-- Plan mode reminder — replace 200-word "STRICTLY FORBIDDEN" block with 40-word positive framing
-- Build-switch reminder — replace with single sentence
-- Max-steps prompt — replace with Crux token-budget system
-- Mid-loop user message wrapping — remove `<system-reminder>` tags
-- Structured output prompt — reduce from 90 to 40 words
-- Agent generation meta-prompt — incorporate Crux mode design rules
+**Effort:** Medium. Mostly UX work, not infrastructure.
 
-### Token-Budget System
-- Replace step-count limits with per-mode token budgets
-- Warning at threshold (70-80%), hard limit at 90-95%
-- Infrastructure enforcement via `toolChoice: none` (not prompt instructions)
-- Crux `token-budget.js` plugin already tracks per-mode usage
+### 4. Browser Automation
 
-### Deeper Integration
-- Bridge plugin calls MCP directly instead of filesystem reads (if dogfooding reveals need)
-- System-prompt-level knowledge injection (if LLM fails to call `lookup_knowledge()` reliably)
-- Automatic session write-back through bridge (if MCP-based write-back is unreliable)
+**Gap:** No Playwright/Puppeteer integration for testing UIs or scraping docs.
 
----
+**Approach:** Don't build — integrate. Playwright MCP servers already exist. Add a Crux "frontend" mode that knows to suggest connecting browser MCP tools. Crux's mode system is the integration point, not custom browser code.
 
-## Release Plan
+**Effort:** Low. Mode definition + documentation only.
 
-1. **v0.1** (current) — Config-layer distribution. Dogfooding phase. No commits until validated.
-2. **v0.2** — Approach 2 fork. Branding + synthetic message replacements.
-3. **v0.3** — Token-budget integration. Per-mode budget enforcement.
-4. **v1.0** — Standalone `crux` binary. Full prompt authority. Published distribution.
+### 5. Enterprise Compliance Tier
+
+**Gap:** No audit trail export, SSO/SAML, role-based mode restrictions, approved-model-only policies.
+
+**Approach:** Building blocks exist (Crux 5-gate safety pipeline, correction logging, mode-based guardrails). Enterprise tier adds config/policy layers on top: audit trail export, SSO integration, role-based mode access, model allowlists. Don't build until enterprise demand exists.
+
+**Effort:** High. Business decision, not just engineering.
+
+## Later: CruxDev Engine
+
+The deterministic convergence engine (BUILD_PLAN_001_DETERMINISTIC_ENGINE.md, 80 checkboxes across 7 phases). This is the product that replaces "human says do it again" with "code drives convergence to termination." Tracked separately in the CruxDev repo.
+
+## Non-Goals
+
+- **Upstream sync with OpenCode.** Clean break. Monitor for good ideas, integrate selectively, never maintain a rebase relationship.
+- **Building what can be integrated.** Browser automation, linting, formatting — these have MCP servers. Crux's mode system points agents at the right tools. Don't rebuild.
+- **Features before shipping.** Every gap above is a distraction until the binary works end-to-end.

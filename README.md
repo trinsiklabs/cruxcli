@@ -1,55 +1,140 @@
-# CruxCLI
+<p align="center">
+  <a href="https://cruxcli.ai">
+    <picture>
+      <source srcset="packages/console/app/src/asset/logo-ornate-dark.svg" media="(prefers-color-scheme: dark)">
+      <source srcset="packages/console/app/src/asset/logo-ornate-light.svg" media="(prefers-color-scheme: light)">
+      <img src="packages/console/app/src/asset/logo-ornate-light.svg" alt="CruxCLI logo">
+    </picture>
+  </a>
+</p>
+<p align="center">The open source AI coding agent.</p>
+<p align="center">
+  <a href="https://cruxcli.ai/discord"><img alt="Discord" src="https://img.shields.io/discord/1391832426048651334?style=flat-square&label=discord" /></a>
+  <a href="https://www.npmjs.com/package/cruxcli"><img alt="npm" src="https://img.shields.io/npm/v/cruxcli?style=flat-square" /></a>
+  <a href="https://github.com/anomalyco/cruxcli/actions/workflows/publish.yml"><img alt="Build status" src="https://img.shields.io/github/actions/workflow/status/anomalyco/cruxcli/publish.yml?style=flat-square&branch=dev" /></a>
+</p>
 
-A config-layer distribution of [OpenCode](https://github.com/anomalyco/opencode) powered by the [Crux](https://github.com/trinsiklabs/crux) prompt engine.
+<p align="center">
+  <a href="README.md">English</a> |
+  <a href="README.zh.md">简体中文</a> |
+  <a href="README.zht.md">繁體中文</a> |
+  <a href="README.ko.md">한국어</a> |
+  <a href="README.de.md">Deutsch</a> |
+  <a href="README.es.md">Español</a> |
+  <a href="README.fr.md">Français</a> |
+  <a href="README.it.md">Italiano</a> |
+  <a href="README.da.md">Dansk</a> |
+  <a href="README.ja.md">日本語</a> |
+  <a href="README.pl.md">Polski</a> |
+  <a href="README.ru.md">Русский</a> |
+  <a href="README.bs.md">Bosanski</a> |
+  <a href="README.ar.md">العربية</a> |
+  <a href="README.no.md">Norsk</a> |
+  <a href="README.br.md">Português (Brasil)</a> |
+  <a href="README.th.md">ไทย</a> |
+  <a href="README.tr.md">Türkçe</a> |
+  <a href="README.uk.md">Українська</a> |
+  <a href="README.bn.md">বাংলা</a> |
+  <a href="README.gr.md">Ελληνικά</a>
+</p>
 
-CruxCLI replaces OpenCode's default prompt system with Crux's mode-driven architecture — dynamic mode prompts, session state tracking, knowledge injection, and safety infrastructure — without modifying OpenCode's source code.
+[![CruxCLI Terminal UI](packages/web/src/assets/lander/screenshot.png)](https://cruxcli.ai)
 
-## How It Works
+---
 
+### Installation
+
+```bash
+# YOLO
+curl -fsSL https://cruxcli.ai/install | bash
+
+# Package managers
+npm i -g cruxcli@latest        # or bun/pnpm/yarn
+scoop install cruxcli             # Windows
+choco install cruxcli             # Windows
+brew install anomalyco/tap/cruxcli # macOS and Linux (recommended, always up to date)
+brew install cruxcli              # macOS and Linux (official brew formula, updated less)
+sudo pacman -S cruxcli            # Arch Linux (Stable)
+paru -S cruxcli-bin               # Arch Linux (Latest from AUR)
+mise use -g cruxcli               # Any OS
+nix run nixpkgs#cruxcli           # or github:anomalyco/cruxcli for latest dev branch
 ```
-Stock OpenCode (unmodified)
-    + opencode.json (agent prompt overrides)
-    + crux-bridge.js (plugin: mode injection, env reformatting, param tuning)
-    + Crux MCP server (34 tools: modes, knowledge, session state, safety)
-    = CruxCLI
+
+> [!TIP]
+> Remove versions older than 0.1.x before installing.
+
+### Desktop App (BETA)
+
+CruxCLI is also available as a desktop application. Download directly from the [releases page](https://github.com/anomalyco/cruxcli/releases) or [cruxcli.ai/download](https://cruxcli.ai/download).
+
+| Platform              | Download                              |
+| --------------------- | ------------------------------------- |
+| macOS (Apple Silicon) | `cruxcli-desktop-darwin-aarch64.dmg` |
+| macOS (Intel)         | `cruxcli-desktop-darwin-x64.dmg`     |
+| Windows               | `cruxcli-desktop-windows-x64.exe`    |
+| Linux                 | `.deb`, `.rpm`, or AppImage           |
+
+```bash
+# macOS (Homebrew)
+brew install --cask cruxcli-desktop
+# Windows (Scoop)
+scoop bucket add extras; scoop install extras/cruxcli-desktop
 ```
 
-### Bridge Plugin
+#### Installation Directory
 
-The bridge plugin (`src/crux-bridge.js`) intercepts OpenCode's prompt pipeline on every LLM call:
+The install script respects the following priority order for the installation path:
 
-- **System transform** — reads Crux session state, injects the active mode prompt, reformats environment blocks, appends session context
-- **Message transform** — strips `<system-reminder>` XML tags from synthetic messages
-- **Params** — sets temperature and topP based on the active Crux mode (think modes get higher temperature for reasoning)
+1. `$CRUXCLI_INSTALL_DIR` - Custom installation directory
+2. `$XDG_BIN_DIR` - XDG Base Directory Specification compliant path
+3. `$HOME/bin` - Standard user binary directory (if it exists or can be created)
+4. `$HOME/.cruxcli/bin` - Default fallback
 
-### Prompt Overrides
-
-Agent prompts in `opencode.json` replace OpenCode's ~1,250-word provider prompts with a ~130-word universal base prompt — 90% token reduction per request.
-
-## Setup
-
-1. Install [OpenCode](https://opencode.ai)
-2. Install [Crux MCP server](https://github.com/trinsiklabs/crux)
-3. Symlink the bridge plugin into OpenCode's plugin directory:
-   ```sh
-   ln -s /path/to/cruxcli/src/crux-bridge.js ~/.config/opencode/plugins/crux-bridge.js
-   ```
-4. Copy or merge the agent overrides from this repo's config into your `~/.config/opencode/opencode.json`
-5. Run `opencode`
-
-## Testing
-
-```sh
-npm test                # run tests
-npm run test:coverage   # run tests with coverage
+```bash
+# Examples
+CRUXCLI_INSTALL_DIR=/usr/local/bin curl -fsSL https://cruxcli.ai/install | bash
+XDG_BIN_DIR=$HOME/.local/bin curl -fsSL https://cruxcli.ai/install | bash
 ```
 
-28 tests, 100% line coverage. Zero dependencies — uses Node's built-in test runner.
+### Agents
 
-## Roadmap
+CruxCLI includes two built-in agents you can switch between with the `Tab` key.
 
-See [ROADMAP.md](ROADMAP.md) for the full plan, including the transition from config-layer (Approach 1) to a branded source fork (Approach 2).
+- **build** - Default, full-access agent for development work
+- **plan** - Read-only agent for analysis and code exploration
+  - Denies file edits by default
+  - Asks permission before running bash commands
+  - Ideal for exploring unfamiliar codebases or planning changes
 
-## License
+Also included is a **general** subagent for complex searches and multistep tasks.
+This is used internally and can be invoked using `@general` in messages.
 
-MIT
+Learn more about [agents](https://cruxcli.ai/docs/agents).
+
+### Documentation
+
+For more info on how to configure CruxCLI, [**head over to our docs**](https://cruxcli.ai/docs).
+
+### Contributing
+
+If you're interested in contributing to CruxCLI, please read our [contributing docs](./CONTRIBUTING.md) before submitting a pull request.
+
+### Building on CruxCLI
+
+If you are working on a project that's related to CruxCLI and is using "cruxcli" as part of its name, for example "cruxcli-dashboard" or "cruxcli-mobile", please add a note to your README to clarify that it is not built by the CruxCLI team and is not affiliated with us in any way.
+
+### FAQ
+
+#### How is this different from Claude Code?
+
+It's very similar to Claude Code in terms of capability. Here are the key differences:
+
+- 100% open source
+- Not coupled to any provider. Although we recommend the models we provide through [CruxCLI Zen](https://cruxcli.ai/zen), CruxCLI can be used with Claude, OpenAI, Google, or even local models. As models evolve, the gaps between them will close and pricing will drop, so being provider-agnostic is important.
+- Out-of-the-box LSP support
+- A focus on TUI. CruxCLI is built by neovim users and the creators of [terminal.shop](https://terminal.shop); we are going to push the limits of what's possible in the terminal.
+- A client/server architecture. This, for example, can allow CruxCLI to run on your computer while you drive it remotely from a mobile app, meaning that the TUI frontend is just one of the possible clients.
+
+---
+
+**Join our community** [Discord](https://discord.gg/cruxcli) | [X.com](https://x.com/cruxcli)

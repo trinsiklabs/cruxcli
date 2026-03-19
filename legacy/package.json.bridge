@@ -1,0 +1,11 @@
+{
+  "name": "@trinsiklabs/crux-bridge",
+  "version": "0.1.0",
+  "description": "CruxCLI bridge plugin for OpenCode — makes Crux the prompt authority",
+  "type": "module",
+  "main": "src/crux-bridge.js",
+  "scripts": {
+    "test": "node --test test/crux-bridge.test.js",
+    "test:coverage": "node --test --experimental-test-coverage test/crux-bridge.test.js"
+  }
+}

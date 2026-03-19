@@ -1,0 +1,20 @@
+{
+  "$schema": "https://v2-8-13.turborepo.dev/schema.json",
+  "globalEnv": ["CI", "CRUXCLI_DISABLE_SHARE"],
+  "globalPassThroughEnv": ["CI", "CRUXCLI_DISABLE_SHARE"],
+  "tasks": {
+    "typecheck": {},
+    "build": {
+      "dependsOn": [],
+      "outputs": ["dist/**"]
+    },
+    "cruxcli#test": {
+      "dependsOn": ["^build"],
+      "outputs": []
+    },
+    "@cruxcli/app#test": {
+      "dependsOn": ["^build"],
+      "outputs": []
+    }
+  }
+}

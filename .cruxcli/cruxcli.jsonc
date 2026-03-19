@@ -1,0 +1,13 @@
+{
+  "$schema": "https://cruxcli.ai/config.json",
+  "provider": {
+    "cruxcli": {
+      "options": {},
+    },
+  },
+  "mcp": {},
+  "tools": {
+    "github-triage": false,
+    "github-pr-search": false,
+  },
+}
