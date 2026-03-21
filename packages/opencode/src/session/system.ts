@@ -40,6 +40,10 @@ export namespace SystemPrompt {
     pending?: string[]
   }
 
+  export interface CruxModelTiers {
+    mode_tiers?: Record<string, Record<string, string>>
+  }
+
   /**
    * Read Crux session state, if Crux is installed.
    */
@@ -85,12 +89,42 @@ export namespace SystemPrompt {
   /**
    * Get mode-aware temperature/topP overrides.
    */
-  export function cruxModelParams(state: CruxState): { temperature?: number; topP?: number } | undefined {
+  export function cruxModelParams(state: CruxState): {
+    temperature?: number
+    topP?: number
+    recommendedTier?: string
+  } | undefined {
     if (!state.active_mode) return undefined
+    const params: { temperature?: number; topP?: number; recommendedTier?: string } = {}
+
     if (THINK_MODES.has(state.active_mode)) {
-      return { temperature: 0.6, topP: 0.95 }
+      params.temperature = 0.6
+      params.topP = 0.95
+    } else {
+      params.topP = 0.8
     }
-    return { topP: 0.8 }
+
+    // Read tier config if available
+    const tierConfig = cruxTierConfig()
+    if (tierConfig?.mode_tiers?.[state.active_mode]?.primary) {
+      params.recommendedTier = tierConfig.mode_tiers[state.active_mode].primary
+    }
+
+    return params
+  }
+
+  /**
+   * Read Crux model tier config from .crux/model_tiers.json (if exists).
+   */
+  export function cruxTierConfig(): CruxModelTiers | undefined {
+    try {
+      const tierFile = path.join(Instance.directory, ".crux", "model_tiers.json")
+      // Synchronous read — tier config is small and cached by OS
+      const raw = require("fs").readFileSync(tierFile, "utf-8")
+      return JSON.parse(raw)
+    } catch {
+      return undefined
+    }
   }
 
   export async function environment(model: Provider.Model) {
