@@ -166,9 +166,9 @@ for (const item of targets) {
 
   // Use platform-specific bunfs root path based on target OS
   const bunfsRoot = item.os === "win32" ? "B:/~BUN/root/" : "/$bunfs/root/"
-  const workerRelativePath = path.relative(dir, parserWorker).replaceAll("\\", "/")
+  const workerRelativePath = path.relative(dir, path.resolve(dir, "./node_modules/@opentui/core/parser.worker.js")).replaceAll("\\", "/")
 
-  await Bun.build({
+  const result = await Bun.build({
     conditions: ["browser"],
     tsconfig: "./tsconfig.json",
     plugins: [solidPlugin],
@@ -193,6 +193,11 @@ for (const item of targets) {
       CRUXCLI_LIBC: item.os === "linux" ? `'${item.abi ?? "glibc"}'` : "",
     },
   })
+  if (!result.success) {
+    console.error(`Build failed for ${name}:`)
+    for (const log of result.logs) console.error(log)
+    process.exit(1)
+  }
 
   await $`rm -rf ./dist/${name}/bin/tui`
   await Bun.file(`dist/${name}/package.json`).write(
