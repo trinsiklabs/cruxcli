@@ -15,7 +15,7 @@ This extension requires the [cruxcli CLI](https://cruxcli.ai) to be installed on
 
 ## Support
 
-This is an early release. If you encounter issues or have feedback, please create an issue at https://github.com/anomalyco/cruxcli/issues.
+This is an early release. If you encounter issues or have feedback, please create an issue at https://github.com/trinsiklabs/cruxcli/issues.
 
 ## Development
 

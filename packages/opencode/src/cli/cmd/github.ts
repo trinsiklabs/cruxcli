@@ -404,7 +404,7 @@ jobs:
           persist-credentials: false
 
       - name: Run cruxcli
-        uses: anomalyco/cruxcli/github@latest${envStr}
+        uses: trinsiklabs/cruxcli/github@latest${envStr}
         with:
           model: ${provider}/${model}`,
             )

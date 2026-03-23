@@ -58,7 +58,7 @@ export default tool({
   },
   async execute(args) {
     const issue = getIssueNumber()
-    const owner = "anomalyco"
+    const owner = "trinsiklabs"
     const repo = "cruxcli"
 
     const results: string[] = []

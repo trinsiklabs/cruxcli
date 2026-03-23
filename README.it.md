@@ -11,7 +11,7 @@
 <p align="center">
   <a href="https://cruxcli.ai/discord"><img alt="Discord" src="https://img.shields.io/discord/1391832426048651334?style=flat-square&label=discord" /></a>
   <a href="https://www.npmjs.com/package/cruxcli"><img alt="npm" src="https://img.shields.io/npm/v/cruxcli?style=flat-square" /></a>
-  <a href="https://github.com/anomalyco/cruxcli/actions/workflows/publish.yml"><img alt="Build status" src="https://img.shields.io/github/actions/workflow/status/anomalyco/cruxcli/publish.yml?style=flat-square&branch=dev" /></a>
+  <a href="https://github.com/trinsiklabs/cruxcli/actions/workflows/publish.yml"><img alt="Build status" src="https://img.shields.io/github/actions/workflow/status/trinsiklabs/cruxcli/publish.yml?style=flat-square&branch=dev" /></a>
 </p>
 
 <p align="center">
@@ -51,12 +51,12 @@ curl -fsSL https://cruxcli.ai/install | bash
 npm i -g cruxcli@latest        # oppure bun/pnpm/yarn
 scoop install cruxcli             # Windows
 choco install cruxcli             # Windows
-brew install anomalyco/tap/cruxcli # macOS e Linux (consigliato, sempre aggiornato)
+brew install trinsiklabs/tap/cruxcli # macOS e Linux (consigliato, sempre aggiornato)
 brew install cruxcli              # macOS e Linux (formula brew ufficiale, aggiornata meno spesso)
 sudo pacman -S cruxcli            # Arch Linux (Stable)
 paru -S cruxcli-bin               # Arch Linux (Latest from AUR)
 mise use -g cruxcli               # Qualsiasi OS
-nix run nixpkgs#cruxcli           # oppure github:anomalyco/cruxcli per l’ultima branch di sviluppo
+nix run nixpkgs#cruxcli           # oppure github:trinsiklabs/cruxcli per l’ultima branch di sviluppo
 ```
 
 > [!TIP]
@@ -64,7 +64,7 @@ nix run nixpkgs#cruxcli           # oppure github:anomalyco/cruxcli per l’ulti
 
 ### App Desktop (BETA)
 
-CruxCLI è disponibile anche come applicazione desktop. Puoi scaricarla direttamente dalla [pagina delle release](https://github.com/anomalyco/cruxcli/releases) oppure da [cruxcli.ai/download](https://cruxcli.ai/download).
+CruxCLI è disponibile anche come applicazione desktop. Puoi scaricarla direttamente dalla [pagina delle release](https://github.com/trinsiklabs/cruxcli/releases) oppure da [cruxcli.ai/download](https://cruxcli.ai/download).
 
 | Piattaforma           | Download                              |
 | --------------------- | ------------------------------------- |

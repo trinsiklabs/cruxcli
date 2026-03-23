@@ -137,7 +137,7 @@ export default function Download() {
                 </code>
                 <CopyStatus />
               </button>
-              <button data-component="cli-row" onClick={handleCopyClick("brew install anomalyco/tap/cruxcli")}>
+              <button data-component="cli-row" onClick={handleCopyClick("brew install trinsiklabs/tap/cruxcli")}>
                 <code>
                   brew install <strong>trinsik/tap/cruxcli</strong>
                 </code>

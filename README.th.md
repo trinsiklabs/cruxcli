@@ -11,7 +11,7 @@
 <p align="center">
   <a href="https://cruxcli.ai/discord"><img alt="Discord" src="https://img.shields.io/discord/1391832426048651334?style=flat-square&label=discord" /></a>
   <a href="https://www.npmjs.com/package/cruxcli"><img alt="npm" src="https://img.shields.io/npm/v/cruxcli?style=flat-square" /></a>
-  <a href="https://github.com/anomalyco/cruxcli/actions/workflows/publish.yml"><img alt="สถานะการสร้าง" src="https://img.shields.io/github/actions/workflow/status/anomalyco/cruxcli/publish.yml?style=flat-square&branch=dev" /></a>
+  <a href="https://github.com/trinsiklabs/cruxcli/actions/workflows/publish.yml"><img alt="สถานะการสร้าง" src="https://img.shields.io/github/actions/workflow/status/trinsiklabs/cruxcli/publish.yml?style=flat-square&branch=dev" /></a>
 </p>
 
 <p align="center">
@@ -51,12 +51,12 @@ curl -fsSL https://cruxcli.ai/install | bash
 npm i -g cruxcli@latest        # หรือ bun/pnpm/yarn
 scoop install cruxcli             # Windows
 choco install cruxcli             # Windows
-brew install anomalyco/tap/cruxcli # macOS และ Linux (แนะนำ อัปเดตเสมอ)
+brew install trinsiklabs/tap/cruxcli # macOS และ Linux (แนะนำ อัปเดตเสมอ)
 brew install cruxcli              # macOS และ Linux (brew formula อย่างเป็นทางการ อัปเดตน้อยกว่า)
 sudo pacman -S cruxcli            # Arch Linux (Stable)
 paru -S cruxcli-bin               # Arch Linux (Latest from AUR)
 mise use -g cruxcli               # ระบบปฏิบัติการใดก็ได้
-nix run nixpkgs#cruxcli           # หรือ github:anomalyco/cruxcli สำหรับสาขาพัฒนาล่าสุด
+nix run nixpkgs#cruxcli           # หรือ github:trinsiklabs/cruxcli สำหรับสาขาพัฒนาล่าสุด
 ```
 
 > [!TIP]
@@ -64,7 +64,7 @@ nix run nixpkgs#cruxcli           # หรือ github:anomalyco/cruxcli สำ
 
 ### แอปพลิเคชันเดสก์ท็อป (เบต้า)
 
-CruxCLI มีให้ใช้งานเป็นแอปพลิเคชันเดสก์ท็อป ดาวน์โหลดโดยตรงจาก [หน้ารุ่น](https://github.com/anomalyco/cruxcli/releases) หรือ [cruxcli.ai/download](https://cruxcli.ai/download)
+CruxCLI มีให้ใช้งานเป็นแอปพลิเคชันเดสก์ท็อป ดาวน์โหลดโดยตรงจาก [หน้ารุ่น](https://github.com/trinsiklabs/cruxcli/releases) หรือ [cruxcli.ai/download](https://cruxcli.ai/download)
 
 | แพลตฟอร์ม             | ดาวน์โหลด                             |
 | --------------------- | ------------------------------------- |

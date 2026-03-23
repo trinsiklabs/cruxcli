@@ -11,7 +11,7 @@
 <p align="center">
   <a href="https://cruxcli.ai/discord"><img alt="Discord" src="https://img.shields.io/discord/1391832426048651334?style=flat-square&label=discord" /></a>
   <a href="https://www.npmjs.com/package/cruxcli"><img alt="npm" src="https://img.shields.io/npm/v/cruxcli?style=flat-square" /></a>
-  <a href="https://github.com/anomalyco/cruxcli/actions/workflows/publish.yml"><img alt="Build status" src="https://img.shields.io/github/actions/workflow/status/anomalyco/cruxcli/publish.yml?style=flat-square&branch=dev" /></a>
+  <a href="https://github.com/trinsiklabs/cruxcli/actions/workflows/publish.yml"><img alt="Build status" src="https://img.shields.io/github/actions/workflow/status/trinsiklabs/cruxcli/publish.yml?style=flat-square&branch=dev" /></a>
 </p>
 
 <p align="center">
@@ -51,12 +51,12 @@ curl -fsSL https://cruxcli.ai/install | bash
 npm i -g cruxcli@latest        # bun/pnpm/yarn 도 가능
 scoop install cruxcli             # Windows
 choco install cruxcli             # Windows
-brew install anomalyco/tap/cruxcli # macOS 및 Linux (권장, 항상 최신)
+brew install trinsiklabs/tap/cruxcli # macOS 및 Linux (권장, 항상 최신)
 brew install cruxcli              # macOS 및 Linux (공식 brew formula, 업데이트 빈도 낮음)
 sudo pacman -S cruxcli            # Arch Linux (Stable)
 paru -S cruxcli-bin               # Arch Linux (Latest from AUR)
 mise use -g cruxcli               # 어떤 OS든
-nix run nixpkgs#cruxcli           # 또는 github:anomalyco/cruxcli 로 최신 dev 브랜치
+nix run nixpkgs#cruxcli           # 또는 github:trinsiklabs/cruxcli 로 최신 dev 브랜치
 ```
 
 > [!TIP]
@@ -64,7 +64,7 @@ nix run nixpkgs#cruxcli           # 또는 github:anomalyco/cruxcli 로 최신 d
 
 ### 데스크톱 앱 (BETA)
 
-CruxCLI 는 데스크톱 앱으로도 제공됩니다. [releases page](https://github.com/anomalyco/cruxcli/releases) 에서 직접 다운로드하거나 [cruxcli.ai/download](https://cruxcli.ai/download) 를 이용하세요.
+CruxCLI 는 데스크톱 앱으로도 제공됩니다. [releases page](https://github.com/trinsiklabs/cruxcli/releases) 에서 직접 다운로드하거나 [cruxcli.ai/download](https://cruxcli.ai/download) 를 이용하세요.
 
 | 플랫폼                | 다운로드                              |
 | --------------------- | ------------------------------------- |

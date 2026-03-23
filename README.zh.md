@@ -11,7 +11,7 @@
 <p align="center">
   <a href="https://cruxcli.ai/discord"><img alt="Discord" src="https://img.shields.io/discord/1391832426048651334?style=flat-square&label=discord" /></a>
   <a href="https://www.npmjs.com/package/cruxcli"><img alt="npm" src="https://img.shields.io/npm/v/cruxcli?style=flat-square" /></a>
-  <a href="https://github.com/anomalyco/cruxcli/actions/workflows/publish.yml"><img alt="Build status" src="https://img.shields.io/github/actions/workflow/status/anomalyco/cruxcli/publish.yml?style=flat-square&branch=dev" /></a>
+  <a href="https://github.com/trinsiklabs/cruxcli/actions/workflows/publish.yml"><img alt="Build status" src="https://img.shields.io/github/actions/workflow/status/trinsiklabs/cruxcli/publish.yml?style=flat-square&branch=dev" /></a>
 </p>
 
 <p align="center">
@@ -51,12 +51,12 @@ curl -fsSL https://cruxcli.ai/install | bash
 npm i -g cruxcli@latest        # 也可使用 bun/pnpm/yarn
 scoop install cruxcli             # Windows
 choco install cruxcli             # Windows
-brew install anomalyco/tap/cruxcli # macOS 和 Linux（推荐，始终保持最新）
+brew install trinsiklabs/tap/cruxcli # macOS 和 Linux（推荐，始终保持最新）
 brew install cruxcli              # macOS 和 Linux（官方 brew formula，更新频率较低）
 sudo pacman -S cruxcli            # Arch Linux (Stable)
 paru -S cruxcli-bin               # Arch Linux (Latest from AUR)
 mise use -g cruxcli               # 任意系统
-nix run nixpkgs#cruxcli           # 或用 github:anomalyco/cruxcli 获取最新 dev 分支
+nix run nixpkgs#cruxcli           # 或用 github:trinsiklabs/cruxcli 获取最新 dev 分支
 ```
 
 > [!TIP]
@@ -64,7 +64,7 @@ nix run nixpkgs#cruxcli           # 或用 github:anomalyco/cruxcli 获取最新
 
 ### 桌面应用程序 (BETA)
 
-CruxCLI 也提供桌面版应用。可直接从 [发布页 (releases page)](https://github.com/anomalyco/cruxcli/releases) 或 [cruxcli.ai/download](https://cruxcli.ai/download) 下载。
+CruxCLI 也提供桌面版应用。可直接从 [发布页 (releases page)](https://github.com/trinsiklabs/cruxcli/releases) 或 [cruxcli.ai/download](https://cruxcli.ai/download) 下载。
 
 | 平台                  | 下载文件                              |
 | --------------------- | ------------------------------------- |

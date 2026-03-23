@@ -161,7 +161,7 @@ export default function Home() {
             <a href="https://x.com/cruxcli">{i18n.t("footer.x")}</a>
           </div>
           <div data-slot="cell">
-            <a href="https://github.com/anomalyco/cruxcli">{i18n.t("footer.github")}</a>
+            <a href="https://github.com/trinsiklabs/cruxcli">{i18n.t("footer.github")}</a>
           </div>
           <div data-slot="cell">
             <a href="https://cruxcli.dev/discord">{i18n.t("footer.discord")}</a>

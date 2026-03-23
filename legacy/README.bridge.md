@@ -1,6 +1,6 @@
 # CruxCLI
 
-A config-layer distribution of [OpenCode](https://github.com/anomalyco/opencode) powered by the [Crux](https://github.com/trinsiklabs/crux) prompt engine.
+A config-layer distribution of [OpenCode](https://github.com/trinsiklabs/opencode) powered by the [Crux](https://github.com/trinsiklabs/crux) prompt engine.
 
 CruxCLI replaces OpenCode's default prompt system with Crux's mode-driven architecture — dynamic mode prompts, session state tracking, knowledge injection, and safety infrastructure — without modifying OpenCode's source code.
 

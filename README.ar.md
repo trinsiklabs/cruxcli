@@ -11,7 +11,7 @@
 <p align="center">
   <a href="https://cruxcli.ai/discord"><img alt="Discord" src="https://img.shields.io/discord/1391832426048651334?style=flat-square&label=discord" /></a>
   <a href="https://www.npmjs.com/package/cruxcli"><img alt="npm" src="https://img.shields.io/npm/v/cruxcli?style=flat-square" /></a>
-  <a href="https://github.com/anomalyco/cruxcli/actions/workflows/publish.yml"><img alt="Build status" src="https://img.shields.io/github/actions/workflow/status/anomalyco/cruxcli/publish.yml?style=flat-square&branch=dev" /></a>
+  <a href="https://github.com/trinsiklabs/cruxcli/actions/workflows/publish.yml"><img alt="Build status" src="https://img.shields.io/github/actions/workflow/status/trinsiklabs/cruxcli/publish.yml?style=flat-square&branch=dev" /></a>
 </p>
 
 <p align="center">
@@ -52,12 +52,12 @@ curl -fsSL https://cruxcli.ai/install | bash
 npm i -g cruxcli@latest        # او bun/pnpm/yarn
 scoop install cruxcli             # Windows
 choco install cruxcli             # Windows
-brew install anomalyco/tap/cruxcli # macOS و Linux (موصى به، دائما محدث)
+brew install trinsiklabs/tap/cruxcli # macOS و Linux (موصى به، دائما محدث)
 brew install cruxcli              # macOS و Linux (صيغة brew الرسمية، تحديث اقل)
 sudo pacman -S cruxcli            # Arch Linux (Stable)
 paru -S cruxcli-bin               # Arch Linux (Latest from AUR)
 mise use -g cruxcli               # اي نظام
-nix run nixpkgs#cruxcli           # او github:anomalyco/cruxcli لاحدث فرع dev
+nix run nixpkgs#cruxcli           # او github:trinsiklabs/cruxcli لاحدث فرع dev
 ```
 
 > [!TIP]
@@ -65,7 +65,7 @@ nix run nixpkgs#cruxcli           # او github:anomalyco/cruxcli لاحدث ف�
 
 ### تطبيق سطح المكتب (BETA)
 
-يتوفر CruxCLI ايضا كتطبيق سطح مكتب. قم بالتنزيل مباشرة من [صفحة الاصدارات](https://github.com/anomalyco/cruxcli/releases) او من [cruxcli.ai/download](https://cruxcli.ai/download).
+يتوفر CruxCLI ايضا كتطبيق سطح مكتب. قم بالتنزيل مباشرة من [صفحة الاصدارات](https://github.com/trinsiklabs/cruxcli/releases) او من [cruxcli.ai/download](https://cruxcli.ai/download).
 
 | المنصة                | التنزيل                               |
 | --------------------- | ------------------------------------- |

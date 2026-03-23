@@ -7,7 +7,7 @@ export const config = {
 
   // GitHub
   github: {
-    repoUrl: "https://github.com/anomalyco/cruxcli",
+    repoUrl: "https://github.com/trinsiklabs/cruxcli",
     starsFormatted: {
       compact: "100K",
       full: "100,000",

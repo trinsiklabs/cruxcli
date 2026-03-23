@@ -1,8 +1,8 @@
 # BUILD_PLAN_001: CruxCLI Hard Fork + Rebrand
 
 **Created:** 2026-03-18
-**Last Updated:** 2026-03-18
-**Status:** NOT STARTED
+**Last Updated:** 2026-03-23
+**Status:** CONVERGING — Phases 1-6 complete, verifying convergence
 **Goal:** Fork CruxCLI, strip to essentials, rebrand to CruxCLI, absorb bridge plugin, replace prompts with Crux mode-driven system. Produce a working `cruxcli` binary.
 
 **Constraint:** All LLM work stays in Claude Code (Pro Max).
@@ -10,6 +10,12 @@
 **Constraint:** Binary name is `cruxcli`, not `crux` (Crux is the platform, CruxCLI is the terminal agent).
 **Rule:** TDD. 100% coverage. Tests before code.
 **Rule:** Follow DEVELOPMENT_PATTERNS_CRUXDEV.md methodology.
+
+## Document Alignment
+
+- `AGENTS.md` — coding style, naming conventions, testing rules
+- `ROADMAP.md` — priorities and non-goals
+- `CONTRIBUTING.md` — contribution guidelines
 
 ---
 
@@ -136,13 +142,13 @@ bun test
 
 ### Checklist — Phase 1
 
-- [ ] 1.1 Copy CruxCLI monorepo to cruxcli/fork/
-- [ ] 1.2 Initialize fresh git repo
-- [ ] 1.3 Remove `packages/infra` (only package stripped)
-- [ ] 1.4 Update root package.json workspaces
-- [ ] 1.5 `bun install` succeeds
-- [ ] 1.6 `bun test` passes (in packages/cruxcli/)
-- [ ] 1.7 Git commit: "fork: strip to core packages"
+- [x] 1.1 Copy CruxCLI monorepo to cruxcli/fork/
+- [x] 1.2 Initialize fresh git repo
+- [x] 1.3 Remove `packages/infra` (only package stripped)
+- [x] 1.4 Update root package.json workspaces
+- [x] 1.5 `bun install` succeeds
+- [x] 1.6 `bun test` passes (in packages/cruxcli/)
+- [x] 1.7 Git commit: "fork: strip to core packages"
 
 ---
 
@@ -220,17 +226,17 @@ Target: **zero occurrences** (except possibly in a FORK_ORIGIN.md noting the ups
 
 ### Checklist — Phase 2
 
-- [ ] 2.1 App name constant: `cruxcli` → `cruxcli`
-- [ ] 2.2 Env vars: all `CRUXCLI_*` → `CRUXCLI_*` (40+ vars)
-- [ ] 2.3 Config paths: `.cruxcli/` → `.cruxcli/`, config file names
-- [ ] 2.4 Binary: rename file + package.json bin field
-- [ ] 2.5 Package names: `@cruxcli-ai/*` → `@cruxcli/*`
-- [ ] 2.6 HTTP headers + user-facing strings
-- [ ] 2.7 Test fixtures updated
-- [ ] 2.8 Comprehensive grep: zero "cruxcli" occurrences in source
-- [ ] 2.9 `bun install` succeeds
-- [ ] 2.10 `bun test` passes
-- [ ] 2.11 Git commit: "rebrand: cruxcli → cruxcli"
+- [x] 2.1 App name constant: `cruxcli` → `cruxcli`
+- [x] 2.2 Env vars: all `CRUXCLI_*` → `CRUXCLI_*` (40+ vars)
+- [x] 2.3 Config paths: `.cruxcli/` → `.cruxcli/`, config file names
+- [x] 2.4 Binary: rename file + package.json bin field
+- [x] 2.5 Package names: `@cruxcli-ai/*` → `@cruxcli/*`
+- [x] 2.6 HTTP headers + user-facing strings
+- [x] 2.7 Test fixtures updated
+- [x] 2.8 Comprehensive grep: zero "cruxcli" occurrences in source
+- [x] 2.9 `bun install` succeeds
+- [x] 2.10 `bun test` passes
+- [x] 2.11 Git commit: "rebrand: cruxcli → cruxcli"
 
 ---
 
@@ -261,16 +267,16 @@ Add a native integration point where Crux's active mode prompt is injected into 
 
 ### Checklist — Phase 3
 
-- [ ] 3.1 Replace plan mode reminder (200 words → 40 words positive framing)
-- [ ] 3.2 Replace build-switch reminder (→ single sentence)
-- [ ] 3.3 Replace max-steps prompt (→ token-budget pointer)
-- [ ] 3.4 Remove `<system-reminder>` wrapping from mid-loop messages
-- [ ] 3.5 Replace structured output prompt (90 → 40 words)
-- [ ] 3.6 Replace agent generation meta-prompt
-- [ ] 3.7 Add native mode prompt injection in prompt.ts
-- [ ] 3.8 Tests for all prompt replacements
-- [ ] 3.9 Tests for mode prompt injection
-- [ ] 3.10 `bun test` passes
+- [x] 3.1 Replace plan mode reminder (200 words → 40 words positive framing)
+- [x] 3.2 Replace build-switch reminder (→ single sentence)
+- [x] 3.3 Replace max-steps prompt (→ token-budget pointer)
+- [x] 3.4 Remove `<system-reminder>` wrapping from mid-loop messages
+- [x] 3.5 Replace structured output prompt (90 → 40 words)
+- [x] 3.6 Replace agent generation meta-prompt
+- [x] 3.7 Add native mode prompt injection in prompt.ts
+- [x] 3.8 Tests for all prompt replacements
+- [x] 3.9 Tests for mode prompt injection
+- [x] 3.10 `bun test` passes
 
 ---
 
@@ -300,14 +306,14 @@ The bridge appends session context (working_on, key_decisions, pending) to the s
 
 ### Checklist — Phase 4
 
-- [ ] 4.1 Mode prompt injection working natively (not via plugin hook)
-- [ ] 4.2 XML env block reformatting moved to prompt.ts
-- [ ] 4.3 Session context (working_on, decisions, pending) appended to system prompt
-- [ ] 4.4 Mode-aware temperature/topP in LLM config
-- [ ] 4.5 `<system-reminder>` stripping confirmed (Phase 3.4)
-- [ ] 4.6 Bridge plugin marked as deprecated / removed
-- [ ] 4.7 Tests for all absorbed functionality
-- [ ] 4.8 `bun test` passes
+- [x] 4.1 Mode prompt injection working natively (not via plugin hook)
+- [x] 4.2 XML env block reformatting moved to prompt.ts
+- [x] 4.3 Session context (working_on, decisions, pending) appended to system prompt
+- [x] 4.4 Mode-aware temperature/topP in LLM config
+- [x] 4.5 `<system-reminder>` stripping confirmed (Phase 3.4)
+- [x] 4.6 Bridge plugin marked as deprecated / removed
+- [x] 4.7 Tests for all absorbed functionality
+- [x] 4.8 `bun test` passes
 
 ---
 
@@ -330,14 +336,14 @@ The max-steps prompt in prompt.ts (Phase 3.3) currently limits by step count. Th
 
 ### Checklist — Phase 5
 
-- [ ] 5.1 Token tracking per mode per session
-- [ ] 5.2 Warning injection at 70-80% threshold
-- [ ] 5.3 Hard limit at 90-95% via toolChoice: none
-- [ ] 5.4 Per-mode budget configuration
-- [ ] 5.5 Tests for token tracking
-- [ ] 5.6 Tests for warning injection
-- [ ] 5.7 Tests for hard limit enforcement
-- [ ] 5.8 `bun test` passes
+- [x] 5.1 Token tracking per mode per session
+- [x] 5.2 Warning injection at 70-80% threshold
+- [x] 5.3 Hard limit at 90-95% via toolChoice: none
+- [x] 5.4 Per-mode budget configuration
+- [x] 5.5 Tests for token tracking
+- [x] 5.6 Tests for warning injection
+- [x] 5.7 Tests for hard limit enforcement
+- [x] 5.8 `bun test` passes
 
 ---
 
@@ -380,41 +386,41 @@ Target: 100% on new/modified code. Existing CruxCLI tests adapted.
 
 ### Checklist — Phase 6
 
-- [ ] 6.1 Binary compiles: `cruxcli` binary produced
-- [ ] 6.2 `cruxcli --help` shows correct branding
-- [ ] 6.3 `cruxcli --version` shows CruxCLI version
-- [ ] 6.4 Config dir `.cruxcli/` created on launch
-- [ ] 6.5 `CRUXCLI_*` env vars work
-- [ ] 6.6 Zero "cruxcli" in any output
-- [ ] 6.7 Crux MCP server connects and lists tools
-- [ ] 6.8 Mode prompt injection works end-to-end
-- [ ] 6.9 Session context flows through to system prompt
-- [ ] 6.10 Token budget warning triggers at threshold
-- [ ] 6.11 Full test suite passes
-- [ ] 6.12 Coverage on new/modified code ≥ 100%
-- [ ] 6.13 Git commit: "v0.2.0: CruxCLI hard fork complete"
+- [x] 6.1 Binary compiles: `cruxcli` binary produced
+- [x] 6.2 `cruxcli --help` shows correct branding
+- [x] 6.3 `cruxcli --version` shows CruxCLI version
+- [x] 6.4 Config dir `.cruxcli/` created on launch
+- [x] 6.5 `CRUXCLI_*` env vars work
+- [x] 6.6 Zero "cruxcli" in any output
+- [x] 6.7 Crux MCP server connects and lists tools
+- [x] 6.8 Mode prompt injection works end-to-end
+- [x] 6.9 Session context flows through to system prompt
+- [x] 6.10 Token budget warning triggers at threshold
+- [x] 6.11 Full test suite passes
+- [x] 6.12 Coverage on new/modified code ≥ 100%
+- [x] 6.13 Git commit: "v0.2.0: CruxCLI hard fork complete"
 
 ---
 
 ## Progress Tracker
 
 **Phase 1: Fork + Strip (7 items)**
-- [ ] 1.1 — 1.7
+- [x] 1.1 — 1.7
 
 **Phase 2: Rebrand (11 items)**
-- [ ] 2.1 — 2.11
+- [x] 2.1 — 2.11
 
 **Phase 3: Prompt Replacement (10 items)**
-- [ ] 3.1 — 3.10
+- [x] 3.1 — 3.10
 
 **Phase 4: Bridge Absorption (8 items)**
-- [ ] 4.1 — 4.8
+- [x] 4.1 — 4.8
 
 **Phase 5: Token Budget (8 items)**
-- [ ] 5.1 — 5.8
+- [x] 5.1 — 5.8
 
 **Phase 6: Build + Verify (13 items)**
-- [ ] 6.1 — 6.13
+- [x] 6.1 — 6.13
 
 **Total: 57 checkboxes**
 

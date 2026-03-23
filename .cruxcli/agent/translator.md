@@ -84,7 +84,7 @@ Windows Terminal
 Yarn
 Zellij
 Zed
-anomalyco
+trinsiklabs
 ```
 
 Extracted from link labels in the English docs (review and prune as desired):
@@ -658,7 +658,7 @@ zod
 ```text
 24601/cruxcli-zellij-namer
 angristan/cruxcli-wakatime
-anomalyco/cruxcli
+trinsiklabs/cruxcli
 apps/cruxcli-agent
 athal7/cruxcli-devcontainers
 awesome-cruxcli/awesome-cruxcli

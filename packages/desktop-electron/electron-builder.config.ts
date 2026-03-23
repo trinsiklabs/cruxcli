@@ -77,7 +77,7 @@ function getConfig() {
         appId: "ai.cruxcli.desktop.beta",
         productName: "CruxCLI Beta",
         protocols: { name: "CruxCLI Beta", schemes: ["cruxcli"] },
-        publish: { provider: "github", owner: "anomalyco", repo: "cruxcli-beta", channel: "latest" },
+        publish: { provider: "github", owner: "trinsiklabs", repo: "cruxcli-beta", channel: "latest" },
         rpm: { packageName: "cruxcli-beta" },
       }
     }
@@ -87,7 +87,7 @@ function getConfig() {
         appId: "ai.cruxcli.desktop",
         productName: "CruxCLI",
         protocols: { name: "CruxCLI", schemes: ["cruxcli"] },
-        publish: { provider: "github", owner: "anomalyco", repo: "cruxcli", channel: "latest" },
+        publish: { provider: "github", owner: "trinsiklabs", repo: "cruxcli", channel: "latest" },
         rpm: { packageName: "cruxcli" },
       }
     }

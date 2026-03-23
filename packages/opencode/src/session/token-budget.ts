@@ -60,7 +60,7 @@ export namespace TokenBudget {
   export async function check(sessionID: string): Promise<BudgetCheck> {
     const config = await getConfig()
     const used = await sessionTokens(sessionID)
-    const percentage = used / config.budget
+    const percentage = config.budget > 0 ? used / config.budget : 0
 
     let status: BudgetStatus = "ok"
     if (percentage >= config.hardLimitThreshold) {

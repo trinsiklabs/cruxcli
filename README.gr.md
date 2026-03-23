@@ -11,7 +11,7 @@
 <p align="center">
   <a href="https://cruxcli.ai/discord"><img alt="Discord" src="https://img.shields.io/discord/1391832426048651334?style=flat-square&label=discord" /></a>
   <a href="https://www.npmjs.com/package/cruxcli"><img alt="npm" src="https://img.shields.io/npm/v/cruxcli?style=flat-square" /></a>
-  <a href="https://github.com/anomalyco/cruxcli/actions/workflows/publish.yml"><img alt="Build status" src="https://img.shields.io/github/actions/workflow/status/anomalyco/cruxcli/publish.yml?style=flat-square&branch=dev" /></a>
+  <a href="https://github.com/trinsiklabs/cruxcli/actions/workflows/publish.yml"><img alt="Build status" src="https://img.shields.io/github/actions/workflow/status/trinsiklabs/cruxcli/publish.yml?style=flat-square&branch=dev" /></a>
 </p>
 
 <p align="center">
@@ -52,12 +52,12 @@ curl -fsSL https://cruxcli.ai/install | bash
 npm i -g cruxcli@latest        # ή bun/pnpm/yarn
 scoop install cruxcli             # Windows
 choco install cruxcli             # Windows
-brew install anomalyco/tap/cruxcli # macOS και Linux (προτείνεται, πάντα ενημερωμένο)
+brew install trinsiklabs/tap/cruxcli # macOS και Linux (προτείνεται, πάντα ενημερωμένο)
 brew install cruxcli              # macOS και Linux (επίσημος τύπος brew, λιγότερο συχνές ενημερώσεις)
 sudo pacman -S cruxcli            # Arch Linux (Σταθερό)
 paru -S cruxcli-bin               # Arch Linux (Τελευταία έκδοση από AUR)
 mise use -g cruxcli               # Οποιοδήποτε λειτουργικό σύστημα
-nix run nixpkgs#cruxcli           # ή github:anomalyco/cruxcli με βάση την πιο πρόσφατη αλλαγή από το dev branch
+nix run nixpkgs#cruxcli           # ή github:trinsiklabs/cruxcli με βάση την πιο πρόσφατη αλλαγή από το dev branch
 ```
 
 > [!TIP]
@@ -65,7 +65,7 @@ nix run nixpkgs#cruxcli           # ή github:anomalyco/cruxcli με βάση τ
 
 ### Εφαρμογή Desktop (BETA)
 
-Το CruxCLI είναι επίσης διαθέσιμο ως εφαρμογή. Κατέβασε το απευθείας από τη [σελίδα εκδόσεων](https://github.com/anomalyco/cruxcli/releases) ή το [cruxcli.ai/download](https://cruxcli.ai/download).
+Το CruxCLI είναι επίσης διαθέσιμο ως εφαρμογή. Κατέβασε το απευθείας από τη [σελίδα εκδόσεων](https://github.com/trinsiklabs/cruxcli/releases) ή το [cruxcli.ai/download](https://cruxcli.ai/download).
 
 | Πλατφόρμα             | Λήψη                                  |
 | --------------------- | ------------------------------------- |

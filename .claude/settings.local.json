@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git push:*)",
+      "Bash(bun run:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git count-objects:*)",
+      "Bash(git:*)",
+      "Read(//opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/bin/**)",
+      "Bash(/Users/user/personal/crux/.venv/bin/python --version)"
+    ]
+  }
+}

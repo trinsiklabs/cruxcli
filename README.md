@@ -11,7 +11,7 @@
 <p align="center">
   <a href="https://cruxcli.ai/discord"><img alt="Discord" src="https://img.shields.io/discord/1391832426048651334?style=flat-square&label=discord" /></a>
   <a href="https://www.npmjs.com/package/cruxcli"><img alt="npm" src="https://img.shields.io/npm/v/cruxcli?style=flat-square" /></a>
-  <a href="https://github.com/anomalyco/cruxcli/actions/workflows/publish.yml"><img alt="Build status" src="https://img.shields.io/github/actions/workflow/status/anomalyco/cruxcli/publish.yml?style=flat-square&branch=dev" /></a>
+  <a href="https://github.com/trinsiklabs/cruxcli/actions/workflows/publish.yml"><img alt="Build status" src="https://img.shields.io/github/actions/workflow/status/trinsiklabs/cruxcli/publish.yml?style=flat-square&branch=dev" /></a>
 </p>
 
 <p align="center">
@@ -52,12 +52,12 @@ curl -fsSL https://cruxcli.ai/install | bash
 npm i -g cruxcli@latest        # or bun/pnpm/yarn
 scoop install cruxcli             # Windows
 choco install cruxcli             # Windows
-brew install anomalyco/tap/cruxcli # macOS and Linux (recommended, always up to date)
+brew install trinsiklabs/tap/cruxcli # macOS and Linux (recommended, always up to date)
 brew install cruxcli              # macOS and Linux (official brew formula, updated less)
 sudo pacman -S cruxcli            # Arch Linux (Stable)
 paru -S cruxcli-bin               # Arch Linux (Latest from AUR)
 mise use -g cruxcli               # Any OS
-nix run nixpkgs#cruxcli           # or github:anomalyco/cruxcli for latest dev branch
+nix run nixpkgs#cruxcli           # or github:trinsiklabs/cruxcli for latest dev branch
 ```
 
 > [!TIP]
@@ -65,7 +65,7 @@ nix run nixpkgs#cruxcli           # or github:anomalyco/cruxcli for latest dev b
 
 ### Desktop App (BETA)
 
-CruxCLI is also available as a desktop application. Download directly from the [releases page](https://github.com/anomalyco/cruxcli/releases) or [cruxcli.ai/download](https://cruxcli.ai/download).
+CruxCLI is also available as a desktop application. Download directly from the [releases page](https://github.com/trinsiklabs/cruxcli/releases) or [cruxcli.ai/download](https://cruxcli.ai/download).
 
 | Platform              | Download                              |
 | --------------------- | ------------------------------------- |

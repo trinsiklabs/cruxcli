@@ -122,7 +122,7 @@ export namespace Installation {
 
   async function getBrewFormula() {
     const tapFormula = await $`brew list --formula trinsik/tap/cruxcli`.throws(false).quiet().text()
-    if (tapFormula.includes("cruxcli")) return "anomalyco/tap/cruxcli"
+    if (tapFormula.includes("cruxcli")) return "trinsiklabs/tap/cruxcli"
     const coreFormula = await $`brew list --formula cruxcli`.throws(false).quiet().text()
     if (coreFormula.includes("cruxcli")) return "cruxcli"
     return "cruxcli"
@@ -150,7 +150,7 @@ export namespace Installation {
         const formula = await getBrewFormula()
         if (formula.includes("/")) {
           cmd =
-            $`brew tap anomalyco/tap && cd "$(brew --repo anomalyco/tap)" && git pull --ff-only && brew upgrade ${formula}`.env(
+            $`brew tap trinsiklabs/tap && cd "$(brew --repo trinsiklabs/tap)" && git pull --ff-only && brew upgrade ${formula}`.env(
               {
                 HOMEBREW_NO_AUTO_UPDATE: "1",
                 ...process.env,
@@ -251,7 +251,7 @@ export namespace Installation {
         .then((data: any) => data.version)
     }
 
-    return fetch("https://api.github.com/repos/anomalyco/cruxcli/releases/latest")
+    return fetch("https://api.github.com/repos/trinsiklabs/cruxcli/releases/latest")
       .then((res) => {
         if (!res.ok) throw new Error(res.statusText)
         return res.json()

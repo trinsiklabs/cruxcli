@@ -11,7 +11,7 @@
 <p align="center">
   <a href="https://cruxcli.ai/discord"><img alt="Discord" src="https://img.shields.io/discord/1391832426048651334?style=flat-square&label=discord" /></a>
   <a href="https://www.npmjs.com/package/cruxcli"><img alt="npm" src="https://img.shields.io/npm/v/cruxcli?style=flat-square" /></a>
-  <a href="https://github.com/anomalyco/cruxcli/actions/workflows/publish.yml"><img alt="Build status" src="https://img.shields.io/github/actions/workflow/status/anomalyco/cruxcli/publish.yml?style=flat-square&branch=dev" /></a>
+  <a href="https://github.com/trinsiklabs/cruxcli/actions/workflows/publish.yml"><img alt="Build status" src="https://img.shields.io/github/actions/workflow/status/trinsiklabs/cruxcli/publish.yml?style=flat-square&branch=dev" /></a>
 </p>
 
 <p align="center">
@@ -51,12 +51,12 @@ curl -fsSL https://cruxcli.ai/install | bash
 npm i -g cruxcli@latest        # bun/pnpm/yarn でもOK
 scoop install cruxcli             # Windows
 choco install cruxcli             # Windows
-brew install anomalyco/tap/cruxcli # macOS と Linux（推奨。常に最新）
+brew install trinsiklabs/tap/cruxcli # macOS と Linux（推奨。常に最新）
 brew install cruxcli              # macOS と Linux（公式 brew formula。更新頻度は低め）
 sudo pacman -S cruxcli            # Arch Linux (Stable)
 paru -S cruxcli-bin               # Arch Linux (Latest from AUR)
 mise use -g cruxcli               # どのOSでも
-nix run nixpkgs#cruxcli           # または github:anomalyco/cruxcli で最新 dev ブランチ
+nix run nixpkgs#cruxcli           # または github:trinsiklabs/cruxcli で最新 dev ブランチ
 ```
 
 > [!TIP]
@@ -64,7 +64,7 @@ nix run nixpkgs#cruxcli           # または github:anomalyco/cruxcli で最新
 
 ### デスクトップアプリ (BETA)
 
-CruxCLI はデスクトップアプリとしても利用できます。[releases page](https://github.com/anomalyco/cruxcli/releases) から直接ダウンロードするか、[cruxcli.ai/download](https://cruxcli.ai/download) を利用してください。
+CruxCLI はデスクトップアプリとしても利用できます。[releases page](https://github.com/trinsiklabs/cruxcli/releases) から直接ダウンロードするか、[cruxcli.ai/download](https://cruxcli.ai/download) を利用してください。
 
 | プラットフォーム      | ダウンロード                          |
 | --------------------- | ------------------------------------- |

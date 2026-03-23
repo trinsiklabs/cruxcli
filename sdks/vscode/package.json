@@ -6,7 +6,7 @@
   "publisher": "sst-dev",
   "repository": {
     "type": "git",
-    "url": "https://github.com/anomalyco/cruxcli"
+    "url": "https://github.com/trinsiklabs/cruxcli"
   },
   "license": "MIT",
   "icon": "images/icon.png",

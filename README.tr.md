@@ -11,7 +11,7 @@
 <p align="center">
   <a href="https://cruxcli.ai/discord"><img alt="Discord" src="https://img.shields.io/discord/1391832426048651334?style=flat-square&label=discord" /></a>
   <a href="https://www.npmjs.com/package/cruxcli"><img alt="npm" src="https://img.shields.io/npm/v/cruxcli?style=flat-square" /></a>
-  <a href="https://github.com/anomalyco/cruxcli/actions/workflows/publish.yml"><img alt="Build status" src="https://img.shields.io/github/actions/workflow/status/anomalyco/cruxcli/publish.yml?style=flat-square&branch=dev" /></a>
+  <a href="https://github.com/trinsiklabs/cruxcli/actions/workflows/publish.yml"><img alt="Build status" src="https://img.shields.io/github/actions/workflow/status/trinsiklabs/cruxcli/publish.yml?style=flat-square&branch=dev" /></a>
 </p>
 
 <p align="center">
@@ -51,12 +51,12 @@ curl -fsSL https://cruxcli.ai/install | bash
 npm i -g cruxcli@latest        # veya bun/pnpm/yarn
 scoop install cruxcli             # Windows
 choco install cruxcli             # Windows
-brew install anomalyco/tap/cruxcli # macOS ve Linux (önerilir, her zaman güncel)
+brew install trinsiklabs/tap/cruxcli # macOS ve Linux (önerilir, her zaman güncel)
 brew install cruxcli              # macOS ve Linux (resmi brew formülü, daha az güncellenir)
 sudo pacman -S cruxcli            # Arch Linux (Stable)
 paru -S cruxcli-bin               # Arch Linux (Latest from AUR)
 mise use -g cruxcli               # Tüm işletim sistemleri
-nix run nixpkgs#cruxcli           # veya en güncel geliştirme dalı için github:anomalyco/cruxcli
+nix run nixpkgs#cruxcli           # veya en güncel geliştirme dalı için github:trinsiklabs/cruxcli
 ```
 
 > [!TIP]
@@ -64,7 +64,7 @@ nix run nixpkgs#cruxcli           # veya en güncel geliştirme dalı için gith
 
 ### Masaüstü Uygulaması (BETA)
 
-CruxCLI ayrıca masaüstü uygulaması olarak da mevcuttur. Doğrudan [sürüm sayfasından](https://github.com/anomalyco/cruxcli/releases) veya [cruxcli.ai/download](https://cruxcli.ai/download) adresinden indirebilirsiniz.
+CruxCLI ayrıca masaüstü uygulaması olarak da mevcuttur. Doğrudan [sürüm sayfasından](https://github.com/trinsiklabs/cruxcli/releases) veya [cruxcli.ai/download](https://cruxcli.ai/download) adresinden indirebilirsiniz.
 
 | Platform              | İndirme                               |
 | --------------------- | ------------------------------------- |

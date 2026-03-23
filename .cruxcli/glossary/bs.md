@@ -2,7 +2,7 @@
 
 ## Sources
 
-- PR #12283: https://github.com/anomalyco/cruxcli/pull/12283
+- PR #12283: https://github.com/trinsiklabs/cruxcli/pull/12283
 
 ## Do Not Translate (Locale Additions)
 
