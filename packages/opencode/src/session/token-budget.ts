@@ -34,12 +34,13 @@ export namespace TokenBudget {
    * Get cumulative token usage for a session.
    */
   export async function sessionTokens(sessionID: string): Promise<number> {
-    const messages = await Session.messages(sessionID)
+    const messages = await Session.messages({ sessionID })
     let total = 0
     for (const msg of messages) {
-      if (msg.tokens?.input) total += msg.tokens.input
-      if (msg.tokens?.output) total += msg.tokens.output
-      if (msg.tokens?.cache?.read) total += msg.tokens.cache.read
+      if (msg.info.role !== "assistant") continue
+      total += msg.info.tokens.input
+      total += msg.info.tokens.output
+      total += msg.info.tokens.cache.read
     }
     return total
   }
