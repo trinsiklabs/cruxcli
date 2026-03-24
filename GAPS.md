@@ -10,11 +10,11 @@
 
 | # | Gap Description | Template Reference | Priority | Status |
 |---|---|---|---|---|
-| 1 | No ARCHITECTURE.md — system structure undocumented | templates/projects/code/docs/ARCHITECTURE.md | HIGH | TODO |
-| 2 | No DEPLOYMENT.md — no deployment/release runbook | templates/projects/code/docs/DEPLOYMENT.md | HIGH | TODO |
-| 3 | No CHANGELOG.md — no release history | templates/projects/code/docs/CHANGELOG.md | HIGH | TODO |
-| 4 | No CHARTER.md — domain purpose/scope/ownership undefined | templates/domains/docs/CHARTER.md | HIGH | TODO |
-| 5 | No USER_GUIDE.md — no end-user documentation | templates/projects/code/docs/USER_GUIDE.md | HIGH | TODO |
+| 1 | ~~No ARCHITECTURE.md~~ | templates/projects/code/docs/ARCHITECTURE.md | HIGH | DONE 2026-03-24 |
+| 2 | ~~No DEPLOYMENT.md~~ | templates/projects/code/docs/DEPLOYMENT.md | HIGH | DONE 2026-03-24 |
+| 3 | ~~No CHANGELOG.md~~ | templates/projects/code/docs/CHANGELOG.md | HIGH | DONE 2026-03-24 |
+| 4 | ~~No CHARTER.md~~ | templates/domains/docs/CHARTER.md | HIGH | DONE 2026-03-24 |
+| 5 | ~~No USER_GUIDE.md~~ | templates/projects/code/docs/USER_GUIDE.md | HIGH | DONE 2026-03-24 |
 
 ## Stub Documents (created with TODO markers)
 
