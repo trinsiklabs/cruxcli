@@ -1,9 +1,9 @@
 {
   "name": "cruxcli",
-  "displayName": "cruxcli",
-  "description": "cruxcli for VS Code",
+  "displayName": "CruxCLI",
+  "description": "AI coding agent for your terminal — powered by CruxCLI",
   "version": "1.2.19",
-  "publisher": "sst-dev",
+  "publisher": "trinsiklabs",
   "repository": {
     "type": "git",
     "url": "https://github.com/trinsiklabs/cruxcli"
@@ -18,15 +18,26 @@
     "vscode": "^1.94.0"
   },
   "categories": [
-    "Other"
+    "AI",
+    "Programming Languages"
   ],
   "activationEvents": [],
   "main": "./dist/extension.js",
   "contributes": {
+    "configuration": {
+      "title": "CruxCLI",
+      "properties": {
+        "cruxcli.binaryPath": {
+          "type": "string",
+          "default": "",
+          "description": "Custom path to the cruxcli binary"
+        }
+      }
+    },
     "commands": [
       {
         "command": "cruxcli.openTerminal",
-        "title": "Open cruxcli",
+        "title": "CruxCLI: Open",
         "icon": {
           "light": "images/button-dark.svg",
           "dark": "images/button-light.svg"
@@ -34,7 +45,7 @@
       },
       {
         "command": "cruxcli.openNewTerminal",
-        "title": "Open cruxcli in new tab",
+        "title": "CruxCLI: Open in New Tab",
         "icon": {
           "light": "images/button-dark.svg",
           "dark": "images/button-light.svg"
@@ -42,7 +53,19 @@
       },
       {
         "command": "cruxcli.addFilepathToTerminal",
-        "title": "Add Filepath to Terminal"
+        "title": "CruxCLI: Insert File Reference"
+      },
+      {
+        "command": "cruxcli.sendSelection",
+        "title": "CruxCLI: Send Selection"
+      },
+      {
+        "command": "cruxcli.sendFile",
+        "title": "CruxCLI: Send File"
+      },
+      {
+        "command": "cruxcli.openInFolder",
+        "title": "Open in CruxCLI"
       }
     ],
     "menus": {
@@ -51,12 +74,29 @@
           "command": "cruxcli.openNewTerminal",
           "group": "navigation"
         }
+      ],
+      "editor/context": [
+        {
+          "command": "cruxcli.sendSelection",
+          "group": "cruxcli",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "cruxcli.sendFile",
+          "group": "cruxcli"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "cruxcli.openInFolder",
+          "group": "cruxcli",
+          "when": "explorerResourceIsFolder"
+        }
       ]
     },
     "keybindings": [
       {
         "command": "cruxcli.openTerminal",
-        "title": "Run cruxcli",
         "key": "cmd+escape",
         "mac": "cmd+escape",
         "win": "ctrl+escape",
@@ -64,7 +104,6 @@
       },
       {
         "command": "cruxcli.openNewTerminal",
-        "title": "Run cruxcli",
         "key": "cmd+shift+escape",
         "mac": "cmd+shift+escape",
         "win": "ctrl+shift+escape",
@@ -72,11 +111,18 @@
       },
       {
         "command": "cruxcli.addFilepathToTerminal",
-        "title": "cruxcli: Insert At-Mentioned",
         "key": "cmd+alt+k",
         "mac": "cmd+alt+k",
         "win": "ctrl+alt+K",
         "linux": "ctrl+alt+K"
+      },
+      {
+        "command": "cruxcli.sendSelection",
+        "key": "cmd+shift+k",
+        "mac": "cmd+shift+k",
+        "win": "ctrl+shift+K",
+        "linux": "ctrl+shift+K",
+        "when": "editorHasSelection"
       }
     ]
   },
