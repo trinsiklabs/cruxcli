@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://cruxcli.ai">
+  <a href="https://github.com/trinsiklabs/cruxcli">
     <picture>
       <source srcset="packages/console/app/src/asset/logo-ornate-dark.svg" media="(prefers-color-scheme: dark)">
       <source srcset="packages/console/app/src/asset/logo-ornate-light.svg" media="(prefers-color-scheme: light)">
@@ -7,134 +7,158 @@
     </picture>
   </a>
 </p>
-<p align="center">The open source AI coding agent.</p>
+<p align="center">The intelligent terminal agent. Provider-agnostic AI coding with the Crux intelligence layer.</p>
 <p align="center">
-  <a href="https://cruxcli.ai/discord"><img alt="Discord" src="https://img.shields.io/discord/1391832426048651334?style=flat-square&label=discord" /></a>
   <a href="https://www.npmjs.com/package/cruxcli"><img alt="npm" src="https://img.shields.io/npm/v/cruxcli?style=flat-square" /></a>
-  <a href="https://github.com/trinsiklabs/cruxcli/actions/workflows/publish.yml"><img alt="Build status" src="https://img.shields.io/github/actions/workflow/status/trinsiklabs/cruxcli/publish.yml?style=flat-square&branch=dev" /></a>
+  <a href="https://github.com/trinsiklabs/cruxcli/actions/workflows/publish.yml"><img alt="Build status" src="https://img.shields.io/github/actions/workflow/status/trinsiklabs/cruxcli/publish.yml?style=flat-square&branch=main" /></a>
+  <a href="https://github.com/trinsiklabs/cruxcli/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/github/license/trinsiklabs/cruxcli?style=flat-square" /></a>
 </p>
 
-<p align="center">
-  <a href="README.md">English</a> |
-  <a href="README.zh.md">简体中文</a> |
-  <a href="README.zht.md">繁體中文</a> |
-  <a href="README.ko.md">한국어</a> |
-  <a href="README.de.md">Deutsch</a> |
-  <a href="README.es.md">Español</a> |
-  <a href="README.fr.md">Français</a> |
-  <a href="README.it.md">Italiano</a> |
-  <a href="README.da.md">Dansk</a> |
-  <a href="README.ja.md">日本語</a> |
-  <a href="README.pl.md">Polski</a> |
-  <a href="README.ru.md">Русский</a> |
-  <a href="README.bs.md">Bosanski</a> |
-  <a href="README.ar.md">العربية</a> |
-  <a href="README.no.md">Norsk</a> |
-  <a href="README.br.md">Português (Brasil)</a> |
-  <a href="README.th.md">ไทย</a> |
-  <a href="README.tr.md">Türkçe</a> |
-  <a href="README.uk.md">Українська</a> |
-  <a href="README.bn.md">বাংলা</a> |
-  <a href="README.gr.md">Ελληνικά</a>
-</p>
+---
 
-[![CruxCLI Terminal UI](packages/web/src/assets/lander/screenshot.png)](https://cruxcli.ai)
+## What is CruxCLI?
+
+CruxCLI is a hard fork of OpenCode, rebuilt around the **Crux intelligence layer**. It replaces static prompt templates with a mode-driven system that adapts behavior, token budgets, and model parameters per task. The result is a terminal-native AI coding agent that is provider-agnostic, context-aware, and designed for convergence-driven development.
+
+**Key differences from stock OpenCode:**
+
+- **Crux Mode System** -- Active modes drive system prompts, temperature/topP tuning, and token budgets. Modes are defined as Markdown files, not hardcoded strings.
+- **Token Budget System** -- Per-mode token budgets replace step-count limits. Warnings at 70-80%, hard enforcement at 90-95% via `toolChoice: none`. No more arbitrary step caps.
+- **Workspace Checkpoints** -- Automatic snapshotting before risky operations via git worktree integration. Roll back to known-good states.
+- **Session Context Injection** -- Working state, key decisions, and pending items flow from `.crux/sessions/state.json` into every system prompt.
+- **CruxDev Convergence Engine** -- Drive code through audit-fix-re-audit loops until two consecutive clean passes. Replaces "human says do it again" with deterministic convergence.
+- **Provider-Agnostic** -- Works with Anthropic, OpenAI, Google, Amazon Bedrock, Azure, Copilot, local models, or any provider supported by models.dev.
 
 ---
 
 ### Installation
 
 ```bash
-# YOLO
-curl -fsSL https://cruxcli.ai/install | bash
+# npm (recommended)
+npm i -g cruxcli@latest
 
-# Package managers
-npm i -g cruxcli@latest        # or bun/pnpm/yarn
-scoop install cruxcli             # Windows
-choco install cruxcli             # Windows
-brew install trinsiklabs/tap/cruxcli # macOS and Linux (recommended, always up to date)
-brew install cruxcli              # macOS and Linux (official brew formula, updated less)
-sudo pacman -S cruxcli            # Arch Linux (Stable)
-paru -S cruxcli-bin               # Arch Linux (Latest from AUR)
-mise use -g cruxcli               # Any OS
-nix run nixpkgs#cruxcli           # or github:trinsiklabs/cruxcli for latest dev branch
+# Other package managers
+bun add -g cruxcli@latest
+pnpm add -g cruxcli@latest
 ```
 
-> [!TIP]
-> Remove versions older than 0.1.x before installing.
-
-### Desktop App (BETA)
-
-CruxCLI is also available as a desktop application. Download directly from the [releases page](https://github.com/trinsiklabs/cruxcli/releases) or [cruxcli.ai/download](https://cruxcli.ai/download).
-
-| Platform              | Download                              |
-| --------------------- | ------------------------------------- |
-| macOS (Apple Silicon) | `cruxcli-desktop-darwin-aarch64.dmg` |
-| macOS (Intel)         | `cruxcli-desktop-darwin-x64.dmg`     |
-| Windows               | `cruxcli-desktop-windows-x64.exe`    |
-| Linux                 | `.deb`, `.rpm`, or AppImage           |
+### Building from Source
 
 ```bash
-# macOS (Homebrew)
-brew install --cask cruxcli-desktop
-# Windows (Scoop)
-scoop bucket add extras; scoop install extras/cruxcli-desktop
+git clone https://github.com/trinsiklabs/cruxcli.git
+cd cruxcli
+bun install
+bun dev
 ```
 
-#### Installation Directory
-
-The install script respects the following priority order for the installation path:
-
-1. `$CRUXCLI_INSTALL_DIR` - Custom installation directory
-2. `$XDG_BIN_DIR` - XDG Base Directory Specification compliant path
-3. `$HOME/bin` - Standard user binary directory (if it exists or can be created)
-4. `$HOME/.cruxcli/bin` - Default fallback
+To compile a standalone binary:
 
 ```bash
-# Examples
-CRUXCLI_INSTALL_DIR=/usr/local/bin curl -fsSL https://cruxcli.ai/install | bash
-XDG_BIN_DIR=$HOME/.local/bin curl -fsSL https://cruxcli.ai/install | bash
+./packages/cruxcli/script/build.ts --single
+./packages/cruxcli/dist/cruxcli-$(uname -s | tr A-Z a-z)-$(uname -m)/bin/cruxcli --version
 ```
 
-### Agents
+---
 
-CruxCLI includes two built-in agents you can switch between with the `Tab` key.
+### Features
 
-- **build** - Default, full-access agent for development work
-- **plan** - Read-only agent for analysis and code exploration
-  - Denies file edits by default
-  - Asks permission before running bash commands
-  - Ideal for exploring unfamiliar codebases or planning changes
+#### Crux Mode System
 
-Also included is a **general** subagent for complex searches and multistep tasks.
-This is used internally and can be invoked using `@general` in messages.
+CruxCLI ships with two built-in agents, switchable with `Tab`:
 
-Learn more about [agents](https://cruxcli.ai/docs/agents).
+- **build** -- Default, full-access agent for development work
+- **plan** -- Read-only agent for analysis and code exploration (denies file edits, asks before running commands)
+
+Modes are defined as Markdown files in `.cruxcli/agents/` or `~/.config/cruxcli/agents/`. Each mode can specify its own model, temperature, top_p, prompt, steps limit, and permission set.
+
+A **general** subagent handles complex searches and multistep tasks internally, invocable via `@general` in messages.
+
+#### Token Budget System
+
+Each mode has a configurable token budget. CruxCLI tracks token usage per mode per session and enforces limits through infrastructure, not prompt instructions:
+
+- **Warning** at 70-80% of budget: a reminder is injected into the system prompt
+- **Hard limit** at 90-95%: `toolChoice` is set to `none`, forcing a text-only response
+
+#### Workspace Checkpoints
+
+CruxCLI integrates with git worktrees to create lightweight checkpoints before convergence rounds. Roll back with `cruxcli checkpoint` commands.
+
+#### Provider-Agnostic Design
+
+Configure any provider via `cruxcli.json`:
+
+```jsonc
+{
+  "$schema": "https://cruxcli.dev/config.json",
+  "provider": {
+    "anthropic": {
+      "options": { "apiKey": "sk-..." }
+    }
+  },
+  "model": "anthropic/claude-sonnet-4-20250514"
+}
+```
+
+All providers from [models.dev](https://models.dev) are supported. CruxCLI's mode system applies per-mode temperature and topP tuning regardless of which provider you use.
+
+#### Client/Server Architecture
+
+CruxCLI runs a headless API server that the TUI connects to. This means:
+
+- Run `cruxcli serve` on your machine, drive it from a mobile app or web UI
+- The TUI is just one of many possible frontends
+- Full REST API documented in [docs/API.md](docs/API.md)
+
+#### LSP Integration
+
+Out-of-the-box LSP support for 30+ language servers. Provides workspace symbol search, diagnostics, and formatting without additional configuration.
+
+---
 
 ### Documentation
 
-For more info on how to configure CruxCLI, [**head over to our docs**](https://cruxcli.ai/docs).
+- [Configuration Reference](docs/CONFIGURATION.md)
+- [Server API Reference](docs/API.md)
+- [Testing Guide](docs/TESTING.md)
+- [Architecture](docs/ARCHITECTURE.md)
+- [Contributing](CONTRIBUTING.md)
+- [Roadmap](ROADMAP.md)
+
+---
 
 ### Contributing
 
-If you're interested in contributing to CruxCLI, please read our [contributing docs](./CONTRIBUTING.md) before submitting a pull request.
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for development setup, PR expectations, and style guidelines.
 
-### Building on CruxCLI
-
-If you are working on a project that's related to CruxCLI and is using "cruxcli" as part of its name, for example "cruxcli-dashboard" or "cruxcli-mobile", please add a note to your README to clarify that it is not built by the CruxCLI team and is not affiliated with us in any way.
+---
 
 ### FAQ
 
 #### How is this different from Claude Code?
 
-It's very similar to Claude Code in terms of capability. Here are the key differences:
-
 - 100% open source
-- Not coupled to any provider. Although we recommend the models we provide through [CruxCLI Zen](https://cruxcli.ai/zen), CruxCLI can be used with Claude, OpenAI, Google, or even local models. As models evolve, the gaps between them will close and pricing will drop, so being provider-agnostic is important.
+- Not coupled to any provider. CruxCLI works with Claude, OpenAI, Google, local models, or any models.dev provider. As models evolve, being provider-agnostic matters.
+- The Crux intelligence layer adds mode-driven prompts, token budgets, and session context that adapt behavior per task -- not just per conversation.
 - Out-of-the-box LSP support
-- A focus on TUI. CruxCLI is built by neovim users and the creators of [terminal.shop](https://terminal.shop); we are going to push the limits of what's possible in the terminal.
-- A client/server architecture. This, for example, can allow CruxCLI to run on your computer while you drive it remotely from a mobile app, meaning that the TUI frontend is just one of the possible clients.
+- Client/server architecture enables remote and multi-frontend operation
+- Built for convergence-driven development via CruxDev
+
+#### How is this different from OpenCode?
+
+CruxCLI is a hard fork of OpenCode (clean break, no upstream sync). The differences:
+
+- Crux mode system replaces hardcoded prompts
+- Token budget system replaces step-count limits
+- Bridge plugin absorbed into native source
+- Workspace checkpoint integration
+- Session context injection from Crux platform
+- All config/env/paths use `cruxcli` namespace (`.cruxcli/`, `CRUXCLI_*`, `cruxcli.json`)
+
+#### What is the CruxDev convergence engine?
+
+CruxDev drives code through deterministic audit-fix-re-audit loops until two consecutive independent clean passes are achieved. It replaces manual "run it again" cycles with a structured convergence process. See the [Roadmap](ROADMAP.md) for status.
 
 ---
 
-**Join our community** [Discord](https://discord.gg/cruxcli) | [X.com](https://x.com/cruxcli)
+**GitHub:** [trinsiklabs/cruxcli](https://github.com/trinsiklabs/cruxcli)

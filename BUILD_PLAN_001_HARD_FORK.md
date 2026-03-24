@@ -6,8 +6,9 @@
 **Goal:** Fork CruxCLI, strip to essentials, rebrand to CruxCLI, absorb bridge plugin, replace prompts with Crux mode-driven system. Produce a working `cruxcli` binary.
 
 **Constraint:** All LLM work stays in Claude Code (Pro Max).
-**Constraint:** Clean break from CruxCLI — no `CRUXCLI_*` env var fallbacks, no upstream sync.
+**Constraint:** Clean break from OpenCode — no `OPENCODE_*` env var fallbacks, no upstream sync.
 **Constraint:** Binary name is `cruxcli`, not `crux` (Crux is the platform, CruxCLI is the terminal agent).
+**Constraint:** All references to "opencode" become "cruxcli" in the fork.
 **Rule:** TDD. 100% coverage. Tests before code.
 **Rule:** Follow DEVELOPMENT_PATTERNS_CRUXDEV.md methodology.
 
@@ -24,13 +25,13 @@
 ### Before
 
 ```
-CruxCLI (upstream)                    CruxCLI v0.1
+OpenCode (upstream)                   CruxCLI v0.1
 ─────────────────                     ──────────────
 19-package monorepo                   Bridge plugin (crux-bridge.js)
-Binary: cruxcli                      3 hooks on stock CruxCLI
-Config: .cruxcli/, cruxcli.json     Config overlays only
-Env: CRUXCLI_*                       No source control
-Prompts: CruxCLI defaults            Mode injection via hook
+Binary: opencode                      3 hooks on stock OpenCode
+Config: .opencode/, opencode.json     Config overlays only
+Env: OPENCODE_*                       No source control
+Prompts: OpenCode defaults            Mode injection via hook
 ```
 
 ### After
@@ -70,7 +71,7 @@ MCP: Crux MCP server connects through forked runtime
 
 ```
 Phase 1: Fork + Strip          ← Get the repo, remove dead packages
-Phase 2: Rebrand               ← cruxcli → cruxcli everywhere
+Phase 2: Rebrand               <- opencode -> cruxcli everywhere
 Phase 3: Prompt Replacement    ← Replace 6 prompt injection points
 Phase 4: Bridge Absorption     ← Move bridge logic into prompt.ts
 Phase 5: Token Budget          ← Replace step-count with token budgets
@@ -83,15 +84,15 @@ All phases are sequential. Each depends on the prior.
 
 ## Phase 1: Fork + Strip
 
-**Purpose:** Get a clean copy of CruxCLI and remove everything CruxCLI doesn't need.
+**Purpose:** Get a clean copy of OpenCode and remove everything CruxCLI doesn't need.
 
 ### 1A. Fork
 
 ```bash
 cd /Users/user/personal/cruxcli
-# CruxCLI source is at /Users/user/personal/local_llm/cruxcli/
+# OpenCode source is at /Users/user/personal/local_llm/opencode/
 # Copy the full monorepo as starting point
-cp -r /Users/user/personal/local_llm/cruxcli/ fork/
+cp -r /Users/user/personal/local_llm/opencode/ fork/
 cd fork/
 git init  # Fresh git history — clean break
 ```
@@ -142,7 +143,7 @@ bun test
 
 ### Checklist — Phase 1
 
-- [x] 1.1 Copy CruxCLI monorepo to cruxcli/fork/
+- [x] 1.1 Copy OpenCode monorepo to cruxcli/fork/
 - [x] 1.2 Initialize fresh git repo
 - [x] 1.3 Remove `packages/infra` (only package stripped)
 - [x] 1.4 Update root package.json workspaces
@@ -154,7 +155,7 @@ bun test
 
 ## Phase 2: Rebrand
 
-**Purpose:** Replace every occurrence of "cruxcli" with "cruxcli" across the entire codebase. This is mechanical but must be thorough.
+**Purpose:** Replace every occurrence of "opencode" with "cruxcli" across the entire codebase. This is mechanical but must be thorough.
 
 ### 2A. Central App Name
 
@@ -162,7 +163,7 @@ bun test
 
 ```typescript
 // Before:
-const app = "cruxcli"
+const app = "opencode"
 // After:
 const app = "cruxcli"
 ```
@@ -173,7 +174,7 @@ This single change controls all XDG paths automatically.
 
 **File:** `packages/cruxcli/src/flag/flag.ts`
 
-Rename all 40+ `CRUXCLI_*` env vars to `CRUXCLI_*`. No fallback to `CRUXCLI_*`.
+Rename all 40+ `OPENCODE_*` env vars to `CRUXCLI_*`. No fallback to `OPENCODE_*`.
 
 ### 2C. Config Paths
 
@@ -181,68 +182,68 @@ Rename all 40+ `CRUXCLI_*` env vars to `CRUXCLI_*`. No fallback to `CRUXCLI_*`.
 
 | Before | After |
 |--------|-------|
-| `.cruxcli/` | `.cruxcli/` |
-| `cruxcli.json` | `cruxcli.json` |
-| `cruxcli.jsonc` | `cruxcli.jsonc` |
-| `/Library/Application Support/cruxcli` | `/Library/Application Support/cruxcli` |
-| `C:\ProgramData\cruxcli` | `C:\ProgramData\cruxcli` |
-| `/etc/cruxcli` | `/etc/cruxcli` |
+| `.opencode/` | `.cruxcli/` |
+| `opencode.json` | `cruxcli.json` |
+| `opencode.jsonc` | `cruxcli.jsonc` |
+| `/Library/Application Support/opencode` | `/Library/Application Support/cruxcli` |
+| `C:\ProgramData\opencode` | `C:\ProgramData\cruxcli` |
+| `/etc/opencode` | `/etc/cruxcli` |
 
 ### 2D. Binary
 
 | Before | After |
 |--------|-------|
-| `packages/cruxcli/bin/cruxcli` | `packages/cruxcli/bin/cruxcli` |
-| `package.json` `"bin"` field | `"cruxcli": "bin/cruxcli"` |
+| `packages/opencode/bin/opencode` | `packages/cruxcli/bin/cruxcli` |
+| `package.json` `"bin"` field: `"opencode": "bin/opencode"` | `"cruxcli": "bin/cruxcli"` |
 
 ### 2E. Package Names
 
 | Before | After |
 |--------|-------|
-| `@cruxcli-ai/plugin` | `@cruxcli/plugin` |
-| `@cruxcli-ai/sdk` | `@cruxcli/sdk` |
-| `@cruxcli-ai/util` | `@cruxcli/util` |
-| `@cruxcli-ai/script` | `@cruxcli/script` |
-| `cruxcli` (core package) | `cruxcli` |
+| `@opencode-ai/plugin` | `@cruxcli/plugin` |
+| `@opencode-ai/sdk` | `@cruxcli/sdk` |
+| `@opencode-ai/util` | `@cruxcli/util` |
+| `@opencode-ai/script` | `@cruxcli/script` |
+| `opencode` (core package) | `cruxcli` |
 
 ### 2F. HTTP Headers + User-Facing Strings
 
-- `x-cruxcli-client` → `x-cruxcli-client`
+- `x-opencode-client` -> `x-cruxcli-client`
 - TUI header, help text, ASCII logo, error messages
 - About/version output
 
 ### 2G. Test Fixtures
 
-Update all test snapshots and fixtures referencing "cruxcli" paths, env vars, or config names.
+Update all test snapshots and fixtures referencing "opencode" paths, env vars, or config names.
 
 ### 2H. Comprehensive Grep Verification
 
 After all renames:
 ```bash
-grep -ri "cruxcli" packages/ --include="*.ts" --include="*.json" --include="*.md" | grep -v node_modules | grep -v ".git"
+grep -ri "opencode" packages/ --include="*.ts" --include="*.json" --include="*.md" | grep -v node_modules | grep -v ".git"
 ```
 
 Target: **zero occurrences** (except possibly in a FORK_ORIGIN.md noting the upstream source).
 
 ### Checklist — Phase 2
 
-- [x] 2.1 App name constant: `cruxcli` → `cruxcli`
-- [x] 2.2 Env vars: all `CRUXCLI_*` → `CRUXCLI_*` (40+ vars)
-- [x] 2.3 Config paths: `.cruxcli/` → `.cruxcli/`, config file names
+- [x] 2.1 App name constant: `opencode` -> `cruxcli`
+- [x] 2.2 Env vars: all `OPENCODE_*` -> `CRUXCLI_*` (40+ vars)
+- [x] 2.3 Config paths: `.opencode/` -> `.cruxcli/`, config file names
 - [x] 2.4 Binary: rename file + package.json bin field
-- [x] 2.5 Package names: `@cruxcli-ai/*` → `@cruxcli/*`
+- [x] 2.5 Package names: `@opencode-ai/*` -> `@cruxcli/*`
 - [x] 2.6 HTTP headers + user-facing strings
 - [x] 2.7 Test fixtures updated
-- [x] 2.8 Comprehensive grep: zero "cruxcli" occurrences in source
+- [x] 2.8 Comprehensive grep: zero "opencode" occurrences in source
 - [x] 2.9 `bun install` succeeds
 - [x] 2.10 `bun test` passes
-- [x] 2.11 Git commit: "rebrand: cruxcli → cruxcli"
+- [x] 2.11 Git commit: "rebrand: opencode -> cruxcli"
 
 ---
 
 ## Phase 3: Prompt Replacement
 
-**Purpose:** Replace CruxCLI's default prompts with Crux mode-driven prompts. These are the 6 injection points identified in the ROADMAP.
+**Purpose:** Replace OpenCode's default prompts with Crux mode-driven prompts. These are the 6 injection points identified in the ROADMAP.
 
 **File:** `packages/cruxcli/src/session/prompt.ts` (1,961 lines)
 
@@ -319,7 +320,7 @@ The bridge appends session context (working_on, key_decisions, pending) to the s
 
 ## Phase 5: Token Budget System
 
-**Purpose:** Replace CruxCLI's step-count limits with per-mode token budgets. This is the Crux `token-budget.js` plugin concept moved into the fork.
+**Purpose:** Replace OpenCode's step-count limits with per-mode token budgets. This is the Crux `token-budget.js` plugin concept moved into the fork.
 
 ### 5A. Design
 
@@ -365,9 +366,9 @@ Verify: `./cruxcli --version` outputs CruxCLI version.
 | Check | How |
 |-------|-----|
 | Binary launches | `./cruxcli --help` shows CruxCLI help text |
-| Config dir created | Launch creates `.cruxcli/` (not `.cruxcli/`) |
+| Config dir created | Launch creates `.cruxcli/` (not `.opencode/`) |
 | Env vars work | `CRUXCLI_CONFIG_DIR` respected |
-| No "cruxcli" in output | `./cruxcli --help 2>&1 \| grep -i cruxcli` returns nothing |
+| No "opencode" in output | `./cruxcli --help 2>&1 \| grep -i opencode` returns nothing |
 | Crux MCP connects | Configure `.claude/mcp.json`, verify MCP tools available |
 | Mode prompt injected | Start session, verify active mode prompt appears in system prompt |
 | Session context flows | Update `.crux/sessions/state.json`, verify context appears |
@@ -382,7 +383,7 @@ bun test
 
 ### 6D. Coverage Verification
 
-Target: 100% on new/modified code. Existing CruxCLI tests adapted.
+Target: 100% on new/modified code. Existing OpenCode tests adapted.
 
 ### Checklist — Phase 6
 
@@ -391,7 +392,7 @@ Target: 100% on new/modified code. Existing CruxCLI tests adapted.
 - [x] 6.3 `cruxcli --version` shows CruxCLI version
 - [x] 6.4 Config dir `.cruxcli/` created on launch
 - [x] 6.5 `CRUXCLI_*` env vars work
-- [x] 6.6 Zero "cruxcli" in any output
+- [x] 6.6 Zero "opencode" in any output
 - [x] 6.7 Crux MCP server connects and lists tools
 - [x] 6.8 Mode prompt injection works end-to-end
 - [x] 6.9 Session context flows through to system prompt
@@ -431,7 +432,7 @@ Target: 100% on new/modified code. Existing CruxCLI tests adapted.
 | Risk | Impact | Mitigation |
 |------|--------|------------|
 | Stripped packages have hidden deps on kept packages | Build breaks | Verify `bun install && bun test` after stripping, before any renaming |
-| Env var rename breaks existing Crux bridge | Bridge stops working | Bridge is being retired (Phase 4), so this is expected |
+| Env var rename (OPENCODE_* -> CRUXCLI_*) breaks existing Crux bridge | Bridge stops working | Bridge is being retired (Phase 4), so this is expected |
 | Bun compilation fails on stripped monorepo | No binary | Test compilation early (after Phase 2) to catch issues before heavy prompt work |
 | prompt.ts is 1,961 lines | Easy to break something | Make targeted replacements, not full rewrites. Test after each change. |
 | Token tracking adds latency | Slow responses | Track tokens asynchronously, don't block on counting |
@@ -441,7 +442,7 @@ Target: 100% on new/modified code. Existing CruxCLI tests adapted.
 ## Definition of Done
 
 1. `cruxcli` binary compiles and launches
-2. Zero occurrences of "cruxcli" in source or output
+2. Zero occurrences of "opencode" in source or output
 3. All config uses `.cruxcli/`, `CRUXCLI_*`, `cruxcli.json`
 4. Crux mode prompts injected natively (no bridge plugin needed)
 5. Session context flows through to system prompt
