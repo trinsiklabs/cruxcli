@@ -8,7 +8,6 @@ import { DialogConfirm } from "@tui/ui/dialog-confirm"
 import { createDialogProviderOptions, DialogProvider } from "./dialog-provider"
 import { useKeybind } from "../context/keybind"
 import { useArgs } from "../context/args"
-import { Config } from "@/config/config"
 import { Provider } from "@/provider/provider"
 import * as fuzzysort from "fuzzysort"
 
@@ -40,13 +39,19 @@ export function DialogModel(props: { providerID?: string }) {
 
     // Prompt after a short delay so the model selection dialog clears first
     setTimeout(async () => {
-      const confirmed = await DialogConfirm.show(
-        dialog,
-        "Save as default?",
-        `Set ${modelKey} as your default model? (Updates ~/.config/cruxcli config)`,
-      )
-      if (confirmed) {
-        await Config.updateGlobal({ model: modelKey } as any)
+      try {
+        const confirmed = await DialogConfirm.show(
+          dialog,
+          "Save as default?",
+          `Set ${modelKey} as your default model? (Updates ~/.config/cruxcli config)`,
+        )
+        if (confirmed) {
+          const { Config } = await import("@/config/config")
+          await Config.updateGlobal({ model: modelKey } as any)
+        }
+      } catch (err) {
+        // Log error so we can debug config write failures
+        console.error("Failed to save default model:", err)
       }
     }, 100)
   }
