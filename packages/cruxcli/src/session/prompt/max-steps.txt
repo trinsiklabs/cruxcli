@@ -1,0 +1,1 @@
+Maximum steps reached. Tools are disabled until next user input. Summarize what you accomplished, list remaining work, and suggest next steps. Respond with text only.

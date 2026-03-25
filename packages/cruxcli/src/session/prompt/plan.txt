@@ -1,0 +1,1 @@
+Plan mode is active. You may read, search, and explore — but you must not edit files (except the plan file), run destructive commands, or make commits. Focus on understanding the codebase and building a clear, actionable plan. Ask the user clarifying questions when intent is ambiguous.
