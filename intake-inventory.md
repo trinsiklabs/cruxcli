@@ -32,7 +32,7 @@
 
 | # | Package | Path | Purpose |
 |---|---|---|---|
-| 1 | opencode (core CLI) | packages/opencode/ | Core CLI engine |
+| 1 | opencode (core CLI) | packages/cruxcli/ | Core CLI engine |
 | 2 | plugin | packages/plugin/ | Plugin SDK |
 | 3 | sdk | packages/sdk/ | Client SDK |
 | 4 | util | packages/util/ | Shared utilities |

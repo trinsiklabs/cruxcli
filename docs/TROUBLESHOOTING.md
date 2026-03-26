@@ -56,7 +56,7 @@ error: FileNotFound opening "bunfs://root/solid-refresh.js"
 
 **Fix:**
 ```bash
-cd packages/opencode
+cd packages/cruxcli
 rm -rf node_modules
 bun install
 bun run build --single
@@ -80,7 +80,7 @@ The project uses `tsgo` (TypeScript 7.0 native preview) for the core package typ
 
 **Cause:** Debug symbols or unoptimized compilation settings.
 
-**Fix:** The production build (`bun run build`) should produce binaries around ~110MB. If significantly larger, check that you are not including development dependencies. The build script at `packages/opencode/script/build.ts` handles optimization.
+**Fix:** The production build (`bun run build`) should produce binaries around ~110MB. If significantly larger, check that you are not including development dependencies. The build script at `packages/cruxcli/script/build.ts` handles optimization.
 
 ---
 
@@ -124,11 +124,11 @@ $ bun test
 Error: do not run tests from root
 ```
 
-**Cause:** Tests must be run from the `packages/opencode` directory, not the monorepo root. The root `package.json` explicitly blocks this.
+**Cause:** Tests must be run from the `packages/cruxcli` directory, not the monorepo root. The root `package.json` explicitly blocks this.
 
 **Fix:**
 ```bash
-cd packages/opencode
+cd packages/cruxcli
 bun test
 ```
 
@@ -142,7 +142,7 @@ bun test
 bun install
 
 # Then run tests
-cd packages/opencode
+cd packages/cruxcli
 bun test
 ```
 
@@ -152,7 +152,7 @@ bun test
 
 **Fix:**
 ```bash
-cd packages/opencode
+cd packages/cruxcli
 bun test --update-snapshots
 ```
 

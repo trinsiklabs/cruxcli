@@ -32,7 +32,12 @@ export function DialogModel(props: { providerID?: string }) {
     if (args.model) return
     const modelKey = `${providerID}/${modelID}`
     const configDefault = sync.data.config.model
-    if (configDefault && Provider.parseModel(configDefault)) {
+
+    // Debug: log comparison values
+    import("fs/promises").then(fs => fs.writeFile("/tmp/cruxcli-save-default-debug.txt",
+      `check: configDefault=${JSON.stringify(configDefault)} providerID=${providerID} modelID=${modelID} modelKey=${modelKey}\n`, { flag: "a" }))
+
+    if (configDefault) {
       const parsed = Provider.parseModel(configDefault)
       if (parsed.providerID === providerID && parsed.modelID === modelID) return
     }
@@ -45,9 +50,13 @@ export function DialogModel(props: { providerID?: string }) {
           "Save as default?",
           `Set ${modelKey} as your default model? (Updates ~/.config/cruxcli config)`,
         )
+        // Debug: write confirmation result to temp file
+        const fs = await import("fs/promises")
+        await fs.writeFile("/tmp/cruxcli-save-default-debug.txt", `confirmed=${confirmed} modelKey=${modelKey} time=${new Date().toISOString()}\n`, { flag: "a" })
         if (confirmed) {
           const { Config } = await import("@/config/config")
           await Config.updateGlobal({ model: modelKey } as any)
+          await fs.writeFile("/tmp/cruxcli-save-default-debug.txt", `updateGlobal completed for ${modelKey}\n`, { flag: "a" })
         }
       } catch (err) {
         // Log error so we can debug config write failures

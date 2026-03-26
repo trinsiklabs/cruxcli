@@ -1,0 +1,4 @@
+#!/bin/bash
+# Launch CruxCLI from source (dev mode)
+BUN="/Users/user/.bun/bin/bun"
+exec "$BUN" run --cwd /Users/user/personal/cruxcli/packages/cruxcli --conditions=browser src/index.ts "$@"

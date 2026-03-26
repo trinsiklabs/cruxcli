@@ -3,13 +3,13 @@
 ## Prerequisites
 
 - **Bun 1.3+** is required (the test runner is `bun:test`)
-- Run tests from `packages/opencode/`, **not** from the repo root
+- Run tests from `packages/cruxcli/`, **not** from the repo root
 
 ## Running Tests
 
 ```bash
 # From the correct directory
-cd packages/opencode
+cd packages/cruxcli
 bun test
 
 # Run a specific test file
@@ -21,11 +21,11 @@ bun test --filter "token budget"
 
 ### Do Not Run From Root
 
-The test suite includes a guard (`test/bun.test.ts`) that validates the working directory. Tests that depend on relative paths or the fixture system will fail if run from the repo root. Always `cd packages/opencode` first.
+The test suite includes a guard (`test/bun.test.ts`) that validates the working directory. Tests that depend on relative paths or the fixture system will fail if run from the repo root. Always `cd packages/cruxcli` first.
 
 ## Test Organization
 
-Tests live in `packages/opencode/test/` and mirror the source tree structure:
+Tests live in `packages/cruxcli/test/` and mirror the source tree structure:
 
 ```
 test/

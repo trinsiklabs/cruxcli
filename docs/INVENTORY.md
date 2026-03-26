@@ -12,7 +12,7 @@ This is the complete index of everything in the CruxCLI monorepo.
 
 | Package | Path | Name | Description |
 |---------|------|------|-------------|
-| opencode | `packages/opencode/` | `cruxcli` | Core CLI, server, session engine, provider integration, tool system. The main binary. |
+| opencode | `packages/cruxcli/` | `cruxcli` | Core CLI, server, session engine, provider integration, tool system. The main binary. |
 | app | `packages/app/` | `@cruxcli/app` | SolidJS web frontend (connects to server over HTTP/SSE) |
 | ui | `packages/ui/` | `@cruxcli/ui` | Shared UI component library (SolidJS) |
 | desktop | `packages/desktop/` | `@cruxcli/desktop` | Tauri desktop wrapper |

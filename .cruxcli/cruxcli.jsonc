@@ -1,13 +1,149 @@
 {
   "$schema": "https://cruxcli.ai/config.json",
+  "model": "ollama/qwen3.5:27b",
   "provider": {
-    "cruxcli": {
-      "options": {},
+    "ollama": {
+      "name": "Ollama",
+      "npm": "@ai-sdk/openai-compatible",
+      "api": "http://localhost:11434/v1",
+      "models": {
+        "qwen3.5:27b": {
+          "id": "qwen3.5:27b",
+          "name": "Qwen 3.5 27B (Local)",
+          "tool_call": true,
+          "attachment": false,
+          "reasoning": true,
+          "temperature": true,
+          "limit": {
+            "context": 131072,
+            "output": 8192
+          }
+        },
+        "qwen3.5:9b": {
+          "id": "qwen3.5:9b",
+          "name": "Qwen 3.5 9B (Local, Fast)",
+          "tool_call": true,
+          "attachment": false,
+          "reasoning": true,
+          "temperature": true,
+          "limit": {
+            "context": 131072,
+            "output": 8192
+          }
+        },
+        "qwen3-coder:30b": {
+          "id": "qwen3-coder:30b",
+          "name": "Qwen 3 Coder 30B (Local)",
+          "tool_call": true,
+          "attachment": false,
+          "reasoning": true,
+          "temperature": true,
+          "limit": {
+            "context": 131072,
+            "output": 8192
+          }
+        },
+        "crux-code:latest": {
+          "id": "crux-code:latest",
+          "name": "Crux Code (Local, Custom)",
+          "tool_call": true,
+          "attachment": false,
+          "reasoning": false,
+          "temperature": true,
+          "limit": {
+            "context": 131072,
+            "output": 8192
+          }
+        },
+        "crux-think:latest": {
+          "id": "crux-think:latest",
+          "name": "Crux Think (Local, Custom)",
+          "tool_call": true,
+          "attachment": false,
+          "reasoning": true,
+          "temperature": true,
+          "limit": {
+            "context": 131072,
+            "output": 8192
+          }
+        },
+        "crux-chat:latest": {
+          "id": "crux-chat:latest",
+          "name": "Crux Chat (Local, Custom)",
+          "tool_call": true,
+          "attachment": false,
+          "reasoning": false,
+          "temperature": true,
+          "limit": {
+            "context": 131072,
+            "output": 8192
+          }
+        }
+      },
+      "options": {
+        "baseURL": "http://localhost:11434/v1"
+      }
     },
+    "openrouter": {
+      "options": {
+        "apiKey": "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"
+      },
+      "models": {
+        "deepseek-v3.2": {
+          "id": "deepseek/deepseek-v3.2",
+          "name": "DeepSeek V3.2",
+          "tool_call": true,
+          "attachment": true,
+          "reasoning": true,
+          "temperature": true,
+          "limit": {
+            "context": 163840,
+            "output": 16384
+          }
+        },
+        "mimo-v2-pro": {
+          "id": "xiaomi/mimo-v2-pro",
+          "name": "MiMo V2 Pro (Hunter Alpha)",
+          "tool_call": true,
+          "attachment": true,
+          "reasoning": false,
+          "temperature": true,
+          "limit": {
+            "context": 1048576,
+            "output": 131072
+          }
+        }
+      }
+    }
   },
-  "mcp": {},
+  "mcp": {
+    "crux": {
+      "type": "local",
+      "command": [
+        "/Users/user/personal/crux/.venv/bin/python",
+        "-m",
+        "scripts.lib.crux_mcp_server"
+      ],
+      "environment": {
+        "PYTHONPATH": "/Users/user/personal/crux",
+        "CRUX_PROJECT": "/Users/user/personal/cruxcli",
+        "CRUX_HOME": "/Users/user"
+      }
+    },
+    "cruxdev": {
+      "type": "local",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-m",
+        "src.mcp_server"
+      ],
+      "environment": {
+        "PYTHONPATH": "/Users/user/personal/cruxdev"
+      }
+    }
+  },
   "tools": {
     "github-triage": false,
-    "github-pr-search": false,
-  },
+    "github-pr-search": false
+  }
 }

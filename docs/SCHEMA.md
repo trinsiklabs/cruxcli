@@ -12,7 +12,7 @@ CruxCLI uses two storage systems:
 
 Database configuration: WAL journal mode, `synchronous = NORMAL`, `busy_timeout = 5000`, `cache_size = -64000`, foreign keys enabled.
 
-Migrations are embedded in the compiled binary at build time (`CRUXCLI_MIGRATIONS`). In development, they are read from `packages/opencode/migration/`. Auto-applied on startup.
+Migrations are embedded in the compiled binary at build time (`CRUXCLI_MIGRATIONS`). In development, they are read from `packages/cruxcli/migration/`. Auto-applied on startup.
 
 ---
 

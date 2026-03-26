@@ -38,7 +38,7 @@ CruxCLI is an open-source, provider-agnostic AI coding agent for the terminal. I
 | Organization | trinsiklabs |
 | Repository | github.com/trinsiklabs/cruxcli |
 | Structure | Monorepo, 19 packages |
-| Core package | `packages/opencode/` |
+| Core package | `packages/cruxcli/` |
 
 ## 4. Relationship to Crux Ecosystem
 

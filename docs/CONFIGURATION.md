@@ -356,7 +356,7 @@ Experimental features (may change without notice).
 
 ## Environment Variables
 
-All CruxCLI environment variables use the `CRUXCLI_` prefix. These are read from `packages/opencode/src/flag/flag.ts`.
+All CruxCLI environment variables use the `CRUXCLI_` prefix. These are read from `packages/cruxcli/src/flag/flag.ts`.
 
 ### Core
 

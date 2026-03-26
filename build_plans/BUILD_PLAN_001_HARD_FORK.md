@@ -193,7 +193,7 @@ Rename all 40+ `OPENCODE_*` env vars to `CRUXCLI_*`. No fallback to `OPENCODE_*`
 
 | Before | After |
 |--------|-------|
-| `packages/opencode/bin/opencode` | `packages/cruxcli/bin/cruxcli` |
+| `packages/cruxcli/bin/opencode` | `packages/cruxcli/bin/cruxcli` |
 | `package.json` `"bin"` field: `"opencode": "bin/opencode"` | `"cruxcli": "bin/cruxcli"` |
 
 ### 2E. Package Names

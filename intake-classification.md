@@ -8,7 +8,7 @@
 - **Source locations:**
   - `/Users/user/personal/cruxcli/` — main repo (monorepo, 19 packages)
   - `/Users/user/personal/cruxcli/docs/` — analysis docs (competitors, memory report, migration plan)
-  - `/Users/user/personal/cruxcli/packages/opencode/` — core CLI source
+  - `/Users/user/personal/cruxcli/packages/cruxcli/` — core CLI source
   - `/Users/user/personal/cruxcli/packages/web/` — marketing site framework
   - `/Users/user/personal/cruxcli/sdks/vscode/` — VS Code extension
   - `/Users/user/personal/cruxcli/.github/workflows/` — CI/CD pipelines

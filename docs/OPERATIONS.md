@@ -21,7 +21,7 @@ The snapshot system maintains a separate `.git` directory (under `~/.local/share
 ## Database Migrations
 
 **System:** Drizzle ORM with `bun:sqlite`
-**Location:** `packages/opencode/migration/<timestamp>_<slug>/migration.sql`
+**Location:** `packages/cruxcli/migration/<timestamp>_<slug>/migration.sql`
 
 Migrations are **embedded in the compiled binary** at build time. The build script reads all migration SQL files and bundles them as `CRUXCLI_MIGRATIONS`. In development, migrations are read from the filesystem.
 

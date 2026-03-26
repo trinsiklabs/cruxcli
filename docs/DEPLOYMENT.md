@@ -9,7 +9,7 @@ CruxCLI is distributed as a compiled Bun binary across 10 platform targets. Dist
 ## Build
 
 ```bash
-cd packages/opencode
+cd packages/cruxcli
 bun run build --single          # Current platform only
 bun run build                   # All 10 targets
 bun run build --single --skip-install  # Skip dependency install (faster rebuild)

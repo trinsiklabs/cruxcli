@@ -120,7 +120,7 @@ Storage.write(["checkpoint", projectID], checkpoints)
 ## Test Commands
 
 ```bash
-cd packages/opencode && bun test --timeout 30000
+cd packages/cruxcli && bun test --timeout 30000
 ```
 
 ## Convergence Criteria

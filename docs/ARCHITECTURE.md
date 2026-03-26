@@ -8,7 +8,7 @@ The core loop: a user sends a message, the system constructs a prompt with syste
 
 ### Entry Point
 
-`packages/opencode/src/index.ts` -- yargs-based CLI that registers all commands and runs a one-time SQLite migration on first launch. The process sets `CRUXCLI=1` and `AGENT=1` environment variables.
+`packages/cruxcli/src/index.ts` -- yargs-based CLI that registers all commands and runs a one-time SQLite migration on first launch. The process sets `CRUXCLI=1` and `AGENT=1` environment variables.
 
 ### Key Commands
 
@@ -33,7 +33,7 @@ Bun monorepo managed with Turbo. Workspaces live under `packages/*`, `packages/c
 
 | Package | Name | Role |
 |---------|------|------|
-| `packages/opencode` | `cruxcli` | Core CLI, server, session engine, provider integration, tool system. The main binary. |
+| `packages/cruxcli` | `cruxcli` | Core CLI, server, session engine, provider integration, tool system. The main binary. |
 | `packages/app` | `@cruxcli/app` | SolidJS web frontend (connects to server over HTTP/SSE) |
 | `packages/ui` | `@cruxcli/ui` | Shared UI component library (SolidJS) |
 | `packages/desktop` | `@cruxcli/desktop` | Tauri desktop wrapper |
@@ -74,7 +74,7 @@ Bun monorepo managed with Turbo. Workspaces live under `packages/*`, `packages/c
 
 ## Core Subsystems
 
-All core subsystems live under `packages/opencode/src/`. Most are organized as TypeScript namespaces with an `Instance.state()` pattern that scopes state per project directory.
+All core subsystems live under `packages/cruxcli/src/`. Most are organized as TypeScript namespaces with an `Instance.state()` pattern that scopes state per project directory.
 
 ### Instance (`project/instance.ts`)
 
@@ -260,7 +260,7 @@ Schema files follow the `*.sql.ts` convention. Key tables:
 - `ControlAccountTable` -- Crux platform account credentials
 - `PermissionTable` -- Per-session permission overrides
 
-Migrations live in `packages/opencode/migration/<timestamp>_<slug>/migration.sql`. On first run, a JSON-to-SQLite migration (`storage/json-migration.ts`) converts legacy JSON storage.
+Migrations live in `packages/cruxcli/migration/<timestamp>_<slug>/migration.sql`. On first run, a JSON-to-SQLite migration (`storage/json-migration.ts`) converts legacy JSON storage.
 
 ### JSON Storage (`storage/storage.ts`)
 
@@ -333,7 +333,7 @@ Supports CORS, basic auth (via `CRUXCLI_SERVER_PASSWORD`), SSE streaming, WebSoc
 
 ## Build System
 
-### Compilation (`packages/opencode/script/build.ts`)
+### Compilation (`packages/cruxcli/script/build.ts`)
 
 Bun's native `Bun.build()` with `compile: true` produces self-contained single-file executables. The build process:
 

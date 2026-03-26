@@ -41,8 +41,8 @@ The following performance characteristics should be measured but have not been f
 | Metric | What to measure | How |
 |--------|----------------|-----|
 | **Startup time** | Time from `cruxcli` invocation to TUI ready | `time cruxcli --help` for cold start; instrument `Instance.state()` for warm start |
-| **Build time** | Time to compile single-platform binary | `time bun run build --single` in `packages/opencode` |
-| **Full build time** | Time to compile all 10 platform targets | `time bun run build` in `packages/opencode` |
+| **Build time** | Time to compile single-platform binary | `time bun run build --single` in `packages/cruxcli` |
+| **Full build time** | Time to compile all 10 platform targets | `time bun run build` in `packages/cruxcli` |
 | **LLM first-token latency** | Time from prompt submission to first streamed token | Instrument `LLM.stream()` — this is mostly provider-dependent |
 | **Tool execution overhead** | CruxCLI overhead per tool call (excluding tool runtime) | Instrument `Tool.execute` wrapper: permission check + checkpoint + validation |
 | **Compaction duration** | Time to summarize and prune context | Instrument `SessionCompaction` — depends on context size and summarization model speed |

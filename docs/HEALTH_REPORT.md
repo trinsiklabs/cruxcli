@@ -16,10 +16,10 @@ CruxCLI is in a healthy state. The binary compiles, all tests pass, all packages
 |--------|-------|
 | Total tests passing | 1,204 |
 | Test runner | Bun test |
-| Test location | `packages/opencode/` |
+| Test location | `packages/cruxcli/` |
 | Known flaky tests | None identified |
 
-Tests must be run from `packages/opencode/`, not the monorepo root.
+Tests must be run from `packages/cruxcli/`, not the monorepo root.
 
 ---
 
