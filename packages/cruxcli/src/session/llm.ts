@@ -151,8 +151,9 @@ export namespace LLM {
       },
     )
 
+    const isOpenAIDirect = provider.id === "openai"
     const maxOutputTokens =
-      isCodex || provider.id.includes("github-copilot") ? undefined : ProviderTransform.maxOutputTokens(input.model)
+      isCodex || isOpenAIDirect || provider.id.includes("github-copilot") ? undefined : ProviderTransform.maxOutputTokens(input.model)
 
     const tools = await resolveTools(input)
 
