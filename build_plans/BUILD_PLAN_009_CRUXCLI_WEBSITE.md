@@ -454,42 +454,42 @@ Per SEO_AND_GEO_REFERENCE.md §1.5:
 ### Checklist — Phase 9
 
 **Functional:**
-- [ ] 9.1 All internal links work (zero 404s)
-- [ ] 9.2 All external links verified (competitor URLs, GitHub, ecosystem URLs)
-- [ ] 9.3 No placeholder text (all real content)
-- [ ] 9.4 Favicon and OG images present
+- [x] 9.1 All internal links work (zero 404s)
+- [x] 9.2 All external links verified (competitor URLs, GitHub, ecosystem URLs)
+- [x] 9.3 No placeholder text (all real content)
+- [x] 9.4 Favicon and OG images present
 
 **Cross-Browser & Responsive:**
-- [ ] 9.5 Chrome, Firefox, Safari tested
-- [ ] 9.6 All pages render correctly at 375px, 768px, 1024px
-- [ ] 9.7 Touch targets ≥ 44x44 CSS pixels
+- [x] 9.5 Chrome, Firefox, Safari tested
+- [x] 9.6 All pages render correctly at 375px, 768px, 1024px
+- [x] 9.7 Touch targets ≥ 44x44 CSS pixels
 
 **Performance (per SEO_AND_GEO_REFERENCE.md §3):**
-- [ ] 9.8 Core Web Vitals green on mobile AND desktop (LCP ≤2.0s, INP ≤150ms, CLS ≤0.05)
-- [ ] 9.9 Lighthouse: Performance ≥90, Accessibility ≥90, SEO ≥90
-- [ ] 9.10 Total page weight ≤ 500KB compressed
-- [ ] 9.11 JavaScript ≤ 200KB compressed (should be ~0 for static Astro)
-- [ ] 9.12 Test on throttled 3G connection
+- [x] 9.8 Core Web Vitals green on mobile AND desktop (LCP ≤2.0s, INP ≤150ms, CLS ≤0.05)
+- [x] 9.9 Lighthouse: Performance ≥90, Accessibility ≥90, SEO ≥90
+- [x] 9.10 Total page weight ≤ 500KB compressed
+- [x] 9.11 JavaScript ≤ 200KB compressed (should be ~0 for static Astro)
+- [x] 9.12 Test on throttled 3G connection
 
 **SEO:**
-- [ ] 9.13 Meta tags correct per page (title 50-60 chars, description 120-160 chars, OG, canonical)
-- [ ] 9.14 Schema.org validates (Rich Results Test) — all 6 page types
-- [ ] 9.15 XML sitemap valid (includes /lp/ pages, all canonical/indexable URLs)
-- [ ] 9.16 robots.txt correct (allows all crawlers, references sitemap)
-- [ ] 9.17 Heading hierarchy (one H1 per page, logical H2-H3 nesting)
-- [ ] 9.18 Images: alt text, width/height set, WebP/AVIF format, lazy-load below fold
+- [x] 9.13 Meta tags correct per page (title 50-60 chars, description 120-160 chars, OG, canonical)
+- [x] 9.14 Schema.org validates (Rich Results Test) — all 6 page types
+- [x] 9.15 XML sitemap valid (includes /lp/ pages, all canonical/indexable URLs)
+- [x] 9.16 robots.txt correct (allows all crawlers, references sitemap)
+- [x] 9.17 Heading hierarchy (one H1 per page, logical H2-H3 nesting)
+- [x] 9.18 Images: alt text, width/height set, WebP/AVIF format, lazy-load below fold
 
 **GEO/AI Visibility:**
-- [ ] 9.19 llms.txt accessible at /llms.txt
-- [ ] 9.20 llms-full.txt accessible at /llms-full.txt
-- [ ] 9.21 Answer-first pattern verified on all pages (first 40-80 words answer the query)
-- [ ] 9.22 Brand name consistent: "CruxCLI" everywhere (no variants)
-- [ ] 9.23 Statistics and concrete numbers on all feature/comparison pages
+- [x] 9.19 llms.txt accessible at /llms.txt
+- [x] 9.20 llms-full.txt accessible at /llms-full.txt
+- [x] 9.21 Answer-first pattern verified on all pages (first 40-80 words answer the query)
+- [x] 9.22 Brand name consistent: "CruxCLI" everywhere (no variants)
+- [x] 9.23 Statistics and concrete numbers on all feature/comparison pages
 
 **Accessibility:**
-- [ ] 9.24 Keyboard navigation works (all interactive elements reachable)
-- [ ] 9.25 Color contrast meets WCAG AA (4.5:1 for text, 3:1 for large text)
-- [ ] 9.26 Skip navigation link present
+- [x] 9.24 Keyboard navigation works (all interactive elements reachable)
+- [x] 9.25 Color contrast meets WCAG AA (4.5:1 for text, 3:1 for large text)
+- [x] 9.26 Skip navigation link present
 
 ---
 
@@ -499,14 +499,14 @@ Per SEO_AND_GEO_REFERENCE.md §1.5:
 
 ### Checklist — Phase 10
 
-- [ ] 10.1 Deploy to Cloudflare Pages (or chosen host)
-- [ ] 10.2 DNS configured for cruxvibe.io
-- [ ] 10.3 SSL valid
-- [ ] 10.4 Submit sitemap to Google Search Console
-- [ ] 10.5 Verify indexing (all pages crawlable)
-- [ ] 10.6 Analytics tracking verified (Plausible)
-- [ ] 10.7 Social sharing verified (OG images, descriptions)
-- [ ] 10.8 Monitor error logs first 48 hours
+- [x] 10.1 Deploy to Cloudflare Pages (or chosen host)
+- [x] 10.2 DNS configured for cruxvibe.io
+- [x] 10.3 SSL valid
+- [x] 10.4 Submit sitemap to Google Search Console
+- [x] 10.5 Verify indexing (all pages crawlable)
+- [x] 10.6 Analytics tracking verified (Plausible)
+- [x] 10.7 Social sharing verified (OG images, descriptions)
+- [x] 10.8 Monitor error logs first 48 hours
 
 ---
 
