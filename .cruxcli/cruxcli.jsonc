@@ -86,7 +86,7 @@
     },
     "openrouter": {
       "options": {
-        "apiKey": "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"
+        "apiKey": "{env:OPENROUTER_API_KEY}"
       },
       "models": {
         "deepseek-v3.2": {
