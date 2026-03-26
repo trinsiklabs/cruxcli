@@ -2,7 +2,7 @@
 
 **Created:** 2026-03-26
 **Last Updated:** 2026-03-26
-**Status:** NOT STARTED
+**Status:** CONVERGED (deployment pending infrastructure)
 **Goal:** Build the CruxCLI marketing website following CruxDev WEBSITE_PLANNING.md methodology (Phases 0-12). Marketing pages + comparison pages alongside existing Starlight docs.
 
 **Rule:** Follow CruxDev WEBSITE_PLANNING.md sequentially.

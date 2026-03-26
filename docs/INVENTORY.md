@@ -164,3 +164,32 @@ Build plans are referenced in COMPETITORS.md and live in the Crux repo:
 | `HEALTH_REPORT.md` | Domain health snapshot |
 
 **Total documentation files: 18**
+
+---
+
+## Website Pages (`packages/web/src/pages/`)
+
+| Path | Purpose |
+|------|---------|
+| `/` | Homepage — hero, trust bar, moats, how-it-works, CTAs |
+| `/features` | Feature showcase with code examples and comparison table |
+| `/vs` | Comparison hub listing 4 official competitors |
+| `/vs/opencode` | CruxCLI vs OpenCode — feature table, FAQPage schema |
+| `/vs/claude-code` | CruxCLI vs Claude Code — feature table, FAQPage schema |
+| `/vs/gemini-cli` | CruxCLI vs Gemini CLI — feature table, FAQPage schema |
+| `/vs/codex-cli` | CruxCLI vs Codex CLI — feature table, FAQPage schema |
+| `/roadmap` | Public roadmap — completed, in progress, planned, non-goals |
+| `/lp/no-execution-cap` | Landing page — Tier 3 keyword "AI agent stops before finishing" |
+| `/lp/provider-agnostic` | Landing page — Tier 2 keyword "use any LLM with coding agent" |
+| `/lp/convergence` | Landing page — Tier 4 keyword "how to know when AI code is done" |
+| `/docs/*` | Starlight documentation (18 locales, existing) |
+
+### SEO/GEO Assets (`packages/web/public/`)
+
+| File | Purpose |
+|------|---------|
+| `llms.txt` | Structured index for AI/LLM consumption |
+| `llms-full.txt` | Full text dump for LLM context windows |
+| `robots.txt` | Crawler policy — allows all AI crawlers |
+
+**Total website pages: 11 marketing + docs**
