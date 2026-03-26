@@ -12,6 +12,7 @@
 ## Document Alignment
 
 - CruxDev `docs/WEBSITE_PLANNING.md` — website methodology (Phases 0-12)
+- CruxDev `docs/SEO_AND_GEO_REFERENCE.md` — SEO + AI visibility (GEO) technical reference
 - CruxDev `docs/WEBSITE_ENGINES.md` — engine selection matrix
 - CruxDev `docs/COMPETITORS_PATTERN.md` — comparison page standards (Section 6)
 - `docs/COMPETITORS.md` — competitor data, feature matrix, moat inventory
@@ -206,46 +207,103 @@ Crux (runcrux.io) | CruxDev (cruxdev.dev) | CruxCLI (cruxvibe.io) | GitHub
 
 ## Phase 5: SEO & AI Visibility Architecture
 
-**Purpose:** Build discoverability into the site. Per WEBSITE_PLANNING.md §5.
+**Purpose:** Build discoverability into the site's DNA — both search engines and AI systems. Per WEBSITE_PLANNING.md §5 + SEO_AND_GEO_REFERENCE.md.
 
-### 5.1 Keyword Strategy
+### 5.1 Keyword Strategy (5-Tier per SEO_AND_GEO_REFERENCE.md §1.6)
 
-| Stage | Keywords |
-|-------|----------|
-| Awareness | "AI coding agent", "terminal coding agent", "AI pair programming" |
-| Consideration | "opencode alternative", "claude code alternative", "best AI coding CLI" |
-| Decision | "cruxcli install", "cruxcli getting started", "cruxcli vs opencode" |
+| Tier | Audience State | Example Keywords | Priority |
+|------|---------------|-----------------|----------|
+| 1: Solution-aware | Comparing options | "opencode alternative", "claude code alternative", "best terminal AI agent" | High |
+| 2: Problem-aware | Seeking solutions | "how to use any LLM with coding agent", "provider-agnostic AI coding" | High |
+| 3: Symptom-aware | Feels pain, doesn't know cause | "AI coding agent stops before finishing", "AI agent keeps hitting execution cap" | Medium |
+| 4: Problem-unaware | Has problem, doesn't recognize it | "how to know when AI code is done", "AI agent convergence" | Medium |
+| 5: Adjacent interest | Related topics | "MCP server tools", "TDD with AI agents", "terminal UI development" | Lower |
 
-### 5.2 Structured Data Plan
+### 5.2 Keyword Registry (docs/SEO_KEYWORDS.md)
+
+Track all researched keywords per SEO_AND_GEO_REFERENCE.md §1.6.2:
+
+| Keyword/Question | Tier | Volume | Difficulty | Intent | Landing Page | Status |
+|-----------------|------|--------|-----------|--------|-------------|--------|
+| "opencode alternative" | 1 | est. 1,000+ | Medium | Commercial | /vs/opencode | Nav page |
+| "claude code alternative" | 1 | est. 2,000+ | Medium | Commercial | /vs/claude-code | Nav page |
+| "AI coding agent stops before finishing" | 3 | est. 500 | Low | Informational | /lp/no-execution-cap | Planned |
+| "provider agnostic AI coding" | 2 | est. 300 | Low | Informational | /lp/provider-agnostic | Planned |
+| "how to converge AI code" | 4 | est. 100 | Low | Informational | /lp/convergence | Planned |
+
+### 5.3 Landing Page Architecture (/lp/ pages)
+
+Per SEO_AND_GEO_REFERENCE.md §1.6.3-1.6.4:
+- Landing pages at `/lp/<slug>` — indexed via sitemap but NOT in nav
+- Each answers a specific search query directly in first 2-3 paragraphs
+- Internal links to relevant nav pages (funneling to main site)
+- FAQPage or HowTo schema as appropriate
+- 800-2,000 words of genuine, useful content
+
+### 5.4 Structured Data Plan
 
 | Page Type | Schema.org |
 |-----------|-----------|
-| Homepage | `SoftwareApplication` + `Organization` |
+| Homepage | `SoftwareApplication` + `Organization` + `WebSite` with `SearchAction` |
 | Features | `SoftwareApplication` with features list |
-| Comparison | `FAQPage` ("How does CruxCLI compare to X?") |
+| Comparison `/vs/*` | `FAQPage` ("How does CruxCLI compare to X?") |
 | Roadmap | `ItemList` |
+| Landing pages `/lp/*` | `Article` or `FAQPage` or `HowTo` per content |
+| Docs | `TechArticle` |
 
-### 5.3 AI Visibility
+### 5.5 AI Visibility (GEO per SEO_AND_GEO_REFERENCE.md §2)
 
-- Create `/llms.txt` and `/llms-full.txt`
-- Answer-first content: lead paragraphs answer the question in 40-80 words
-- Concrete numbers: test count, provider count, mode count, binary size
-- Brand consistency: "CruxCLI" (not "Crux CLI" or "cruxcli")
+- **llms.txt** at site root: structured Markdown index of all key pages
+- **llms-full.txt**: full text dump of all important content for LLM context windows
+- **Answer-first content**: lead paragraphs answer the question in 40-80 words (AI citation +40% per Princeton/Georgia Tech study)
+- **Statistics and specifics**: "1,204 tests passing" not "comprehensive test suite" (citation rate +40%)
+- **Definition patterns**: "CruxCLI is a provider-agnostic terminal AI coding agent that..." (highly extractable)
+- **Brand consistency**: Always "CruxCLI" (not "Crux CLI", "cruxcli", or "CRUXCLI")
+- **Question-as-heading**: H2/H3 that match search queries ("What makes CruxCLI different from OpenCode?")
 
-### 5.4 Technical SEO
+### 5.6 Technical SEO
 
 - Unique `<title>` (50-60 chars) and `<meta description>` (150-160 chars) per page
 - Open Graph + Twitter Card tags
-- XML sitemap (auto-generated)
-- Canonical URLs on every page
-- Allow all AI crawlers (GPTBot, ClaudeBot, Google-Extended)
+- XML sitemap (auto-generated, includes `/lp/*` pages)
+- Canonical URLs on every page (self-referencing)
+- Breadcrumb navigation with `BreadcrumbList` schema
+- Semantic HTML (`<article>`, `<section>`, `<nav>`, proper heading hierarchy)
+- robots.txt: allow all crawlers, reference sitemap
+
+### 5.7 AI Crawler Policy
+
+Per SEO_AND_GEO_REFERENCE.md §2.7 — **allow all AI crawlers** (developer tools benefit from AI recommendations):
+
+```
+# robots.txt
+User-agent: *
+Allow: /
+Sitemap: https://cruxvibe.io/sitemap.xml
+```
+
+No blocking of GPTBot, ClaudeBot, Google-Extended, PerplexityBot, or Applebot-Extended.
+
+### 5.8 Content Clusters (Pillar + Spoke)
+
+Per SEO_AND_GEO_REFERENCE.md §1.5:
+
+| Pillar (Hub) | Cluster Pages (Spokes) |
+|-------------|----------------------|
+| /features (AI coding agents) | /lp/provider-agnostic, /lp/mode-system, /lp/token-budgets |
+| /vs (comparisons) | /vs/opencode, /vs/claude-code, /vs/gemini-cli, /vs/codex-cli |
+| /docs (documentation) | Existing Starlight docs (20+ pages) |
 
 ### Checklist — Phase 5
 
-- [ ] 5.1 Define keyword strategy (awareness, consideration, decision)
-- [ ] 5.2 Plan structured data per page type
-- [ ] 5.3 Create llms.txt and llms-full.txt
-- [ ] 5.4 Define technical SEO requirements
+- [ ] 5.1 Build 5-tier keyword strategy with Tier 3-4 opportunities
+- [ ] 5.2 Create docs/SEO_KEYWORDS.md keyword registry
+- [ ] 5.3 Plan /lp/ landing pages (at least 3 for Tier 2-4 keywords)
+- [ ] 5.4 Define structured data per page type (6 types)
+- [ ] 5.5 Plan llms.txt and llms-full.txt content
+- [ ] 5.6 Define AI visibility patterns (answer-first, statistics, definitions, question headings)
+- [ ] 5.7 Set AI crawler policy (allow all)
+- [ ] 5.8 Map content clusters (pillar + spoke)
 
 ---
 
@@ -306,16 +364,20 @@ Crux (runcrux.io) | CruxDev (cruxdev.dev) | CruxCLI (cruxvibe.io) | GitHub
 | Output | Static (Cloudflare adapter for docs SSR if needed) |
 | Analytics | Plausible (privacy-respecting, no cookie consent needed) |
 
-### 7.2 Performance Budget
+### 7.2 Performance Budget (per SEO_AND_GEO_REFERENCE.md §3.3)
 
-| Metric | Target |
-|--------|--------|
-| LCP | < 2.5s |
-| INP | < 200ms |
-| CLS | < 0.1 |
-| TTFB | < 800ms |
-| Total page weight | < 500KB |
-| JavaScript | < 200KB compressed |
+| Metric | Target | Rationale |
+|--------|--------|-----------|
+| LCP | ≤ 2.0s (mobile) | Below Google's 2.5s "Good" with margin |
+| INP | ≤ 150ms | Below Google's 200ms "Good" with margin |
+| CLS | ≤ 0.05 | Below Google's 0.1 "Good" with margin |
+| TTFB | ≤ 600ms | Below Google's 800ms rec with margin |
+| FCP | ≤ 1.5s | Below Google's 1.8s "Good" |
+| Total page weight | ≤ 500KB compressed | Documentation site target |
+| JavaScript | ≤ 200KB compressed | Main thread execution budget |
+| Images | ≤ 300KB above fold | LCP element on ~70-80% of pages |
+| Web fonts | 0KB | System font stack — no custom fonts |
+| HTTP requests | ≤ 30 initial load | Fewer = faster with HTTP/2 |
 
 ### Checklist — Phase 7
 
@@ -363,12 +425,24 @@ Crux (runcrux.io) | CruxDev (cruxdev.dev) | CruxCLI (cruxvibe.io) | GitHub
 - [ ] 8.4.3 Planned: browser automation, enterprise compliance, memory pipeline
 - [ ] 8.4.4 Non-goals: upstream sync, building what can be integrated
 
-### 8.5 SEO Assets
+### 8.5 Landing Pages (/lp/)
 
-- [ ] 8.5.1 Create `/llms.txt`
-- [ ] 8.5.2 Create `/llms-full.txt`
-- [ ] 8.5.3 XML sitemap auto-generated
-- [ ] 8.5.4 robots.txt allowing all crawlers
+- [ ] 8.5.1 Create `/lp/no-execution-cap` — answers "AI agent stops before finishing" (Tier 3 keyword)
+- [ ] 8.5.2 Create `/lp/provider-agnostic` — answers "use any LLM with coding agent" (Tier 2 keyword)
+- [ ] 8.5.3 Create `/lp/convergence` — answers "how to know when AI code is done" (Tier 4 keyword)
+- [ ] 8.5.4 Each landing page: answer in first 40-80 words, 800-2000 words depth, internal links to nav pages, CTA, schema
+- [ ] 8.5.5 All /lp/ pages in sitemap.xml but NOT in nav
+
+### 8.6 SEO & GEO Assets
+
+- [ ] 8.6.1 Create `/llms.txt` — structured Markdown index (sections: Docs, Features, Compare, Blog)
+- [ ] 8.6.2 Create `/llms-full.txt` — full text dump of all key content for LLM context windows
+- [ ] 8.6.3 Create `docs/SEO_KEYWORDS.md` — keyword registry with all 5 tiers
+- [ ] 8.6.4 XML sitemap auto-generated (includes /lp/* pages)
+- [ ] 8.6.5 robots.txt allowing all crawlers, referencing sitemap
+- [ ] 8.6.6 All pages use answer-first pattern (lead paragraph answers the query in 40-80 words)
+- [ ] 8.6.7 All pages include concrete statistics where applicable (test count, provider count, etc.)
+- [ ] 8.6.8 Consistent brand name "CruxCLI" across all content (never "Crux CLI", "cruxcli", "CRUXCLI")
 
 ---
 
@@ -378,18 +452,43 @@ Crux (runcrux.io) | CruxDev (cruxdev.dev) | CruxCLI (cruxvibe.io) | GitHub
 
 ### Checklist — Phase 9
 
+**Functional:**
 - [ ] 9.1 All internal links work (zero 404s)
 - [ ] 9.2 All external links verified (competitor URLs, GitHub, ecosystem URLs)
-- [ ] 9.3 All pages render correctly at 375px, 768px, 1024px
-- [ ] 9.4 Chrome, Firefox, Safari tested
-- [ ] 9.5 Meta tags correct on each page (title, description, OG, canonical)
-- [ ] 9.6 Schema.org validates (Rich Results Test)
-- [ ] 9.7 Core Web Vitals green (mobile + desktop)
-- [ ] 9.8 Lighthouse: Performance ≥90, Accessibility ≥90, SEO ≥90
-- [ ] 9.9 No placeholder text (all real content)
-- [ ] 9.10 Favicon present
-- [ ] 9.11 llms.txt accessible
-- [ ] 9.12 Keyboard navigation works (all interactive elements reachable)
+- [ ] 9.3 No placeholder text (all real content)
+- [ ] 9.4 Favicon and OG images present
+
+**Cross-Browser & Responsive:**
+- [ ] 9.5 Chrome, Firefox, Safari tested
+- [ ] 9.6 All pages render correctly at 375px, 768px, 1024px
+- [ ] 9.7 Touch targets ≥ 44x44 CSS pixels
+
+**Performance (per SEO_AND_GEO_REFERENCE.md §3):**
+- [ ] 9.8 Core Web Vitals green on mobile AND desktop (LCP ≤2.0s, INP ≤150ms, CLS ≤0.05)
+- [ ] 9.9 Lighthouse: Performance ≥90, Accessibility ≥90, SEO ≥90
+- [ ] 9.10 Total page weight ≤ 500KB compressed
+- [ ] 9.11 JavaScript ≤ 200KB compressed (should be ~0 for static Astro)
+- [ ] 9.12 Test on throttled 3G connection
+
+**SEO:**
+- [ ] 9.13 Meta tags correct per page (title 50-60 chars, description 120-160 chars, OG, canonical)
+- [ ] 9.14 Schema.org validates (Rich Results Test) — all 6 page types
+- [ ] 9.15 XML sitemap valid (includes /lp/ pages, all canonical/indexable URLs)
+- [ ] 9.16 robots.txt correct (allows all crawlers, references sitemap)
+- [ ] 9.17 Heading hierarchy (one H1 per page, logical H2-H3 nesting)
+- [ ] 9.18 Images: alt text, width/height set, WebP/AVIF format, lazy-load below fold
+
+**GEO/AI Visibility:**
+- [ ] 9.19 llms.txt accessible at /llms.txt
+- [ ] 9.20 llms-full.txt accessible at /llms-full.txt
+- [ ] 9.21 Answer-first pattern verified on all pages (first 40-80 words answer the query)
+- [ ] 9.22 Brand name consistent: "CruxCLI" everywhere (no variants)
+- [ ] 9.23 Statistics and concrete numbers on all feature/comparison pages
+
+**Accessibility:**
+- [ ] 9.24 Keyboard navigation works (all interactive elements reachable)
+- [ ] 9.25 Color contrast meets WCAG AA (4.5:1 for text, 3:1 for large text)
+- [ ] 9.26 Skip navigation link present
 
 ---
 
@@ -438,8 +537,14 @@ done
 
 - All pages build and render correctly
 - All competitor claims verified per 5-pass research methodology
-- Mobile responsive on 3 breakpoints
-- Core Web Vitals green, Lighthouse ≥90 on all metrics
-- llms.txt published
+- Mobile responsive on 3 breakpoints (375px, 768px, 1024px)
+- Core Web Vitals green: LCP ≤2.0s, INP ≤150ms, CLS ≤0.05
+- Lighthouse ≥90 on Performance, Accessibility, and SEO
+- llms.txt and llms-full.txt published and accessible
+- Keyword registry (docs/SEO_KEYWORDS.md) with 5-tier coverage
+- Landing pages (/lp/) indexed in sitemap, not in nav
+- Schema.org validates on all page types (Rich Results Test)
+- Answer-first content pattern on all pages
+- Brand consistency verified ("CruxCLI" everywhere)
 - Two consecutive clean audit passes
 - Deployed and accessible at cruxvibe.io
