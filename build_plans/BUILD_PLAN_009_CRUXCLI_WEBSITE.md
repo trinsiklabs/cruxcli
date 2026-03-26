@@ -239,6 +239,7 @@ Per SEO_AND_GEO_REFERENCE.md §1.6.3-1.6.4:
 - Internal links to relevant nav pages (funneling to main site)
 - FAQPage or HowTo schema as appropriate
 - 800-2,000 words of genuine, useful content
+- **NEVER prune or delete a landing page once indexed.** No 302 redirect index. Once a page has a URL, it keeps that URL permanently. Update content in-place if stale — do not remove.
 
 ### 5.4 Structured Data Plan
 
