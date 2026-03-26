@@ -1,0 +1,184 @@
+---
+export const prerender = true
+
+import Marketing from '../../layouts/Marketing.astro'
+import ComparisonTable from '../../components/marketing/ComparisonTable.astro'
+import CTA from '../../components/marketing/CTA.astro'
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the difference between CruxCLI and Claude Code?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "CruxCLI is open source, provider-agnostic (75+ providers), and has 24 task-specific modes with model tier mapping. Claude Code is proprietary, locked to Anthropic models, but has first-party Opus 4.6 access with a 1M token context window and 64k/128k output limits."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can CruxCLI use Claude models?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. CruxCLI supports Anthropic as a provider. Set your ANTHROPIC_API_KEY and CruxCLI can use Claude Opus, Sonnet, and Haiku models. The difference is CruxCLI can also use OpenAI, Google, and 70+ other providers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is CruxCLI a good alternative to Claude Code?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "CruxCLI is a strong alternative if you want provider flexibility, open source code, self-hosting, mode-based model selection, or plugin support. Claude Code is better if you specifically want first-party Anthropic model access with the largest context windows."
+      }
+    }
+  ]
+}
+---
+
+<Marketing
+  title="CruxCLI vs Claude Code — Features & Comparison 2026"
+  description="CruxCLI vs Claude Code comparison. CruxCLI is open source and provider-agnostic with 24 modes. Claude Code has first-party Opus 4.6 access with 1M context. Honest feature analysis."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head" />
+
+  <section class="py-24">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="text-sm text-dev-500 mb-8">
+        <a href="/vs" class="hover:text-white transition-colors">Compare</a>
+        <span class="mx-2">/</span>
+        <span class="text-dev-300">CruxCLI vs Claude Code</span>
+      </nav>
+
+      <h1 class="text-4xl sm:text-5xl font-bold text-white tracking-tight">
+        CruxCLI vs Claude Code
+      </h1>
+      <p class="mt-6 text-lg text-dev-400 leading-relaxed max-w-3xl">
+        CruxCLI and Claude Code are both terminal AI coding agents, but they take fundamentally different approaches. CruxCLI is open source (MIT), works with 75+ LLM providers, and adds an intelligence layer with 24 task-specific modes, token budgets, and a convergence engine. Claude Code is proprietary, locked to Anthropic models, but offers first-party Opus 4.6 access with a 1M token context window and 64k/128k output token limits that no third-party tool can match.
+      </p>
+
+      <div class="mt-16">
+        <h2 class="text-2xl font-bold text-white mb-8">Feature comparison</h2>
+        <ComparisonTable
+          products={["CruxCLI", "Claude Code"]}
+          features={[
+            { name: "Open source", values: { "CruxCLI": true, "Claude Code": false } },
+            { name: "Self-hostable", values: { "CruxCLI": true, "Claude Code": false } },
+            { name: "Provider-agnostic", values: { "CruxCLI": "75+ providers", "Claude Code": "Anthropic only" } },
+            { name: "Mode → model tier mapping", values: { "CruxCLI": "24 modes", "Claude Code": false } },
+            { name: "Token budget system", values: { "CruxCLI": true, "Claude Code": false } },
+            { name: "Convergence engine", values: { "CruxCLI": true, "Claude Code": false } },
+            { name: "Plugin API", values: { "CruxCLI": true, "Claude Code": false } },
+            { name: "Client/server architecture", values: { "CruxCLI": true, "Claude Code": false } },
+            { name: "LSP integration", values: { "CruxCLI": "30+ servers", "Claude Code": false } },
+            { name: "Custom modes", values: { "CruxCLI": "24 modes", "Claude Code": false } },
+            { name: "MCP support", values: { "CruxCLI": true, "Claude Code": true } },
+            { name: "VS Code extension", values: { "CruxCLI": true, "Claude Code": true } },
+            { name: "Workspace safety", values: { "CruxCLI": "Checkpoints", "Claude Code": "Worktree" } },
+            { name: "First-party model access", values: { "CruxCLI": false, "Claude Code": "Opus 4.6" } },
+            { name: "1M context window", values: { "CruxCLI": false, "Claude Code": true } },
+            { name: "64k/128k output tokens", values: { "CruxCLI": false, "Claude Code": true } },
+            { name: "Real-time cost visibility", values: { "CruxCLI": false, "Claude Code": true } },
+            { name: "Worktree support", values: { "CruxCLI": false, "Claude Code": true } },
+            { name: "Multi-agent workflows", values: { "CruxCLI": false, "Claude Code": true } },
+            { name: "GitHub stars", values: { "CruxCLI": "New", "Claude Code": "82k" } },
+          ]}
+        />
+      </div>
+
+      <div class="mt-16 grid md:grid-cols-2 gap-12">
+        <div>
+          <h2 class="text-2xl font-bold text-white mb-6">Where CruxCLI wins</h2>
+          <div class="space-y-6">
+            <div>
+              <h3 class="text-lg font-semibold text-white">Open source and forkable</h3>
+              <p class="mt-2 text-sm text-dev-400 leading-relaxed">
+                CruxCLI is MIT licensed. You can read, modify, and self-host the entire codebase. Claude Code is proprietary — you cannot inspect how it handles your code or self-host it behind a firewall.
+              </p>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-white">Provider-agnostic</h3>
+              <p class="mt-2 text-sm text-dev-400 leading-relaxed">
+                CruxCLI works with 75+ providers: Anthropic, OpenAI, Google, Azure, Bedrock, OpenRouter, Ollama, and more. Claude Code only works with Anthropic models. If Anthropic raises prices or you find a better model elsewhere, CruxCLI lets you switch.
+              </p>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-white">Intelligence layer</h3>
+              <p class="mt-2 text-sm text-dev-400 leading-relaxed">
+                24 task-specific modes with model tier mapping, token budgets, and correction detection. Claude Code has a single personality for all tasks.
+              </p>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-white">Plugin API and LSP</h3>
+              <p class="mt-2 text-sm text-dev-400 leading-relaxed">
+                CruxCLI has a plugin API for custom tools and LSP integration with 30+ language servers. Claude Code has neither.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-bold text-white mb-6">Where Claude Code wins</h2>
+          <div class="space-y-6">
+            <div>
+              <h3 class="text-lg font-semibold text-white">First-party Opus 4.6 access</h3>
+              <p class="mt-2 text-sm text-dev-400 leading-relaxed">
+                Claude Code gets first-party access to Opus 4.6 with the full 1M token context window and 64k/128k output token limits. Third-party API access typically has lower limits. This is a genuine advantage for very large codebases.
+              </p>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-white">Cost visibility</h3>
+              <p class="mt-2 text-sm text-dev-400 leading-relaxed">
+                Claude Code shows real-time cost per session. CruxCLI has token budgets but does not yet display dollar costs. This is a gap we plan to close.
+              </p>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-white">Brand recognition</h3>
+              <p class="mt-2 text-sm text-dev-400 leading-relaxed">
+                Claude Code has 82,049 stars and Anthropic's brand behind it. CruxCLI is new and unproven at scale. Anthropic ships model updates to Claude Code first.
+              </p>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-white">Multi-agent workflows</h3>
+              <p class="mt-2 text-sm text-dev-400 leading-relaxed">
+                Claude Code supports multi-agent workflows with cron scheduling and worktree-based parallel execution. CruxCLI has subagent support but not at the same level of maturity.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-16">
+        <h2 class="text-2xl font-bold text-white mb-8">Frequently asked questions</h2>
+        <div class="space-y-6">
+          <div class="bg-dev-900 border border-dev-800 rounded-xl p-6">
+            <h3 class="text-white font-semibold">What is the difference between CruxCLI and Claude Code?</h3>
+            <p class="mt-3 text-sm text-dev-400 leading-relaxed">
+              CruxCLI is open source, provider-agnostic (75+ providers), and has 24 task-specific modes with model tier mapping. Claude Code is proprietary, locked to Anthropic models, but has first-party Opus 4.6 access with a 1M token context window and 64k/128k output limits.
+            </p>
+          </div>
+          <div class="bg-dev-900 border border-dev-800 rounded-xl p-6">
+            <h3 class="text-white font-semibold">Can CruxCLI use Claude models?</h3>
+            <p class="mt-3 text-sm text-dev-400 leading-relaxed">
+              Yes. CruxCLI supports Anthropic as a provider. Set your ANTHROPIC_API_KEY and CruxCLI can use Claude Opus, Sonnet, and Haiku models. The difference is CruxCLI can also use OpenAI, Google, and 70+ other providers.
+            </p>
+          </div>
+          <div class="bg-dev-900 border border-dev-800 rounded-xl p-6">
+            <h3 class="text-white font-semibold">Is CruxCLI a good alternative to Claude Code?</h3>
+            <p class="mt-3 text-sm text-dev-400 leading-relaxed">
+              CruxCLI is a strong alternative if you want provider flexibility, open source code, self-hosting, mode-based model selection, or plugin support. Claude Code is better if you specifically want first-party Anthropic model access with the largest context windows.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTA
+    heading="Try CruxCLI"
+    description="Open source, provider-agnostic, intelligence built in. One command to install."
+    primaryCta={{ text: "Install CruxCLI", href: "/docs" }}
+    secondaryCta={{ text: "View on GitHub", href: "https://github.com/trinsiklabs/cruxcli" }}
+  />
+</Marketing>

@@ -1,0 +1,187 @@
+---
+export const prerender = true
+
+import Marketing from '../../layouts/Marketing.astro'
+import ComparisonTable from '../../components/marketing/ComparisonTable.astro'
+import CTA from '../../components/marketing/CTA.astro'
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the difference between CruxCLI and OpenCode?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "CruxCLI is a hard fork of OpenCode that adds an intelligence layer: 24 task-specific modes with model tier mapping, per-mode token budgets, workspace checkpoints, correction detection, and CruxDev convergence engine integration. OpenCode has a larger community (129k stars) and GitLab integration."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is CruxCLI compatible with OpenCode configurations?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "CruxCLI forked from OpenCode and shares the same client/server architecture, LSP integration, and plugin API. Configuration files use a similar format (cruxcli.jsonc vs opencode.json) but are not directly compatible due to the added mode and token budget settings."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I use CruxCLI or OpenCode?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use CruxCLI if you want mode-based model selection, token budgets, workspace checkpoints, and convergence-driven workflows. Use OpenCode if you need the largest community ecosystem, GitLab Agent Platform integration, or Node.js runtime support."
+      }
+    }
+  ]
+}
+---
+
+<Marketing
+  title="CruxCLI vs OpenCode — Features & Comparison 2026"
+  description="Detailed comparison of CruxCLI and OpenCode. CruxCLI adds mode→model tier mapping, token budgets, and convergence. OpenCode has 129k stars and GitLab integration. Honest analysis."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head" />
+
+  <section class="py-24">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="text-sm text-dev-500 mb-8">
+        <a href="/vs" class="hover:text-white transition-colors">Compare</a>
+        <span class="mx-2">/</span>
+        <span class="text-dev-300">CruxCLI vs OpenCode</span>
+      </nav>
+
+      <h1 class="text-4xl sm:text-5xl font-bold text-white tracking-tight">
+        CruxCLI vs OpenCode
+      </h1>
+      <p class="mt-6 text-lg text-dev-400 leading-relaxed max-w-3xl">
+        CruxCLI is a hard fork of OpenCode that adds an intelligence layer on top of the same client/server architecture. Both are open source, provider-agnostic terminal AI coding agents with 75+ provider support, LSP integration, and plugin APIs. CruxCLI adds 24 task-specific modes with model tier mapping, per-mode token budgets, workspace checkpoints, and CruxDev convergence engine integration. OpenCode has a vastly larger community (129,357 stars, 800+ contributors) and GitLab Agent Platform integration.
+      </p>
+
+      <!-- Feature Table -->
+      <div class="mt-16">
+        <h2 class="text-2xl font-bold text-white mb-8">Feature comparison</h2>
+        <ComparisonTable
+          products={["CruxCLI", "OpenCode"]}
+          features={[
+            { name: "Open source (MIT)", values: { "CruxCLI": true, "OpenCode": true } },
+            { name: "Provider-agnostic (75+)", values: { "CruxCLI": true, "OpenCode": true } },
+            { name: "Client/server architecture", values: { "CruxCLI": true, "OpenCode": true } },
+            { name: "LSP integration (30+ servers)", values: { "CruxCLI": true, "OpenCode": true } },
+            { name: "Plugin API", values: { "CruxCLI": true, "OpenCode": true } },
+            { name: "Custom modes", values: { "CruxCLI": "24 modes", "OpenCode": true } },
+            { name: "MCP support", values: { "CruxCLI": true, "OpenCode": true } },
+            { name: "VS Code extension", values: { "CruxCLI": true, "OpenCode": true } },
+            { name: "Desktop app", values: { "CruxCLI": true, "OpenCode": true } },
+            { name: "Mode → model tier mapping", values: { "CruxCLI": true, "OpenCode": false } },
+            { name: "Token budget system", values: { "CruxCLI": true, "OpenCode": false } },
+            { name: "Workspace checkpoints", values: { "CruxCLI": true, "OpenCode": false } },
+            { name: "Convergence engine", values: { "CruxCLI": true, "OpenCode": false } },
+            { name: "Correction detection", values: { "CruxCLI": true, "OpenCode": false } },
+            { name: "GitLab Agent Platform", values: { "CruxCLI": false, "OpenCode": true } },
+            { name: "Free model tier (Zen)", values: { "CruxCLI": false, "OpenCode": true } },
+            { name: "Node.js runtime support", values: { "CruxCLI": false, "OpenCode": true } },
+            { name: "GitHub stars", values: { "CruxCLI": "New", "OpenCode": "129k" } },
+            { name: "Contributors", values: { "CruxCLI": "Solo", "OpenCode": "800+" } },
+          ]}
+        />
+      </div>
+
+      <!-- Where CruxCLI wins -->
+      <div class="mt-16 grid md:grid-cols-2 gap-12">
+        <div>
+          <h2 class="text-2xl font-bold text-white mb-6">Where CruxCLI wins</h2>
+          <div class="space-y-6">
+            <div>
+              <h3 class="text-lg font-semibold text-white">Intelligence layer</h3>
+              <p class="mt-2 text-sm text-dev-400 leading-relaxed">
+                CruxCLI's 24 task-specific modes each map to a model tier (strong, balanced, fast). A code review uses Opus; a format task uses Haiku. OpenCode sends every task to whatever model you last selected, regardless of complexity.
+              </p>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-white">Token budgets</h3>
+              <p class="mt-2 text-sm text-dev-400 leading-relaxed">
+                Per-mode token budgets with 75% warning and 90% hard stop. OpenCode uses step-count limits — 10 tool calls could be 500 tokens or 50,000. Token budgets measure actual cost.
+              </p>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-white">Workspace checkpoints</h3>
+              <p class="mt-2 text-sm text-dev-400 leading-relaxed">
+                Automatic git-based snapshots before every destructive operation. Up to 50 per project. OpenCode has no checkpoint system.
+              </p>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-white">CruxDev convergence</h3>
+              <p class="mt-2 text-sm text-dev-400 leading-relaxed">
+                Autonomous audit-fix loops that run until two consecutive clean passes. OpenCode has no convergence methodology — the user decides when code is done.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Where OpenCode wins -->
+        <div>
+          <h2 class="text-2xl font-bold text-white mb-6">Where OpenCode wins</h2>
+          <div class="space-y-6">
+            <div>
+              <h3 class="text-lg font-semibold text-white">Community</h3>
+              <p class="mt-2 text-sm text-dev-400 leading-relaxed">
+                129,357 stars, 800+ contributors, 5M+ monthly developers. OpenCode has the largest community of any open-source terminal AI agent. CruxCLI is new with no established community yet. This is the biggest gap.
+              </p>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-white">GitLab integration</h3>
+              <p class="mt-2 text-sm text-dev-400 leading-relaxed">
+                OpenCode v1.3.0 added GitLab Agent Platform integration. CruxCLI does not have GitLab-specific integration yet.
+              </p>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-white">Free model tier</h3>
+              <p class="mt-2 text-sm text-dev-400 leading-relaxed">
+                OpenCode offers a free "Zen" tier. CruxCLI requires users to bring their own API keys.
+              </p>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-white">Release cadence</h3>
+              <p class="mt-2 text-sm text-dev-400 leading-relaxed">
+                Near-daily releases (737+) with a large contributor base. CruxCLI has a smaller, focused release schedule.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div class="mt-16">
+        <h2 class="text-2xl font-bold text-white mb-8">Frequently asked questions</h2>
+        <div class="space-y-6">
+          <div class="bg-dev-900 border border-dev-800 rounded-xl p-6">
+            <h3 class="text-white font-semibold">What is the difference between CruxCLI and OpenCode?</h3>
+            <p class="mt-3 text-sm text-dev-400 leading-relaxed">
+              CruxCLI is a hard fork of OpenCode that adds an intelligence layer: 24 task-specific modes with model tier mapping, per-mode token budgets, workspace checkpoints, correction detection, and CruxDev convergence engine integration. OpenCode has a larger community (129k stars) and GitLab integration.
+            </p>
+          </div>
+          <div class="bg-dev-900 border border-dev-800 rounded-xl p-6">
+            <h3 class="text-white font-semibold">Is CruxCLI compatible with OpenCode configurations?</h3>
+            <p class="mt-3 text-sm text-dev-400 leading-relaxed">
+              CruxCLI forked from OpenCode and shares the same client/server architecture, LSP integration, and plugin API. Configuration files use a similar format (cruxcli.jsonc vs opencode.json) but are not directly compatible due to the added mode and token budget settings.
+            </p>
+          </div>
+          <div class="bg-dev-900 border border-dev-800 rounded-xl p-6">
+            <h3 class="text-white font-semibold">Should I use CruxCLI or OpenCode?</h3>
+            <p class="mt-3 text-sm text-dev-400 leading-relaxed">
+              Use CruxCLI if you want mode-based model selection, token budgets, workspace checkpoints, and convergence-driven workflows. Use OpenCode if you need the largest community ecosystem, GitLab Agent Platform integration, or Node.js runtime support.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTA
+    heading="Try CruxCLI"
+    description="Same architecture as OpenCode, plus intelligence. One command to install."
+    primaryCta={{ text: "Install CruxCLI", href: "/docs" }}
+    secondaryCta={{ text: "View on GitHub", href: "https://github.com/trinsiklabs/cruxcli" }}
+  />
+</Marketing>

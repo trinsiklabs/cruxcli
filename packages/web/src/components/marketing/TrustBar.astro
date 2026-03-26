@@ -1,0 +1,29 @@
+---
+/**
+ * Trust bar / metrics grid for marketing pages.
+ * Displays 4 key statistics to build credibility.
+ */
+interface Stat {
+  value: string
+  label: string
+}
+
+interface Props {
+  stats: Stat[]
+}
+
+const { stats } = Astro.props
+---
+
+<section class="border-y border-dev-800 bg-dev-900/50">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+      {stats.map((stat) => (
+        <div class="text-center">
+          <p class="text-3xl sm:text-4xl font-bold text-white tracking-tight">{stat.value}</p>
+          <p class="mt-2 text-sm text-dev-500">{stat.label}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

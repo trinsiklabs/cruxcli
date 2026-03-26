@@ -1,0 +1,205 @@
+---
+export const prerender = true
+
+import Marketing from '../layouts/Marketing.astro'
+import Hero from '../components/marketing/Hero.astro'
+import TrustBar from '../components/marketing/TrustBar.astro'
+import FeatureCard from '../components/marketing/FeatureCard.astro'
+import CTA from '../components/marketing/CTA.astro'
+---
+
+<Marketing
+  title="CruxCLI"
+  description="CruxCLI is a provider-agnostic terminal AI coding agent with intelligence built in. Open source, 75+ model providers, 24 task-specific modes, token budgets, workspace checkpoints. Install in one command."
+>
+  <!-- Hero -->
+  <Hero
+    tagline="The provider-agnostic AI coding agent with intelligence built in"
+    description="CruxCLI is a terminal AI coding agent that works with any LLM provider. 24 task-specific modes map to model tiers automatically, token budgets replace step-count limits, and workspace checkpoints protect your code. Open source, self-hostable, 1,204 tests passing."
+    primaryCta={{ text: "Install CruxCLI", href: "/docs" }}
+    secondaryCta={{ text: "View on GitHub", href: "https://github.com/trinsiklabs/cruxcli" }}
+  />
+
+  <!-- Trust Bar -->
+  <TrustBar stats={[
+    { value: "1,204", label: "Tests passing" },
+    { value: "13/13", label: "Packages typecheck" },
+    { value: "75+", label: "LLM providers" },
+    { value: "24", label: "Task-specific modes" },
+  ]} />
+
+  <!-- Problem / Solution -->
+  <section class="py-20">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl sm:text-4xl font-bold text-white text-center tracking-tight">
+        AI coding agents are powerful. But they lack intelligence.
+      </h2>
+      <p class="mt-4 text-center text-dev-400 max-w-2xl mx-auto">
+        Most terminal agents send your prompt to one model with one personality. CruxCLI matches the right model to the right task, automatically.
+      </p>
+
+      <div class="grid md:grid-cols-2 gap-8 mt-12">
+        <!-- Without CruxCLI -->
+        <div class="bg-dev-900 border border-dev-800 rounded-xl p-8">
+          <h3 class="text-lg font-semibold text-dev-300 mb-6">Without CruxCLI</h3>
+          <ul class="space-y-4 text-sm text-dev-400">
+            <li class="flex items-start gap-3">
+              <span class="text-dev-600 mt-0.5 shrink-0">&times;</span>
+              <span>One model for everything &mdash; Opus for a typo fix, same as for architecture</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-dev-600 mt-0.5 shrink-0">&times;</span>
+              <span>Step-count limits &mdash; agent stops after N tool calls regardless of progress</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-dev-600 mt-0.5 shrink-0">&times;</span>
+              <span>No safety net &mdash; destructive edits with no automatic rollback</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-dev-600 mt-0.5 shrink-0">&times;</span>
+              <span>Locked to one provider &mdash; switch vendors, rewrite your workflow</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-dev-600 mt-0.5 shrink-0">&times;</span>
+              <span>No convergence signal &mdash; you guess when the code is &ldquo;done&rdquo;</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- With CruxCLI -->
+        <div class="bg-dev-900 border border-accent/30 rounded-xl p-8">
+          <h3 class="text-lg font-semibold text-white mb-6">With CruxCLI</h3>
+          <ul class="space-y-4 text-sm text-dev-300">
+            <li class="flex items-start gap-3">
+              <span class="text-green-400 mt-0.5 shrink-0">&#10003;</span>
+              <span>Mode&rarr;model tier mapping &mdash; routine tasks use cheap models, complex ones get strong models</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-green-400 mt-0.5 shrink-0">&#10003;</span>
+              <span>Token budgets &mdash; per-mode limits with 75% warning and 90% hard stop</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-green-400 mt-0.5 shrink-0">&#10003;</span>
+              <span>Workspace checkpoints &mdash; auto-snapshot before every destructive operation</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-green-400 mt-0.5 shrink-0">&#10003;</span>
+              <span>75+ providers &mdash; Anthropic, OpenAI, Google, OpenRouter, Ollama, and more</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-green-400 mt-0.5 shrink-0">&#10003;</span>
+              <span>CruxDev convergence &mdash; autonomous audit-fix loops to verified completion</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Moat Showcase: 6 unique advantages -->
+  <section class="py-20 border-t border-dev-800">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl sm:text-4xl font-bold text-white text-center tracking-tight">
+        What makes CruxCLI different
+      </h2>
+      <p class="mt-4 text-center text-dev-400 max-w-2xl mx-auto">
+        Six capabilities no other terminal AI agent has. Not one. We checked.
+      </p>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+        <FeatureCard
+          title="Mode → Model Tier Mapping"
+          description="24 task-specific modes automatically select the right model tier. Debugging gets a stronger model than formatting. You save money without thinking about it."
+        />
+        <FeatureCard
+          title="Token Budget System"
+          description="Per-mode token budgets replace crude step-count limits. Warning at 75%, hard stop at 90%. Finer cost control than counting tool calls."
+        />
+        <FeatureCard
+          title="CruxDev Convergence Engine"
+          description="Autonomous audit-fix-re-audit loops that run until two consecutive clean passes. The agent doesn't stop when it thinks it's done — it stops when it proves it's done."
+        />
+        <FeatureCard
+          title="Workspace Checkpoints"
+          description="Automatic git-based snapshots before every destructive tool call. Up to 50 checkpoints per project. Restore to any point with one command."
+        />
+        <FeatureCard
+          title="Client/Server + LSP"
+          description="HTTP server on port 4096 drives TUI, web, desktop, and VS Code surfaces. Built-in LSP client supports 30+ language servers for real code intelligence."
+        />
+        <FeatureCard
+          title="Crux Intelligence Layer"
+          description="24 research-optimized mode prompts, correction detection, and continuous learning — native in the binary, not a plugin. The agent gets smarter as you use it."
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="py-20 border-t border-dev-800">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl sm:text-4xl font-bold text-white text-center tracking-tight">
+        Get started in 4 steps
+      </h2>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
+        <div class="text-center">
+          <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-accent/10 text-accent font-bold text-lg mb-4">1</div>
+          <h3 class="text-white font-semibold">Install</h3>
+          <div class="mt-3 bg-dev-900 border border-dev-800 rounded-lg p-3">
+            <code class="text-sm text-dev-300">npm i -g cruxcli</code>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-accent/10 text-accent font-bold text-lg mb-4">2</div>
+          <h3 class="text-white font-semibold">Configure</h3>
+          <div class="mt-3 bg-dev-900 border border-dev-800 rounded-lg p-3">
+            <code class="text-sm text-dev-300">export ANTHROPIC_API_KEY=sk-...</code>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-accent/10 text-accent font-bold text-lg mb-4">3</div>
+          <h3 class="text-white font-semibold">Launch</h3>
+          <div class="mt-3 bg-dev-900 border border-dev-800 rounded-lg p-3">
+            <code class="text-sm text-dev-300">cruxcli</code>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-accent/10 text-accent font-bold text-lg mb-4">4</div>
+          <h3 class="text-white font-semibold">Build</h3>
+          <div class="mt-3 bg-dev-900 border border-dev-800 rounded-lg p-3">
+            <code class="text-sm text-dev-300">&gt; refactor auth module</code>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Provider Mentions -->
+  <section class="py-16 border-t border-dev-800">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <p class="text-sm text-dev-500 mb-6">Works with the providers you already use</p>
+      <div class="flex flex-wrap items-center justify-center gap-8 text-dev-500">
+        <span class="text-lg font-medium hover:text-dev-300 transition-colors">OpenRouter</span>
+        <span class="text-lg font-medium hover:text-dev-300 transition-colors">Anthropic</span>
+        <span class="text-lg font-medium hover:text-dev-300 transition-colors">OpenAI</span>
+        <span class="text-lg font-medium hover:text-dev-300 transition-colors">Google</span>
+        <span class="text-lg font-medium hover:text-dev-300 transition-colors">Ollama</span>
+        <span class="text-lg font-medium hover:text-dev-300 transition-colors">Azure</span>
+        <span class="text-lg font-medium hover:text-dev-300 transition-colors">Bedrock</span>
+        <span class="text-sm text-dev-600">+ 70 more</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <CTA
+    heading="Start building with CruxCLI"
+    description="Open source. Provider-agnostic. Intelligence built in. One command to install."
+    primaryCta={{ text: "Install CruxCLI", href: "/docs" }}
+    secondaryCta={{ text: "View on GitHub", href: "https://github.com/trinsiklabs/cruxcli" }}
+  />
+</Marketing>

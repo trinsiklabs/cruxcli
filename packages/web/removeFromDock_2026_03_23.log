@@ -1,0 +1,3 @@
+
+17:04:11.815 | <E main | .getLogger(_:)  |  Using 'I', info level for: 'main'
+17:04:11.815 | <I main | .removeFromDock  |  starting ...

@@ -1,0 +1,45 @@
+---
+/**
+ * Call-to-action section for marketing pages.
+ * Full-width section with heading, description, and action button.
+ */
+interface Props {
+  heading: string
+  description?: string
+  primaryCta: {
+    text: string
+    href: string
+  }
+  secondaryCta?: {
+    text: string
+    href: string
+  }
+}
+
+const { heading, description, primaryCta, secondaryCta } = Astro.props
+---
+
+<section class="border-t border-dev-800">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24 text-center">
+    <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-tight">{heading}</h2>
+    {description && (
+      <p class="mt-4 text-lg text-dev-400 max-w-2xl mx-auto">{description}</p>
+    )}
+    <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a
+        href={primaryCta.href}
+        class="bg-accent hover:bg-accent-hover text-white px-8 py-3 rounded-lg text-base font-medium transition-colors w-full sm:w-auto text-center"
+      >
+        {primaryCta.text}
+      </a>
+      {secondaryCta && (
+        <a
+          href={secondaryCta.href}
+          class="border border-dev-700 hover:border-dev-500 text-dev-300 hover:text-white px-8 py-3 rounded-lg text-base font-medium transition-colors w-full sm:w-auto text-center"
+        >
+          {secondaryCta.text}
+        </a>
+      )}
+    </div>
+  </div>
+</section>

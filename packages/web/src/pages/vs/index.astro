@@ -1,0 +1,91 @@
+---
+export const prerender = true
+
+import Marketing from '../../layouts/Marketing.astro'
+import Hero from '../../components/marketing/Hero.astro'
+import CTA from '../../components/marketing/CTA.astro'
+
+const competitors = [
+  {
+    name: "OpenCode",
+    slug: "opencode",
+    stars: "129k",
+    summary: "The upstream fork source. Massive community, 75+ providers, but no intelligence layer — prompts are generic, not mode-optimized.",
+    weWin: "Intelligence layer, token budgets, convergence",
+    theyWin: "Community size (129k stars), GitLab integration",
+  },
+  {
+    name: "Claude Code",
+    slug: "claude-code",
+    stars: "82k",
+    summary: "Anthropic's first-party CLI agent. Opus 4.6 with 1M context, but proprietary and locked to Anthropic models only.",
+    weWin: "Open source, provider-agnostic, plugin API",
+    theyWin: "First-party Opus 4.6 access, 1M context window",
+  },
+  {
+    name: "Gemini CLI",
+    slug: "gemini-cli",
+    stars: "99k",
+    summary: "Google's terminal agent with Gemini 3 and Google Search grounding. Generous free tier, but locked to Google models.",
+    weWin: "24 modes, convergence engine, workspace checkpoints",
+    theyWin: "Free tier with capable models, Google Search grounding",
+  },
+  {
+    name: "Codex CLI",
+    slug: "codex-cli",
+    stars: "67k",
+    summary: "OpenAI's Rust-based terminal agent with o3/o4-mini. Fast and multi-agent capable, but no LSP or plugin support.",
+    weWin: "LSP integration, plugin API, client/server architecture",
+    theyWin: "Rust performance, multi-agent workflows",
+  },
+]
+---
+
+<Marketing
+  title="CruxCLI vs Competitors — AI Coding Agent Comparison 2026"
+  description="Honest feature comparisons between CruxCLI and OpenCode, Claude Code, Gemini CLI, and Codex CLI. See where CruxCLI wins and where competitors have the edge."
+>
+  <Hero
+    tagline="How CruxCLI compares"
+    description="CruxCLI is a provider-agnostic terminal AI coding agent with 24 task-specific modes, token budgets, and a convergence engine. Here is how it compares to the four leading alternatives — honestly, including where they win."
+    primaryCta={{ text: "Install CruxCLI", href: "/docs" }}
+  />
+
+  <section class="py-20">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-8">
+        {competitors.map((c) => (
+          <a href={`/vs/${c.slug}`} class="block bg-dev-900 border border-dev-800 rounded-xl p-8 hover:border-dev-700 transition-colors group">
+            <div class="flex items-center justify-between mb-4">
+              <h2 class="text-xl font-bold text-white group-hover:text-accent transition-colors">
+                CruxCLI vs {c.name}
+              </h2>
+              <span class="text-sm text-dev-500">{c.stars} stars</span>
+            </div>
+            <p class="text-sm text-dev-400 leading-relaxed mb-6">{c.summary}</p>
+            <div class="grid grid-cols-2 gap-4 text-xs">
+              <div>
+                <p class="text-green-400 font-medium mb-1">Where CruxCLI wins</p>
+                <p class="text-dev-400">{c.weWin}</p>
+              </div>
+              <div>
+                <p class="text-dev-300 font-medium mb-1">Where {c.name} wins</p>
+                <p class="text-dev-400">{c.theyWin}</p>
+              </div>
+            </div>
+            <p class="mt-6 text-sm text-accent group-hover:text-accent-hover transition-colors">
+              Read full comparison &rarr;
+            </p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTA
+    heading="Try CruxCLI and decide for yourself"
+    description="One command to install. Bring your own API key from any provider."
+    primaryCta={{ text: "Install CruxCLI", href: "/docs" }}
+    secondaryCta={{ text: "View on GitHub", href: "https://github.com/trinsiklabs/cruxcli" }}
+  />
+</Marketing>

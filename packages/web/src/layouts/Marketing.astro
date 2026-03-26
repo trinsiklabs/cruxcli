@@ -1,0 +1,150 @@
+---
+import '../styles/marketing.css'
+
+interface Props {
+  title: string
+  description: string
+  canonical?: string
+  ogImage?: string
+}
+
+const { title, description, canonical, ogImage } = Astro.props
+const siteUrl = 'https://cruxvibe.io'
+const fullTitle = title === 'CruxCLI' ? 'CruxCLI — The provider-agnostic AI coding agent with intelligence built in' : `${title} | CruxCLI`
+const canonicalUrl = canonical || new URL(Astro.url.pathname, siteUrl).href
+const ogImageUrl = ogImage || `${siteUrl}/og-default.png`
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{fullTitle}</title>
+
+    <!-- Canonical -->
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:site_name" content="CruxCLI" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon-v3.svg" />
+    <link rel="icon" href="/favicon-v3.ico" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/favicon-96x96-v3.png" sizes="96x96" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon-v3.png" sizes="180x180" />
+
+    <!-- Schema.org SoftwareApplication -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "CruxCLI",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "macOS, Linux, Windows (WSL)",
+      "url": siteUrl,
+      "description": "CruxCLI is a provider-agnostic terminal AI coding agent with intelligence built in. Open source, self-hostable, works with 75+ models from any provider.",
+      "author": {
+        "@type": "Organization",
+        "name": "Trinsik Labs",
+        "url": "https://runcrux.io"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "license": "https://opensource.org/licenses/MIT"
+    })} />
+
+    <!-- Page-specific head content (e.g., JSON-LD schema) -->
+    <slot name="head" />
+  </head>
+  <body class="bg-dev-950 text-dev-400 antialiased min-h-screen flex flex-col">
+    <!-- Skip navigation -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:bg-accent focus:text-white focus:px-4 focus:py-2 focus:rounded-lg">
+      Skip to main content
+    </a>
+
+    <!-- Sticky navigation -->
+    <nav class="sticky top-0 z-50 bg-dev-950/95 backdrop-blur border-b border-dev-700" aria-label="Main navigation">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <a href="/" class="text-xl font-bold text-white tracking-tight">CruxCLI</a>
+          <!-- Desktop nav -->
+          <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="text-dev-400 hover:text-white transition-colors text-sm">Home</a>
+            <a href="/features" class="text-dev-400 hover:text-white transition-colors text-sm">Features</a>
+            <a href="/vs" class="text-dev-400 hover:text-white transition-colors text-sm">Compare</a>
+            <a href="/roadmap" class="text-dev-400 hover:text-white transition-colors text-sm">Roadmap</a>
+            <a href="/docs" class="text-dev-400 hover:text-white transition-colors text-sm">Docs</a>
+            <a href="https://github.com/trinsiklabs/cruxcli" class="text-dev-400 hover:text-white transition-colors text-sm">GitHub</a>
+            <a href="/docs" class="bg-accent hover:bg-accent-hover text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">Get Started</a>
+          </div>
+          <!-- Mobile menu button -->
+          <button
+            type="button"
+            class="md:hidden text-dev-400 hover:text-white"
+            aria-label="Toggle navigation menu"
+            id="mobile-menu-toggle"
+          >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+        <!-- Mobile nav -->
+        <div class="hidden md:hidden pb-4" id="mobile-menu">
+          <div class="flex flex-col gap-2">
+            <a href="/" class="text-dev-400 hover:text-white transition-colors text-sm py-2">Home</a>
+            <a href="/features" class="text-dev-400 hover:text-white transition-colors text-sm py-2">Features</a>
+            <a href="/vs" class="text-dev-400 hover:text-white transition-colors text-sm py-2">Compare</a>
+            <a href="/roadmap" class="text-dev-400 hover:text-white transition-colors text-sm py-2">Roadmap</a>
+            <a href="/docs" class="text-dev-400 hover:text-white transition-colors text-sm py-2">Docs</a>
+            <a href="https://github.com/trinsiklabs/cruxcli" class="text-dev-400 hover:text-white transition-colors text-sm py-2">GitHub</a>
+            <a href="/docs" class="bg-accent hover:bg-accent-hover text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors text-center mt-2">Get Started</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main id="main-content" class="flex-1">
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-dev-700 mt-20">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-sm text-dev-500">&copy; {new Date().getFullYear()} Trinsik Labs. MIT License.</p>
+        <div class="flex gap-6 text-sm text-dev-500">
+          <a href="https://runcrux.io" class="hover:text-white transition-colors">Crux</a>
+          <a href="https://cruxdev.dev" class="hover:text-white transition-colors">CruxDev</a>
+          <a href="https://cruxvibe.io" class="hover:text-white transition-colors">CruxCLI</a>
+          <a href="https://github.com/trinsiklabs/cruxcli" class="hover:text-white transition-colors">GitHub</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Mobile menu toggle script -->
+    <script>
+      const toggle = document.getElementById('mobile-menu-toggle')
+      const menu = document.getElementById('mobile-menu')
+      if (toggle && menu) {
+        toggle.addEventListener('click', () => {
+          menu.classList.toggle('hidden')
+        })
+      }
+    </script>
+  </body>
+</html>

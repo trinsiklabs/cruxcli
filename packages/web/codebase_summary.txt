@@ -1,0 +1,366 @@
+# PYTHON CODEBASE MIGRATION ANALYSIS
+
+## PART 1: DIRECTORY STRUCTURE & FILE COUNTS
+
+### MEMORY TIER (Analysis Pipeline - 35 core modules)
+/Users/user/personal/sb/pp/memory/
+  1462  mem_pipeline.py           [OFFLINE TOOLING]
+  1119  evolution.py              [OFFLINE TOOLING]
+   998  lessons.py                [OFFLINE TOOLING]
+   969  patterns_triggers.py       [OFFLINE TOOLING]
+   968  enrich_entries.py          [OFFLINE TOOLING]
+   879  values.py                 [OFFLINE TOOLING]
+   831  swot.py                   [OFFLINE TOOLING]
+   774  media_db.py               [OFFLINE TOOLING]
+   773  infer.py                  [OFFLINE TOOLING]
+   762  add_entry.py              [OFFLINE TOOLING + DATA PIPELINE]
+   737  run_synthesis.py           [OFFLINE TOOLING]
+   694  assemble_context.py        [OFFLINE TOOLING]
+   668  image_tagger.py            [OFFLINE TOOLING]
+   651  audit_and_improve.py       [OFFLINE TOOLING]
+   619  post_interaction.py        [OFFLINE TOOLING] (DEPRECATED)
+   615  cross_correlate.py         [OFFLINE TOOLING]
+   614  query_memory.py            [OFFLINE TOOLING]
+   585  tensions.py               [OFFLINE TOOLING]
+   559  synthesis_pipeline.py      [OFFLINE TOOLING + DATA PIPELINE]
+   541  embeddings.py             [OFFLINE TOOLING] (ML-dependent)
+   535  build_memory.py           [DATA PIPELINE]
+   532  review_queue.py           [DATA PIPELINE]
+   526  source_chunker.py         [DATA PIPELINE]
+   507  local_image_tagger.py      [OFFLINE TOOLING] (ML-dependent)
+   426  provenance.py             [DATA PIPELINE]
+   425  normalize_dates.py        [OFFLINE TOOLING]
+   278  session_check.py          [OFFLINE TOOLING]
+   254  process_source.py         [OFFLINE TOOLING]
+   234  work_unit.py              [DATA PIPELINE]
+   197  pipeline_integration.py    [DATA PIPELINE]
+   186  relationship_repair.py     [DATA PIPELINE]
+   180  link_evidence.py          [DATA PIPELINE]
+   167  process_month_prompt.py    [OFFLINE TOOLING]
+   129  extract_imessage_month.py  [OFFLINE TOOLING]
+   115  import_chat.py            [DATA PIPELINE]
+   100  migrate_session_log.py     [OFFLINE TOOLING] (DEPRECATED)
+    84  get_month_existing.py      [OFFLINE TOOLING]
+    40  db_utils.py               [INFRASTRUCTURE]
+    35  atomic_write.py           [INFRASTRUCTURE]
+
+KEY DATA FILES (Memory layer uses):
+  - entries.json (10 MB) - 500K+ relationship/tension/lesson entries
+  - chat_messages.json (195 MB) - 2M+ chat messages imported
+  - memory.db (18 MB) - SQLite index of entries
+  - relationships.json (1.5 MB) - Relationship metadata
+  - reviews.json (339 KB) - Entry review/correction history
+  - config.json (8 KB) - API keys, source paths, relationship metadata
+  - chat_conversations.json (23 KB) - Conversation metadata
+  - image_metadata.json (1.6 MB) - Visual media indexing
+
+### APP TIER (Web Server + Database - 28 core modules)
+/Users/user/personal/sb/pp/app/
+  2585  server.py                 [USER-FACING - Flask web server]
+  1497  db.py                     [DATA PIPELINE - SQLite abstraction]
+   930  body_analysis.py           [OFFLINE TOOLING] (ML-dependent)
+   862  llm_tags.py               [OFFLINE TOOLING] (LLM-dependent)
+   576  llm_describe.py           [OFFLINE TOOLING] (LLM-dependent)
+   554  pipeline.py               [DATA PIPELINE]
+   537  evidence_linker.py         [DATA PIPELINE]
+   503  memory_db.py              [USER-FACING - Memory API endpoint]
+   436  auto_round.py             [OFFLINE TOOLING] (ML-dependent)
+   386  chat_db.py                [USER-FACING - Chat API endpoint]
+   366  run_round.py              [OFFLINE TOOLING]
+   347  staging.py                [OFFLINE TOOLING] (ML-dependent)
+   335  review_analyze.py          [OFFLINE TOOLING] (uses requests)
+   313  dedup.py                  [OFFLINE TOOLING] (ML-dependent)
+   307  caption_parser.py          [OFFLINE TOOLING]
+   303  claude_review.py           [OFFLINE TOOLING] (LLM-dependent)
+   262  embed_images.py           [OFFLINE TOOLING] (ML-dependent)
+   228  clip_cache.py             [OFFLINE TOOLING] (ML-dependent)
+   211  drift.py                  [OFFLINE TOOLING] (ML-dependent)
+   202  pattern_engine.py          [OFFLINE TOOLING]
+   143  clip_db.py                [DATA PIPELINE] (ML-dependent)
+   134  active_loop.py            [OFFLINE TOOLING] (ML-dependent)
+   133  memory_export.py           [OFFLINE TOOLING]
+   122  clip_scorer.py            [OFFLINE TOOLING] (ML-dependent)
+   110  video_frames.py           [OFFLINE TOOLING]
+    59  pipeline_routing.py        [USER-FACING]
+    56  env_loader.py             [INFRASTRUCTURE]
+     0  __init__.py
+
+IMPORTERS (Bulk import handlers)
+/Users/user/personal/sb/pp/app/importers/
+   154  bdsmlr.py                 [OFFLINE TOOLING] (uses requests)
+   118  tumblr_2021.py            [OFFLINE TOOLING]
+   116  tumblr_original.py         [OFFLINE TOOLING]
+    78  pipeline.py               [DATA PIPELINE]
+    47  base.py                   [INFRASTRUCTURE]
+    30  registry.py               [INFRASTRUCTURE]
+
+CHAT IMPORTERS (Multi-platform chat import)
+/Users/user/personal/sb/pp/app/chat_importers/
+  1056  tumblr.py                 [OFFLINE TOOLING]
+   338  pipeline.py               [DATA PIPELINE]
+   327  dayone.py                 [OFFLINE TOOLING]
+   259  imessage.py               [OFFLINE TOOLING]
+   210  ryan_chatlog.py           [OFFLINE TOOLING]
+   157  limitless.py              [OFFLINE TOOLING]
+   150  skype.py                  [OFFLINE TOOLING]
+    64  base.py                   [INFRASTRUCTURE]
+
+KEY DATA FILES (App layer uses):
+  - media.db (28 MB) - SQLite database of all images/posts/tags/clusters
+  - chat.db (empty, prepared) - SQLite chat message index
+  - pp.db, session_log.db, test_journal.db (infrastructure)
+
+### APPS TIER (Specialized systems)
+/Users/user/personal/sb/pp/relationship_skills_app/knowledge_base/
+  2033  controversy_engine.py      [USER-FACING TOOL]
+  1943  import_kb.py              [OFFLINE TOOLING]
+  1720  tests/test_research_engine.py
+  1565  research_executor.py       [OFFLINE TOOLING] (LLM-dependent)
+  1557  kb_db.py                  [DATA PIPELINE]
+  1554  tests/test_belief_file_sync.py
+  1473  controversy_scanner.py     [OFFLINE TOOLING]
+  1404  confidence_tracker.py      [OFFLINE TOOLING]
+  1214  tests/test_research_executor.py
+  1211  tests/test_confidence_tracker.py
+  1073  regional_adapter.py         [OFFLINE TOOLING]
+  1042  belief_file_sync.py         [OFFLINE TOOLING]
+  1006  content_graph.py            [OFFLINE TOOLING]
+   993  research_engine.py          [OFFLINE TOOLING]
+   851  content_pipeline.py         [OFFLINE TOOLING]
+   751  link_verifier.py            [OFFLINE TOOLING]
+   580  tests/test_controversy_scanner.py
+   525  tests/test_archive_scanner.py
+   510  tests/test_cross_linker.py
+   503  tests/test_controversy_engine.py
+   468  tests/test_link_verifier.py
+   437  cross_linker.py             [OFFLINE TOOLING]
+   412  content_gate.py             [OFFLINE TOOLING]
+   373  tests/test_regional_adapter.py
+   372  tests/test_content_gate.py
+   350  tests/test_content_graph.py
+   322  tests/test_content_pipeline.py
+   202  source_archiver.py          [OFFLINE TOOLING]
+   163  research_auditor.py         [OFFLINE TOOLING]
+    97  source_docs/thais_gibson/pull_full_index.py [OFFLINE TOOLING]
+    71  source_docs/thais_gibson/retry_transcripts.py [OFFLINE TOOLING]
+
+/Users/user/personal/sb/pp/self_assessment_app/
+   986  assessment_analyzer.py     [OFFLINE TOOLING]
+   550  tests/test_assessment_analyzer.py
+
+### ROOT & SCRIPTS TIER (CLI tools and utilities)
+/Users/user/personal/sb/pp/ (root)
+   346  mirror_chat_read.py        [OFFLINE TOOLING]
+   263  test_one_image.py          [OFFLINE TOOLING] (testing)
+   235  mirror_chat_relay.py       [OFFLINE TOOLING]
+   175  staging_cli.py             [OFFLINE TOOLING]
+    38  add_2017_analysis.py       [OFFLINE TOOLING] (DEPRECATED)
+
+/Users/user/personal/sb/pp/scripts/
+   313  imessage_extract.py        [OFFLINE TOOLING]
+   304  imessage_reconcile.py      [OFFLINE TOOLING]
+   296  import_apple_notes.py      [OFFLINE TOOLING]
+   291  import_threesome_transcript.py [OFFLINE TOOLING]
+   268  export_apple_notes.py       [OFFLINE TOOLING]
+   259  import_quip_html_exports.py [OFFLINE TOOLING]
+   250  imessage_ingest.py         [OFFLINE TOOLING]
+   244  extract_features.py         [OFFLINE TOOLING]
+   186  imessage_state.py          [OFFLINE TOOLING]
+    85  ocr_apple_notes_images.py  [OFFLINE TOOLING]
+
+## PART 2: DATABASE ARCHITECTURE
+
+### SQLite Databases (All data persisted in SQLite)
+1. media.db (28 MB)
+   - Images and posts from Tumblr/BDSMLR blogs
+   - Tag assignments and evolution history
+   - Clusters, categories, and metadata
+   - Vision/CLIP embeddings and scoring
+   - Review sessions and tag decisions
+
+2. memory.db (18 MB)
+   - Indexed entries from entries.json
+   - Entry search/filter support
+   - Entry review status
+   - Relationships between entries
+   - Chat message index (imported from chat_messages.json)
+
+3. chat.db (empty, prepared)
+   - Chat message indexing (prepared for future use)
+
+### JSON Data Files
+   - entries.json (10 MB) - Full entry records
+   - chat_messages.json (195 MB) - Imported chat messages
+   - config.json (8 KB) - Configuration & API keys
+   - All supporting JSON metadata files
+
+## PART 3: EXTERNAL APIS & INTEGRATIONS
+
+### Quip API (Quip Documents)
+  - Endpoint: https://platform.quip.com/1/
+  - Used by: memory/import_chat.py, memory/source_chunker.py
+  - Data: 4 Quip document collections (Belle, Chloe, Rebecca, Stephanie)
+  - Auth: Bearer token in config.json["api_keys"]["quip"]
+
+### Limitless AI API (Memory/note sync)
+  - Endpoint: https://api.limitless.ai/v1
+  - Used by: app/chat_importers/limitless.py
+  - Auth: Bearer token in config.json["api_keys"]["limitless"]
+  - Purpose: Import Limitless recordings and transcripts
+
+### YouTube Data API v3
+  - Used by: relationship_skills_app/knowledge_base/ modules
+  - Auth: API key in config.json["api_keys"]["youtube_data_v3"]
+  - Purpose: Research executor fetches video/channel metadata
+
+### HTTP Requests (Low-level)
+  - Used by: app/importers/bdsmlr.py, app/review_analyze.py
+  - Purpose: Scraping blog content, downloading metadata
+
+### NO Direct Anthropic/Claude API
+  - All Claude interactions are via Claude Code (no SDK calls in Python)
+  - Memory pipeline prompts are generated as text files, then fed to Claude
+
+## PART 4: TEST STRUCTURE
+
+### Total Test Files: 3,828 (across entire codebase)
+
+Test Directories:
+- /Users/user/personal/sb/pp/app/tests/unit/ (45+ unit tests)
+- /Users/user/personal/sb/pp/app/tests/integration/ (12+ integration tests)
+- /Users/user/personal/sb/pp/relationship_skills_app/knowledge_base/tests/ (10+ test files)
+- /Users/user/personal/sb/pp/self_assessment_app/tests/ (1 test file)
+- /Users/user/personal/sb/pp/scripts/tests/ (3 test files)
+- /Users/user/personal/sb/pp/memory/tests/ (exists, not enumerated)
+
+Coverage: 92% on memory/ and app/
+
+## PART 5: CATEGORIZATION SUMMARY
+
+### MUST MIGRATE TO ELIXIR/PHOENIX (USER-FACING)
+1. app/server.py (2585 LOC) - Flask web server
+   - Serves /api/images, /api/tags, /api/memory, /api/chat, /api/reviews
+   - Flask routes, JSON responses
+   - Database read/write via app/db.py and app/memory_db.py
+   - Background pipeline job management
+
+2. app/memory_db.py (503 LOC) - Memory database API
+   - Entry listing, retrieval, review submission
+   - Dimension traversal
+   - User-facing memory interface
+
+3. app/chat_db.py (386 LOC) - Chat message browsing
+   - Chat message pagination and search
+   - Evidence chain retrieval
+   - Conversation metadata
+
+4. app/pipeline_routing.py (59 LOC) - Image classification for UI
+
+5. relationship_skills_app modules (design phase - intended as web UI)
+   - Currently OFFLINE TOOLING but will need web interface
+
+### SHOULD STAY PYTHON (OFFLINE TOOLING - Can remain as CLI tools)
+All memory/ analysis modules:
+   - mem_pipeline.py, evolution.py, lessons.py, patterns_triggers.py
+   - All cross_cutting analysis generators
+   - All synthesis generators
+   - query_memory.py, image_tagger.py, etc.
+
+All importers:
+   - app/importers/* (Tumblr, BDSMLR parsers)
+   - app/chat_importers/* (iMessage, DayOne, Skype, Limitless, Tumblr DMs)
+   - scripts/* (iMessage extract, Quip import, Apple Notes)
+
+Self-assessment app:
+   - self_assessment_app/assessment_analyzer.py
+   - Can remain Python or move to Elixir depending on product roadmap
+
+Relationship skills app (knowledge_base):
+   - Currently offline tools for indexing/scanning
+   - Can stay Python until web UI needed
+
+### MUST PORT/REWRITE (DATABASE & INFRASTRUCTURE)
+1. app/db.py (1497 LOC) - SQLite abstraction for media.db
+   - All SQL for images, tags, clusters, taxonomy
+   - Must become Elixir/Ecto data layer
+
+2. app/memory_db.py partially - SQLite abstraction for memory.db
+   - Must become Elixir/Ecto for memory entries
+
+3. relationship_skills_app/knowledge_base/kb_db.py (1557 LOC)
+   - Knowledge graph SQLite
+   - Must become Elixir/Ecto if KB becomes user-facing
+
+4. Quip API integration (currently in Python importers)
+   - Quip adapter for Elixir
+
+5. Limitless API integration
+   - Limitless adapter for Elixir
+
+### DATA PIPELINE CANDIDATES (Either Python or Elixir)
+- memory/build_memory.py (535 LOC) - Builds SQLite index from JSON
+- memory/synthesis_pipeline.py (559 LOC) - Synthesis cascade generation
+- memory/work_unit.py (234 LOC) - Work unit tracking
+- memory/add_entry.py (762 LOC) - Entry import and dedup
+- app/db.py (1497 LOC) - All database operations
+- app/chat_importers/pipeline.py (338 LOC) - Chat import coordination
+- All Quip/Limitless/iMessage import pipelines
+
+Recommendation: Keep in Python initially (easy to maintain), but plan Elixir 
+equivalents if:
+  1. Pipelines need real-time user feedback (web UI shows progress)
+  2. Pipelines need to run frequently in production
+  3. Need unified error handling with rest of system
+
+## PART 6: DEPENDENCIES (No Heavy External Dependencies)
+
+Python stdlib only for core modules:
+  - json, sqlite3, pathlib, datetime, collections, etc.
+
+Optional/ML dependencies (marked as excluded from coverage):
+  - torch (for embeddings.py)
+  - clip (for clip_cache.py, clip_scorer.py, clip_db.py)
+  - spacy (for NLP in analysis modules)
+  - anthropic (NOT USED - Claude interactions via API only)
+  - openai (NOT USED)
+
+Lightweight dependencies actually used:
+  - flask (web server, can be replaced with Phoenix)
+  - requests (HTTP, minimal use)
+  - dataclasses (standard library)
+
+Implication: Minimal external library migration needed. Main work is:
+  1. Flask → Phoenix/Elixir web framework
+  2. sqlite3 → Ecto/PostgreSQL
+  3. Python analysis pipeline stays Python (keep as workers) OR port to Elixir
+
+## SUMMARY TABLE
+
+┌────────────────────┬──────────┬────────────────────────┬──────────────────┐
+│ Module             │ LOC      │ Category               │ Migration Path   │
+├────────────────────┼──────────┼────────────────────────┼──────────────────┤
+│ app/server.py      │ 2,585    │ USER-FACING            │ → Phoenix Routes │
+│ app/db.py          │ 1,497    │ DATA PIPELINE          │ → Ecto Schema    │
+│ memory/mem_*       │ 10,000+  │ OFFLINE TOOLING        │ Keep Python      │
+│ app/importers/     │ 400+     │ OFFLINE TOOLING        │ Keep Python      │
+│ app/chat_importers │ 2,500+   │ OFFLINE TOOLING        │ Keep Python      │
+│ scripts/           │ 2,500+   │ OFFLINE TOOLING        │ Keep Python      │
+│ relationship_skills│ 20,000+  │ OFFLINE + KB            │ Keep Python/Port │
+│ self_assessment    │ 1,500+   │ OFFLINE TOOLING        │ Keep Python      │
+├────────────────────┼──────────┼────────────────────────┼──────────────────┤
+│ TOTALS             │ ~50,000  │                        │                  │
+└────────────────────┴──────────┴────────────────────────┴──────────────────┘
+
+### Estimated Migration Effort
+
+Must Port (Critical):
+  - app/server.py → Phoenix: ~1-2 weeks
+  - app/db.py → Ecto: ~1-2 weeks
+  - Memory API endpoints → Elixir: ~1 week
+
+Can Skip Initially (Use Python for CLI):
+  - All memory/analysis modules (keep as worker scripts)
+  - All import/chat pipelines (keep as batch processors)
+  - All scripts (keep as one-off tools)
+
+Expected Elixir/Phoenix codebase size: 5,000-8,000 LOC for complete feature parity

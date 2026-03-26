@@ -1,0 +1,221 @@
+---
+export const prerender = true
+
+import Marketing from '../../layouts/Marketing.astro'
+import CTA from '../../components/marketing/CTA.astro'
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do you know when AI-generated code is done?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most AI coding agents stop when the model says 'I'm done' — which is often wrong. CruxCLI integrates with CruxDev's convergence engine, which runs autonomous audit-fix-re-audit loops until two consecutive independent clean passes verify the code is correct. The agent proves it's done, rather than claiming it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is convergence in AI coding?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Convergence is when code reaches a verified state of completeness. In CruxCLI's system, convergence means two consecutive independent audit passes found zero issues — tests pass, types check, documentation matches code, and all checklist items are satisfied."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which AI coding agents have convergence?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "As of March 2026, CruxCLI is the only terminal AI coding agent with a convergence engine (via CruxDev integration). OpenCode, Claude Code, Gemini CLI, and Codex CLI all rely on the user or the model's judgment to determine when code is complete."
+      }
+    }
+  ]
+}
+---
+
+<Marketing
+  title="How to Know When AI Code Is Done — Convergence for AI Coding Agents"
+  description="AI coding agents say 'done' when they are not. CruxCLI's convergence engine runs audit-fix loops until two consecutive clean passes verify the code is correct. No more guessing."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head" />
+
+  <article class="py-24">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl sm:text-5xl font-bold text-white tracking-tight leading-tight">
+        How to know when AI-generated code is done
+      </h1>
+
+      <p class="mt-8 text-lg text-dev-300 leading-relaxed">
+        AI coding agents stop when the model outputs "I'm done" — but that claim is unreliable. CruxCLI integrates with the CruxDev convergence engine, which runs autonomous audit-fix-re-audit loops until two consecutive independent clean passes verify the code is actually correct. The agent does not stop when it thinks it is done. It stops when it can prove it.
+      </p>
+
+      <h2 class="mt-12 text-2xl font-bold text-white">The "done" problem</h2>
+      <p class="mt-4 text-dev-400 leading-relaxed">
+        Every AI coding agent has the same termination problem: how does it decide when to stop? Today, the answer across all major agents is some combination of:
+      </p>
+      <ul class="mt-4 space-y-3 text-dev-400">
+        <li class="flex items-start gap-3">
+          <span class="text-dev-600 mt-0.5 shrink-0">1.</span>
+          <span><strong class="text-dev-300">The model says it is done.</strong> The LLM generates a message like "I've completed all the changes" — but it has no way to verify its own output beyond what's in its context window.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-dev-600 mt-0.5 shrink-0">2.</span>
+          <span><strong class="text-dev-300">The step limit is hit.</strong> The agent runs out of tool calls and stops, regardless of whether the task is finished.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-dev-600 mt-0.5 shrink-0">3.</span>
+          <span><strong class="text-dev-300">The user decides.</strong> The developer reviews the output and manually determines if the code is complete. This works but defeats the purpose of automation.</span>
+        </li>
+      </ul>
+      <p class="mt-4 text-dev-400 leading-relaxed">
+        None of these are reliable. Models hallucinate completion. Step limits are arbitrary. Human review is slow. The result: agents that claim to be "done" while tests fail, types are broken, documentation is stale, and edge cases are unhandled.
+      </p>
+
+      <h2 class="mt-12 text-2xl font-bold text-white">What convergence means</h2>
+      <p class="mt-4 text-dev-400 leading-relaxed">
+        Convergence is a verification methodology, not a feature toggle. In CruxCLI's system, convergence means the code has passed through autonomous audit-fix loops until two consecutive independent passes find zero issues. Specifically:
+      </p>
+      <ol class="mt-4 space-y-3 text-dev-400">
+        <li class="flex items-start gap-3">
+          <span class="text-accent font-bold shrink-0">1.</span>
+          <span><strong class="text-dev-300">Audit.</strong> An independent pass examines the code against all defined criteria: tests pass, types check, documentation matches implementation, all checklist items are satisfied.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-accent font-bold shrink-0">2.</span>
+          <span><strong class="text-dev-300">Fix.</strong> If the audit finds issues, the agent fixes them.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-accent font-bold shrink-0">3.</span>
+          <span><strong class="text-dev-300">Re-audit.</strong> A fresh, independent pass examines the code again. This is not a diff-check — it is a full re-examination.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-accent font-bold shrink-0">4.</span>
+          <span><strong class="text-dev-300">Converge.</strong> Two consecutive clean passes (zero issues found) = converged. The code is done.</span>
+        </li>
+      </ol>
+
+      <div class="mt-8 bg-dev-900 border border-dev-800 rounded-xl p-6">
+        <p class="text-xs text-dev-500 mb-3">CruxDev convergence in action</p>
+        <pre class="text-sm text-dev-300 leading-relaxed overflow-x-auto"><code>{`> converge BUILD_PLAN_003
+
+Starting convergence on BUILD_PLAN_003...
+
+Round 1 — Audit:
+  ✗ 12 issues found
+  - 3 failing tests (checkpoint restore edge cases)
+  - 2 type errors (missing null checks)
+  - 4 documentation mismatches
+  - 3 checklist items incomplete
+  Fixing...
+
+Round 2 — Audit:
+  ✗ 3 issues found
+  - 1 flaky test (race condition in cleanup)
+  - 2 documentation references to old API
+  Fixing...
+
+Round 3 — Audit:
+  ✓ 0 issues found — clean pass 1/2
+
+Round 4 — Audit:
+  ✓ 0 issues found — clean pass 2/2
+
+Converged. Two consecutive clean passes.
+All 1,204 tests passing. 13/13 packages typecheck.`}</code></pre>
+      </div>
+
+      <h2 class="mt-12 text-2xl font-bold text-white">Why two consecutive passes?</h2>
+      <p class="mt-4 text-dev-400 leading-relaxed">
+        A single clean pass is not enough because:
+      </p>
+      <ul class="mt-4 space-y-3 text-dev-400">
+        <li class="flex items-start gap-3">
+          <span class="text-dev-600 mt-0.5 shrink-0">&bull;</span>
+          <span><strong class="text-dev-300">Fixes can introduce new issues.</strong> Fixing a type error might break a test. Fixing a test might invalidate documentation. One clean pass after fixes only proves those fixes worked — not that they did not cause regressions.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-dev-600 mt-0.5 shrink-0">&bull;</span>
+          <span><strong class="text-dev-300">Audit coverage can vary.</strong> An LLM-driven audit might miss something on one pass that it catches on another. Two consecutive clean passes reduce the probability of missed issues.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-dev-600 mt-0.5 shrink-0">&bull;</span>
+          <span><strong class="text-dev-300">It matches human code review.</strong> Good code review involves multiple passes. Convergence automates this pattern.</span>
+        </li>
+      </ul>
+
+      <h2 class="mt-12 text-2xl font-bold text-white">How other agents determine "done"</h2>
+      <div class="mt-6 overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b border-dev-800">
+              <th class="text-left py-3 px-4 text-dev-500 font-medium">Agent</th>
+              <th class="text-left py-3 px-4 text-dev-500 font-medium">Termination method</th>
+              <th class="text-left py-3 px-4 text-dev-500 font-medium">Verified</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-dev-800/50">
+              <td class="py-3 px-4 text-dev-300">CruxCLI + CruxDev</td>
+              <td class="py-3 px-4 text-dev-400">Two consecutive clean audit passes</td>
+              <td class="py-3 px-4 text-green-400">Yes</td>
+            </tr>
+            <tr class="border-b border-dev-800/50 bg-dev-900/30">
+              <td class="py-3 px-4 text-dev-300">OpenCode</td>
+              <td class="py-3 px-4 text-dev-400">Model judgment + step limit</td>
+              <td class="py-3 px-4 text-dev-600">No</td>
+            </tr>
+            <tr class="border-b border-dev-800/50">
+              <td class="py-3 px-4 text-dev-300">Claude Code</td>
+              <td class="py-3 px-4 text-dev-400">Model judgment + cost cap</td>
+              <td class="py-3 px-4 text-dev-600">No</td>
+            </tr>
+            <tr class="border-b border-dev-800/50 bg-dev-900/30">
+              <td class="py-3 px-4 text-dev-300">Gemini CLI</td>
+              <td class="py-3 px-4 text-dev-400">Model judgment + step limit</td>
+              <td class="py-3 px-4 text-dev-600">No</td>
+            </tr>
+            <tr class="border-b border-dev-800/50">
+              <td class="py-3 px-4 text-dev-300">Codex CLI</td>
+              <td class="py-3 px-4 text-dev-400">Model judgment + step limit</td>
+              <td class="py-3 px-4 text-dev-600">No</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="mt-12 text-2xl font-bold text-white">Convergence + checkpoints = confidence</h2>
+      <p class="mt-4 text-dev-400 leading-relaxed">
+        Convergence tells you the code is correct. Workspace checkpoints give you a safety net in case it is not. Before every destructive tool call, CruxCLI takes a git-based snapshot. If convergence fails or produces unexpected results, restore to any checkpoint. The two systems work together: convergence drives quality, checkpoints provide rollback.
+      </p>
+
+      <h2 class="mt-12 text-2xl font-bold text-white">Getting started with convergence</h2>
+      <p class="mt-4 text-dev-400 leading-relaxed">
+        Convergence works through the CruxDev MCP integration. Install CruxCLI, configure CruxDev as an MCP server, and use the <code class="text-dev-300">converge</code> command:
+      </p>
+      <div class="mt-4 bg-dev-900 border border-dev-800 rounded-xl p-6">
+        <pre class="text-sm text-dev-300 leading-relaxed overflow-x-auto"><code>{`npm i -g cruxcli
+export ANTHROPIC_API_KEY=sk-ant-...
+cruxcli
+
+> converge BUILD_PLAN_003`}</code></pre>
+      </div>
+      <p class="mt-4 text-dev-400 leading-relaxed">
+        The convergence engine handles the loop. You do not decide when to stop — the engine decides based on audit results. See the <a href="/features" class="text-accent hover:text-accent-hover">features page</a> for the full CruxDev integration, or the <a href="/docs" class="text-accent hover:text-accent-hover">documentation</a> for configuration details.
+      </p>
+
+      <div class="mt-12 text-sm text-dev-500">
+        <p>Related: <a href="/features" class="text-accent hover:text-accent-hover">CruxCLI features</a> | <a href="/vs" class="text-accent hover:text-accent-hover">Compare to alternatives</a> | <a href="/lp/no-execution-cap" class="text-accent hover:text-accent-hover">Fix execution cap issues</a> | <a href="/lp/provider-agnostic" class="text-accent hover:text-accent-hover">Use any LLM provider</a></p>
+      </div>
+    </div>
+  </article>
+
+  <CTA
+    heading="Stop guessing when code is done"
+    description="CruxCLI's convergence engine proves completion with two consecutive clean passes."
+    primaryCta={{ text: "Install CruxCLI", href: "/docs" }}
+    secondaryCta={{ text: "View on GitHub", href: "https://github.com/trinsiklabs/cruxcli" }}
+  />
+</Marketing>

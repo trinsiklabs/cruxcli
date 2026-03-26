@@ -3,6 +3,7 @@ import { defineConfig } from "astro/config"
 import starlight from "@astrojs/starlight"
 import solidJs from "@astrojs/solid-js"
 import cloudflare from "@astrojs/cloudflare"
+import tailwindcss from "@tailwindcss/vite"
 import theme from "toolbeam-docs-theme"
 import config from "./config.mjs"
 import { rehypeHeadingIds } from "@astrojs/markdown-remark"
@@ -12,11 +13,13 @@ import { spawnSync } from "child_process"
 // https://astro.build/config
 export default defineConfig({
   site: config.url,
-  base: "/docs",
   output: "server",
   adapter: cloudflare({
     imageService: "passthrough",
   }),
+  vite: {
+    plugins: [tailwindcss()],
+  },
   devToolbar: {
     enabled: false,
   },
@@ -31,7 +34,7 @@ export default defineConfig({
     configSchema(),
     solidJs(),
     starlight({
-      title: "OpenCode",
+      title: "CruxCLI",
       defaultLocale: "root",
       locales: {
         root: {
@@ -172,12 +175,12 @@ export default defineConfig({
         replacesTitle: true,
       },
       sidebar: [
-        "",
-        "config",
-        "providers",
-        "network",
-        "enterprise",
-        "troubleshooting",
+        { slug: "docs" },
+        "docs/config",
+        "docs/providers",
+        "docs/network",
+        "docs/enterprise",
+        "docs/troubleshooting",
         {
           label: "Windows",
           translations: {
@@ -200,7 +203,7 @@ export default defineConfig({
             "zh-CN": "Windows",
             "zh-TW": "Windows",
           },
-          link: "windows-wsl",
+          slug: "docs/windows-wsl",
         },
         {
           label: "Usage",
@@ -224,7 +227,7 @@ export default defineConfig({
             "zh-CN": "使用",
             "zh-TW": "使用",
           },
-          items: ["go", "tui", "cli", "web", "ide", "zen", "share", "github", "gitlab"],
+          items: ["docs/go", "docs/tui", "docs/cli", "docs/web", "docs/ide", "docs/zen", "docs/share", "docs/github", "docs/gitlab"],
         },
 
         {
@@ -250,20 +253,20 @@ export default defineConfig({
             "zh-TW": "設定",
           },
           items: [
-            "tools",
-            "rules",
-            "agents",
-            "models",
-            "themes",
-            "keybinds",
-            "commands",
-            "formatters",
-            "permissions",
-            "lsp",
-            "mcp-servers",
-            "acp",
-            "skills",
-            "custom-tools",
+            "docs/tools",
+            "docs/rules",
+            "docs/agents",
+            "docs/models",
+            "docs/themes",
+            "docs/keybinds",
+            "docs/commands",
+            "docs/formatters",
+            "docs/permissions",
+            "docs/lsp",
+            "docs/mcp-servers",
+            "docs/acp",
+            "docs/skills",
+            "docs/custom-tools",
           ],
         },
 
@@ -289,7 +292,7 @@ export default defineConfig({
             "zh-CN": "开发",
             "zh-TW": "開發",
           },
-          items: ["sdk", "server", "plugins", "ecosystem"],
+          items: ["docs/sdk", "docs/server", "docs/plugins", "docs/ecosystem"],
         },
       ],
       components: {

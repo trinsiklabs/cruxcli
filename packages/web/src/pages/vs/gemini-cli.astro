@@ -1,0 +1,180 @@
+---
+export const prerender = true
+
+import Marketing from '../../layouts/Marketing.astro'
+import ComparisonTable from '../../components/marketing/ComparisonTable.astro'
+import CTA from '../../components/marketing/CTA.astro'
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the difference between CruxCLI and Gemini CLI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "CruxCLI is provider-agnostic with 75+ providers, 24 task-specific modes, token budgets, and a convergence engine. Gemini CLI is locked to Google models but offers a generous free tier, 1M context window, and Google Search grounding for real-time information."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can CruxCLI use Gemini models?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. CruxCLI supports Google as a provider. Set your GOOGLE_API_KEY or use Vertex AI credentials. CruxCLI can use Gemini 3, Gemini Flash, and other Google models alongside models from any other provider."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Gemini CLI free to use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Gemini CLI offers a free tier with capable Gemini models. CruxCLI requires users to bring their own API keys, but supports any provider including free options via Ollama for local models."
+      }
+    }
+  ]
+}
+---
+
+<Marketing
+  title="CruxCLI vs Gemini CLI — Features & Comparison 2026"
+  description="CruxCLI vs Gemini CLI comparison. CruxCLI has 24 modes, token budgets, and convergence. Gemini CLI has a free tier, Google Search grounding, and 99k stars. Honest analysis."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head" />
+
+  <section class="py-24">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="text-sm text-dev-500 mb-8">
+        <a href="/vs" class="hover:text-white transition-colors">Compare</a>
+        <span class="mx-2">/</span>
+        <span class="text-dev-300">CruxCLI vs Gemini CLI</span>
+      </nav>
+
+      <h1 class="text-4xl sm:text-5xl font-bold text-white tracking-tight">
+        CruxCLI vs Gemini CLI
+      </h1>
+      <p class="mt-6 text-lg text-dev-400 leading-relaxed max-w-3xl">
+        CruxCLI and Gemini CLI both run in the terminal, but serve different philosophies. CruxCLI is provider-agnostic with 75+ providers, 24 task-specific modes with model tier mapping, per-mode token budgets, workspace checkpoints, and a convergence engine. Gemini CLI is Google's terminal agent locked to Gemini models, offering a generous free tier, 1M context window, Google Search grounding for real-time information, and Plan Mode. Gemini CLI has grown to 98,907 stars in under two months.
+      </p>
+
+      <div class="mt-16">
+        <h2 class="text-2xl font-bold text-white mb-8">Feature comparison</h2>
+        <ComparisonTable
+          products={["CruxCLI", "Gemini CLI"]}
+          features={[
+            { name: "Open source", values: { "CruxCLI": "MIT", "Gemini CLI": "Apache-2.0" } },
+            { name: "Provider-agnostic", values: { "CruxCLI": "75+ providers", "Gemini CLI": "Google only" } },
+            { name: "Mode → model tier mapping", values: { "CruxCLI": "24 modes", "Gemini CLI": false } },
+            { name: "Token budget system", values: { "CruxCLI": true, "Gemini CLI": false } },
+            { name: "Convergence engine", values: { "CruxCLI": true, "Gemini CLI": false } },
+            { name: "Workspace checkpoints", values: { "CruxCLI": true, "Gemini CLI": false } },
+            { name: "Client/server architecture", values: { "CruxCLI": true, "Gemini CLI": false } },
+            { name: "LSP integration", values: { "CruxCLI": "30+ servers", "Gemini CLI": false } },
+            { name: "Plugin API", values: { "CruxCLI": true, "Gemini CLI": false } },
+            { name: "MCP support", values: { "CruxCLI": true, "Gemini CLI": true } },
+            { name: "VS Code extension", values: { "CruxCLI": true, "Gemini CLI": false } },
+            { name: "Plan mode", values: { "CruxCLI": true, "Gemini CLI": true } },
+            { name: "Free model tier", values: { "CruxCLI": false, "Gemini CLI": true } },
+            { name: "1M context window", values: { "CruxCLI": false, "Gemini CLI": true } },
+            { name: "Google Search grounding", values: { "CruxCLI": false, "Gemini CLI": true } },
+            { name: "GitHub stars", values: { "CruxCLI": "New", "Gemini CLI": "99k" } },
+          ]}
+        />
+      </div>
+
+      <div class="mt-16 grid md:grid-cols-2 gap-12">
+        <div>
+          <h2 class="text-2xl font-bold text-white mb-6">Where CruxCLI wins</h2>
+          <div class="space-y-6">
+            <div>
+              <h3 class="text-lg font-semibold text-white">24 task-specific modes</h3>
+              <p class="mt-2 text-sm text-dev-400 leading-relaxed">
+                CruxCLI has 24 modes with automatic model tier mapping. Gemini CLI has Plan Mode (added March 2026), but no deep mode system with tier-based model selection. Each CruxCLI mode is optimized for its task type with distinct prompts and tool configurations.
+              </p>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-white">Convergence engine</h3>
+              <p class="mt-2 text-sm text-dev-400 leading-relaxed">
+                CruxDev integration drives autonomous audit-fix-re-audit loops until two consecutive clean passes verify completion. Gemini CLI has no convergence methodology — the user decides when code is done.
+              </p>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-white">Provider flexibility</h3>
+              <p class="mt-2 text-sm text-dev-400 leading-relaxed">
+                CruxCLI supports 75+ providers. If Google raises prices or you prefer a different model for a specific task, switch providers with one environment variable. Gemini CLI is locked to Google models.
+              </p>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-white">LSP and plugins</h3>
+              <p class="mt-2 text-sm text-dev-400 leading-relaxed">
+                LSP integration with 30+ language servers and a plugin API for custom tools. Gemini CLI has MCP support but no built-in LSP or plugin system.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-bold text-white mb-6">Where Gemini CLI wins</h2>
+          <div class="space-y-6">
+            <div>
+              <h3 class="text-lg font-semibold text-white">Free tier</h3>
+              <p class="mt-2 text-sm text-dev-400 leading-relaxed">
+                Gemini CLI offers a free tier with capable Gemini models. This is a genuine advantage for developers who want to try a terminal AI agent without an API key. CruxCLI requires API keys from your chosen provider, though you can use free local models via Ollama.
+              </p>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-white">Google Search grounding</h3>
+              <p class="mt-2 text-sm text-dev-400 leading-relaxed">
+                Gemini CLI can ground responses in real-time Google Search results. CruxCLI can integrate web search via MCP servers, but does not have native search grounding built in.
+              </p>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-white">Community adoption</h3>
+              <p class="mt-2 text-sm text-dev-400 leading-relaxed">
+                98,907 stars in under two months, backed by Google. CruxCLI is new with no established community. Gemini CLI benefits from Google's developer ecosystem and marketing reach.
+              </p>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-white">1M context window</h3>
+              <p class="mt-2 text-sm text-dev-400 leading-relaxed">
+                Gemini 3 offers a 1M token context window natively. CruxCLI's context depends on the provider and model selected, though many supported models also offer large context windows.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-16">
+        <h2 class="text-2xl font-bold text-white mb-8">Frequently asked questions</h2>
+        <div class="space-y-6">
+          <div class="bg-dev-900 border border-dev-800 rounded-xl p-6">
+            <h3 class="text-white font-semibold">What is the difference between CruxCLI and Gemini CLI?</h3>
+            <p class="mt-3 text-sm text-dev-400 leading-relaxed">
+              CruxCLI is provider-agnostic with 75+ providers, 24 task-specific modes, token budgets, and a convergence engine. Gemini CLI is locked to Google models but offers a generous free tier, 1M context window, and Google Search grounding for real-time information.
+            </p>
+          </div>
+          <div class="bg-dev-900 border border-dev-800 rounded-xl p-6">
+            <h3 class="text-white font-semibold">Can CruxCLI use Gemini models?</h3>
+            <p class="mt-3 text-sm text-dev-400 leading-relaxed">
+              Yes. CruxCLI supports Google as a provider. Set your GOOGLE_API_KEY or use Vertex AI credentials. CruxCLI can use Gemini 3, Gemini Flash, and other Google models alongside models from any other provider.
+            </p>
+          </div>
+          <div class="bg-dev-900 border border-dev-800 rounded-xl p-6">
+            <h3 class="text-white font-semibold">Is Gemini CLI free to use?</h3>
+            <p class="mt-3 text-sm text-dev-400 leading-relaxed">
+              Gemini CLI offers a free tier with capable Gemini models. CruxCLI requires users to bring their own API keys, but supports any provider including free options via Ollama for local models.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTA
+    heading="Try CruxCLI"
+    description="Use Gemini, Claude, GPT, or any model. One agent, any provider."
+    primaryCta={{ text: "Install CruxCLI", href: "/docs" }}
+    secondaryCta={{ text: "View on GitHub", href: "https://github.com/trinsiklabs/cruxcli" }}
+  />
+</Marketing>

@@ -1,0 +1,236 @@
+---
+export const prerender = true
+
+import Marketing from '../../layouts/Marketing.astro'
+import CTA from '../../components/marketing/CTA.astro'
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a provider-agnostic AI coding agent?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A provider-agnostic AI coding agent works with multiple LLM providers — Anthropic, OpenAI, Google, Azure, local models — instead of being locked to one vendor. CruxCLI supports 75+ providers, so you can switch models by changing an environment variable."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which AI coding agents support multiple LLM providers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "CruxCLI and OpenCode are the two major provider-agnostic terminal AI agents, both supporting 75+ providers. Aider also supports multiple providers. Claude Code (Anthropic only), Gemini CLI (Google only), and Codex CLI (OpenAI only) are locked to single vendors."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use local models with CruxCLI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. CruxCLI supports Ollama and other local model providers. Point OLLAMA_HOST to your local server and CruxCLI will use local models with zero API cost. You can also mix local and cloud models across different modes."
+      }
+    }
+  ]
+}
+---
+
+<Marketing
+  title="Provider-Agnostic AI Coding Agent — Use Any LLM With CruxCLI"
+  description="CruxCLI is a provider-agnostic terminal AI coding agent supporting 75+ LLM providers. Use Anthropic, OpenAI, Google, Azure, Ollama, or any model. Switch providers by changing one environment variable."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head" />
+
+  <article class="py-24">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl sm:text-5xl font-bold text-white tracking-tight leading-tight">
+        Use any LLM with your coding agent
+      </h1>
+
+      <p class="mt-8 text-lg text-dev-300 leading-relaxed">
+        CruxCLI is a provider-agnostic terminal AI coding agent that supports 75+ LLM providers out of the box. Anthropic, OpenAI, Google, Azure, Bedrock, Vertex, OpenRouter, Ollama, and dozens more. Switch providers by changing one environment variable. No lock-in, no configuration rewrites, no vendor-specific workflows.
+      </p>
+
+      <h2 class="mt-12 text-2xl font-bold text-white">The vendor lock-in problem</h2>
+      <p class="mt-4 text-dev-400 leading-relaxed">
+        Most terminal AI agents are locked to a single LLM provider. Claude Code only works with Anthropic models. Gemini CLI only works with Google models. Codex CLI only works with OpenAI models. This means:
+      </p>
+      <ul class="mt-4 space-y-3 text-dev-400">
+        <li class="flex items-start gap-3">
+          <span class="text-dev-600 mt-0.5 shrink-0">&times;</span>
+          <span>If your provider raises prices, you have no alternative without switching your entire tool.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-dev-600 mt-0.5 shrink-0">&times;</span>
+          <span>If a competitor releases a better model, you cannot use it.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-dev-600 mt-0.5 shrink-0">&times;</span>
+          <span>If you need to keep code on-premises, cloud-only agents are not an option.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-dev-600 mt-0.5 shrink-0">&times;</span>
+          <span>If your company has a specific provider contract, you are locked out of tools that use other providers.</span>
+        </li>
+      </ul>
+
+      <h2 class="mt-12 text-2xl font-bold text-white">How CruxCLI solves provider lock-in</h2>
+      <p class="mt-4 text-dev-400 leading-relaxed">
+        CruxCLI uses a provider abstraction layer that works with any OpenAI-compatible API, any Anthropic API, any Google API, and many provider-specific SDKs. Runtime model fetching from models.dev means CruxCLI discovers new models automatically, with an offline fallback for air-gapped environments.
+      </p>
+
+      <div class="mt-6 bg-dev-900 border border-dev-800 rounded-xl p-6">
+        <p class="text-xs text-dev-500 mb-3">Switch providers in seconds</p>
+        <pre class="text-sm text-dev-300 leading-relaxed overflow-x-auto"><code>{`# Use Anthropic (Claude Opus, Sonnet, Haiku)
+export ANTHROPIC_API_KEY=sk-ant-...
+cruxcli
+
+# Use OpenAI (GPT-5, o3, o4-mini)
+export OPENAI_API_KEY=sk-...
+cruxcli
+
+# Use Google (Gemini 3, Flash, Ultra)
+export GOOGLE_API_KEY=AIza...
+cruxcli
+
+# Use OpenRouter (access all models via one key)
+export OPENROUTER_API_KEY=sk-or-...
+cruxcli
+
+# Use local models (Ollama, no API cost)
+export OLLAMA_HOST=http://localhost:11434
+cruxcli
+
+# Use Azure OpenAI
+export AZURE_OPENAI_API_KEY=...
+export AZURE_OPENAI_ENDPOINT=https://your-resource.openai.azure.com
+cruxcli
+
+# Use AWS Bedrock
+export AWS_ACCESS_KEY_ID=...
+export AWS_SECRET_ACCESS_KEY=...
+cruxcli`}</code></pre>
+      </div>
+
+      <h2 class="mt-12 text-2xl font-bold text-white">Provider-agnostic does not mean provider-ignorant</h2>
+      <p class="mt-4 text-dev-400 leading-relaxed">
+        CruxCLI does not treat all models the same. Its 24 task-specific modes map to model tiers (strong, balanced, fast). When you select a mode, CruxCLI picks the best available model from your configured provider at the appropriate tier. A debug task gets the strongest model you have access to. A formatting task gets the fastest.
+      </p>
+
+      <div class="mt-6 bg-dev-900 border border-dev-800 rounded-xl p-6">
+        <p class="text-xs text-dev-500 mb-3">Mode → model tier mapping</p>
+        <pre class="text-sm text-dev-300 leading-relaxed overflow-x-auto"><code>{`Provider: Anthropic
+  debug mode (strong tier)  → Claude Opus 4.6
+  code mode (balanced tier) → Claude Sonnet 4
+  format mode (fast tier)   → Claude Haiku 3.5
+
+Provider: OpenAI
+  debug mode (strong tier)  → GPT-5
+  code mode (balanced tier) → GPT-4o
+  format mode (fast tier)   → GPT-4o-mini
+
+Provider: Google
+  debug mode (strong tier)  → Gemini Ultra
+  code mode (balanced tier) → Gemini 3
+  format mode (fast tier)   → Gemini Flash`}</code></pre>
+      </div>
+
+      <p class="mt-6 text-dev-400 leading-relaxed">
+        This is unique to CruxCLI. No other terminal agent maps task types to model tiers across providers. OpenCode supports multiple providers but uses one model for everything. Claude Code, Gemini CLI, and Codex CLI are single-provider.
+      </p>
+
+      <h2 class="mt-12 text-2xl font-bold text-white">Local models for air-gapped environments</h2>
+      <p class="mt-4 text-dev-400 leading-relaxed">
+        CruxCLI supports Ollama, which means you can run models entirely locally with zero API cost and zero data leaving your machine. This is essential for:
+      </p>
+      <ul class="mt-4 space-y-2 text-dev-400">
+        <li class="flex items-start gap-3">
+          <span class="text-green-400 mt-0.5 shrink-0">&#10003;</span>
+          <span>Air-gapped or classified environments</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-green-400 mt-0.5 shrink-0">&#10003;</span>
+          <span>Companies with strict data residency requirements</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-green-400 mt-0.5 shrink-0">&#10003;</span>
+          <span>Developers who want to experiment without API costs</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-green-400 mt-0.5 shrink-0">&#10003;</span>
+          <span>Offline development (planes, trains, coffee shops without WiFi)</span>
+        </li>
+      </ul>
+
+      <h2 class="mt-12 text-2xl font-bold text-white">Which agents support multiple providers?</h2>
+      <div class="mt-6 overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b border-dev-800">
+              <th class="text-left py-3 px-4 text-dev-500 font-medium">Agent</th>
+              <th class="text-left py-3 px-4 text-dev-500 font-medium">Providers</th>
+              <th class="text-left py-3 px-4 text-dev-500 font-medium">Local models</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-dev-800/50">
+              <td class="py-3 px-4 text-dev-300">CruxCLI</td>
+              <td class="py-3 px-4 text-green-400">75+ providers</td>
+              <td class="py-3 px-4 text-green-400">Ollama, LM Studio</td>
+            </tr>
+            <tr class="border-b border-dev-800/50 bg-dev-900/30">
+              <td class="py-3 px-4 text-dev-300">OpenCode</td>
+              <td class="py-3 px-4 text-green-400">75+ providers</td>
+              <td class="py-3 px-4 text-green-400">Ollama</td>
+            </tr>
+            <tr class="border-b border-dev-800/50">
+              <td class="py-3 px-4 text-dev-300">Aider</td>
+              <td class="py-3 px-4 text-dev-400">Multiple</td>
+              <td class="py-3 px-4 text-green-400">Ollama</td>
+            </tr>
+            <tr class="border-b border-dev-800/50 bg-dev-900/30">
+              <td class="py-3 px-4 text-dev-300">Claude Code</td>
+              <td class="py-3 px-4 text-dev-600">Anthropic only</td>
+              <td class="py-3 px-4 text-dev-600">No</td>
+            </tr>
+            <tr class="border-b border-dev-800/50">
+              <td class="py-3 px-4 text-dev-300">Gemini CLI</td>
+              <td class="py-3 px-4 text-dev-600">Google only</td>
+              <td class="py-3 px-4 text-dev-600">No</td>
+            </tr>
+            <tr class="border-b border-dev-800/50 bg-dev-900/30">
+              <td class="py-3 px-4 text-dev-300">Codex CLI</td>
+              <td class="py-3 px-4 text-dev-600">OpenAI only</td>
+              <td class="py-3 px-4 text-dev-600">No</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="mt-12 text-2xl font-bold text-white">Getting started</h2>
+      <p class="mt-4 text-dev-400 leading-relaxed">
+        Install CruxCLI, set an API key for any supported provider, and start working:
+      </p>
+      <div class="mt-4 bg-dev-900 border border-dev-800 rounded-xl p-6">
+        <pre class="text-sm text-dev-300 leading-relaxed overflow-x-auto"><code>{`npm i -g cruxcli
+export ANTHROPIC_API_KEY=sk-ant-...   # or any provider
+cruxcli`}</code></pre>
+      </div>
+      <p class="mt-4 text-dev-400 leading-relaxed">
+        CruxCLI automatically detects which providers are configured and makes their models available. See the <a href="/features" class="text-accent hover:text-accent-hover">features page</a> for the full mode system, or <a href="/docs" class="text-accent hover:text-accent-hover">documentation</a> for provider configuration details.
+      </p>
+
+      <div class="mt-12 text-sm text-dev-500">
+        <p>Related: <a href="/features" class="text-accent hover:text-accent-hover">CruxCLI features</a> | <a href="/vs" class="text-accent hover:text-accent-hover">Compare to alternatives</a> | <a href="/lp/no-execution-cap" class="text-accent hover:text-accent-hover">Fix execution cap issues</a></p>
+      </div>
+    </div>
+  </article>
+
+  <CTA
+    heading="Use any model with one agent"
+    description="75+ providers. Switch with one environment variable. No lock-in."
+    primaryCta={{ text: "Install CruxCLI", href: "/docs" }}
+    secondaryCta={{ text: "View on GitHub", href: "https://github.com/trinsiklabs/cruxcli" }}
+  />
+</Marketing>

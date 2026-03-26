@@ -1,0 +1,218 @@
+---
+export const prerender = true
+
+import Marketing from '../../layouts/Marketing.astro'
+import CTA from '../../components/marketing/CTA.astro'
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why does my AI coding agent stop before finishing?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most AI coding agents use step-count limits (e.g., 25 tool calls) to control costs. When the agent hits this limit, it stops regardless of task progress. CruxCLI replaces step-count limits with per-mode token budgets that measure actual token consumption, so the agent stops based on real cost, not arbitrary call counts."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does CruxCLI prevent execution cap issues?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "CruxCLI uses per-mode token budgets instead of step-count limits. Each of the 24 task-specific modes has its own token budget. At 75% usage, the agent receives a warning and begins wrapping up. At 90%, it performs a hard stop. This means the agent finishes gracefully rather than cutting off mid-edit."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between step-count limits and token budgets?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Step-count limits count tool invocations (e.g., file reads, edits, bash commands). Ten tool calls could consume 500 tokens or 50,000 tokens depending on the operation. Token budgets measure actual token consumption, providing accurate cost control regardless of how many tools are called."
+      }
+    }
+  ]
+}
+---
+
+<Marketing
+  title="AI Coding Agent Stops Before Finishing? Fix Execution Cap Issues"
+  description="Your AI coding agent stops mid-task because of step-count limits. CruxCLI uses per-mode token budgets instead, so the agent finishes based on actual cost, not arbitrary call counts."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head" />
+
+  <article class="py-24">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl sm:text-5xl font-bold text-white tracking-tight leading-tight">
+        Why your AI coding agent stops before finishing
+      </h1>
+
+      <p class="mt-8 text-lg text-dev-300 leading-relaxed">
+        If your AI coding agent stops mid-task, it is almost certainly hitting a step-count execution limit. Most terminal agents cap tool calls at 25-50 invocations regardless of task complexity. CruxCLI solves this with per-mode token budgets that measure actual token consumption instead of counting tool calls, so the agent finishes based on real cost rather than arbitrary limits.
+      </p>
+
+      <h2 class="mt-12 text-2xl font-bold text-white">The step-count problem</h2>
+      <p class="mt-4 text-dev-400 leading-relaxed">
+        Terminal AI agents like Claude Code, Gemini CLI, and Codex CLI use step-count limits to prevent runaway costs. The agent gets a fixed number of tool invocations — typically 25 to 50 — before the session is cut off. The intention is reasonable: prevent a confused agent from running up a massive API bill.
+      </p>
+      <p class="mt-4 text-dev-400 leading-relaxed">
+        The problem is that step counts are a terrible proxy for cost. Consider two scenarios:
+      </p>
+
+      <div class="mt-6 bg-dev-900 border border-dev-800 rounded-xl p-6">
+        <p class="text-xs text-dev-500 mb-3">Scenario A: 10 tool calls, 500 tokens</p>
+        <pre class="text-sm text-dev-300 leading-relaxed overflow-x-auto"><code>{`1. Read file (50 tokens)
+2. Read file (50 tokens)
+3. Read file (50 tokens)
+4. Read file (50 tokens)
+5. Read file (50 tokens)
+6. Read file (50 tokens)
+7. Read file (50 tokens)
+8. Edit file (50 tokens)
+9. Edit file (50 tokens)
+10. Run test (50 tokens)
+Total: 500 tokens (~$0.01)`}</code></pre>
+      </div>
+
+      <div class="mt-4 bg-dev-900 border border-dev-800 rounded-xl p-6">
+        <p class="text-xs text-dev-500 mb-3">Scenario B: 10 tool calls, 50,000 tokens</p>
+        <pre class="text-sm text-dev-300 leading-relaxed overflow-x-auto"><code>{`1. Read large file (5,000 tokens)
+2. Read large file (5,000 tokens)
+3. Read large file (5,000 tokens)
+4. Complex edit (5,000 tokens)
+5. Complex edit (5,000 tokens)
+6. Complex edit (5,000 tokens)
+7. Complex edit (5,000 tokens)
+8. Run full test suite (5,000 tokens)
+9. Analyze results (5,000 tokens)
+10. Apply fixes (5,000 tokens)
+Total: 50,000 tokens (~$1.00)`}</code></pre>
+      </div>
+
+      <p class="mt-6 text-dev-400 leading-relaxed">
+        Both scenarios used exactly 10 tool calls but cost 100x different. A step-count limit treats them identically. A token budget treats them according to actual consumption.
+      </p>
+
+      <h2 class="mt-12 text-2xl font-bold text-white">How CruxCLI fixes this</h2>
+      <p class="mt-4 text-dev-400 leading-relaxed">
+        CruxCLI replaces step-count limits with per-mode token budgets. Each of the 24 task-specific modes has its own configurable token budget. The system works in three phases:
+      </p>
+
+      <ol class="mt-6 space-y-4 text-dev-400">
+        <li class="flex items-start gap-3">
+          <span class="text-accent font-bold shrink-0">1.</span>
+          <span><strong class="text-dev-300">Normal operation (0-75%).</strong> The agent works without interruption. Token usage is tracked but the agent is not constrained.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-accent font-bold shrink-0">2.</span>
+          <span><strong class="text-dev-300">Warning phase (75-90%).</strong> The agent receives a budget warning and begins wrapping up the current task. It finishes the edit in progress, runs a final check, and summarizes what it accomplished and what remains.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-accent font-bold shrink-0">3.</span>
+          <span><strong class="text-dev-300">Hard stop (90%).</strong> The agent stops and reports final status. No mid-edit cuts. The workspace is in a consistent state.</span>
+        </li>
+      </ol>
+
+      <div class="mt-8 bg-dev-900 border border-dev-800 rounded-xl p-6">
+        <p class="text-xs text-dev-500 mb-3">cruxcli.jsonc — token budget configuration</p>
+        <pre class="text-sm text-dev-300 leading-relaxed overflow-x-auto"><code>{`{
+  "modes": {
+    "debug": {
+      "tier": "strong",
+      "budget": 80000,      // 80k tokens for debugging
+      "warning": 0.75,      // Warn at 75%
+      "limit": 0.90         // Stop at 90%
+    },
+    "format": {
+      "tier": "fast",
+      "budget": 5000,       // 5k tokens for formatting
+      "warning": 0.75,
+      "limit": 0.90
+    }
+  }
+}`}</code></pre>
+      </div>
+
+      <h2 class="mt-12 text-2xl font-bold text-white">Mode-specific budgets matter</h2>
+      <p class="mt-4 text-dev-400 leading-relaxed">
+        Not all tasks need the same budget. A formatting task should not have the same allowance as an architecture refactor. CruxCLI's 24 task-specific modes each have their own token budget, matched to the expected complexity of the task type. A debug mode gets 80,000 tokens. A format mode gets 5,000. A code review mode gets 50,000.
+      </p>
+      <p class="mt-4 text-dev-400 leading-relaxed">
+        This is possible because CruxCLI also maps modes to model tiers. A formatting task uses a fast, cheap model (Haiku, GPT-4o-mini, Flash) with a small budget. A debugging task uses a strong model (Opus, GPT-5, Gemini Ultra) with a large budget. The budget matches the model cost, so you get accurate cost control for each task type.
+      </p>
+
+      <h2 class="mt-12 text-2xl font-bold text-white">Workspace checkpoints add safety</h2>
+      <p class="mt-4 text-dev-400 leading-relaxed">
+        Even with proper token budgets, an agent can make mistakes. CruxCLI takes automatic git-based checkpoints before every destructive tool call (edit, write, bash, patch). If the agent's work is wrong, restore to any checkpoint with <code class="text-dev-300">cruxcli checkpoint restore</code>. Up to 50 checkpoints stored per project.
+      </p>
+      <p class="mt-4 text-dev-400 leading-relaxed">
+        This means you can give the agent larger budgets with confidence. If it goes off track, you have a safety net.
+      </p>
+
+      <h2 class="mt-12 text-2xl font-bold text-white">How other agents handle this</h2>
+      <div class="mt-6 overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b border-dev-800">
+              <th class="text-left py-3 px-4 text-dev-500 font-medium">Agent</th>
+              <th class="text-left py-3 px-4 text-dev-500 font-medium">Limit Type</th>
+              <th class="text-left py-3 px-4 text-dev-500 font-medium">Configurable</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-dev-800/50">
+              <td class="py-3 px-4 text-dev-300">CruxCLI</td>
+              <td class="py-3 px-4 text-dev-400">Per-mode token budgets</td>
+              <td class="py-3 px-4 text-green-400">Yes (per mode)</td>
+            </tr>
+            <tr class="border-b border-dev-800/50 bg-dev-900/30">
+              <td class="py-3 px-4 text-dev-300">OpenCode</td>
+              <td class="py-3 px-4 text-dev-400">Step-count limits</td>
+              <td class="py-3 px-4 text-dev-400">Limited</td>
+            </tr>
+            <tr class="border-b border-dev-800/50">
+              <td class="py-3 px-4 text-dev-300">Claude Code</td>
+              <td class="py-3 px-4 text-dev-400">Dollar cost caps</td>
+              <td class="py-3 px-4 text-dev-400">Yes (global)</td>
+            </tr>
+            <tr class="border-b border-dev-800/50 bg-dev-900/30">
+              <td class="py-3 px-4 text-dev-300">Gemini CLI</td>
+              <td class="py-3 px-4 text-dev-400">Step-count limits</td>
+              <td class="py-3 px-4 text-dev-400">Limited</td>
+            </tr>
+            <tr class="border-b border-dev-800/50">
+              <td class="py-3 px-4 text-dev-300">Codex CLI</td>
+              <td class="py-3 px-4 text-dev-400">Step-count limits</td>
+              <td class="py-3 px-4 text-dev-400">Limited</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="mt-12 text-2xl font-bold text-white">Getting started</h2>
+      <p class="mt-4 text-dev-400 leading-relaxed">
+        Install CruxCLI and configure token budgets per mode:
+      </p>
+      <div class="mt-4 bg-dev-900 border border-dev-800 rounded-xl p-6">
+        <pre class="text-sm text-dev-300 leading-relaxed overflow-x-auto"><code>{`npm i -g cruxcli
+export ANTHROPIC_API_KEY=sk-ant-...
+cruxcli`}</code></pre>
+      </div>
+      <p class="mt-4 text-dev-400 leading-relaxed">
+        Token budgets are configured in <code class="text-dev-300">cruxcli.jsonc</code> at the project root. See the <a href="/features" class="text-accent hover:text-accent-hover">features page</a> for the full mode system, or the <a href="/docs" class="text-accent hover:text-accent-hover">documentation</a> for configuration details.
+      </p>
+
+      <div class="mt-12 text-sm text-dev-500">
+        <p>Related: <a href="/features" class="text-accent hover:text-accent-hover">CruxCLI features</a> | <a href="/vs" class="text-accent hover:text-accent-hover">Compare to alternatives</a> | <a href="/lp/convergence" class="text-accent hover:text-accent-hover">How to know when AI code is done</a></p>
+      </div>
+    </div>
+  </article>
+
+  <CTA
+    heading="Stop hitting execution caps"
+    description="CruxCLI's token budgets let the agent finish what it starts."
+    primaryCta={{ text: "Install CruxCLI", href: "/docs" }}
+    secondaryCta={{ text: "View on GitHub", href: "https://github.com/trinsiklabs/cruxcli" }}
+  />
+</Marketing>

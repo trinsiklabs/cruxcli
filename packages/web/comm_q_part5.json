@@ -1,0 +1,1404 @@
+[
+  {
+    "dimension": "active_listening",
+    "question_type": "scenario",
+    "text": "Your partner is telling you about a problem they're having. Halfway through, you realize you already know exactly what they should do. What happens?",
+    "options": [
+      {
+        "id": "a",
+        "text": "I let them finish, ask what they need from me, THEN offer my take if asked",
+        "scores": {
+          "active_listening": 5
+        }
+      },
+      {
+        "id": "b",
+        "text": "I jump in with the solution \u2014 why let them suffer when the answer is obvious?",
+        "scores": {
+          "active_listening": 1
+        }
+      },
+      {
+        "id": "c",
+        "text": "I half-listen while waiting for a natural pause to share my advice",
+        "scores": {
+          "active_listening": 2
+        }
+      },
+      {
+        "id": "d",
+        "text": "I ask a question that helps them reach the conclusion themselves",
+        "scores": {
+          "active_listening": 5
+        }
+      }
+    ],
+    "tier_role": "core",
+    "trap": false,
+    "consistency_group": "listening_vs_fixing",
+    "opacity": 0.6,
+    "cross_scores": [
+      {
+        "assessment": "emotional_regulation",
+        "dimension": "impulse_control",
+        "weight": 0.3
+      }
+    ],
+    "universal": true,
+    "adaptations_needed": [],
+    "tags": [
+      "communication",
+      "relationship",
+      "gottman",
+      "listening"
+    ]
+  },
+  {
+    "dimension": "active_listening",
+    "question_type": "behavioral_recall",
+    "text": "During your last serious conversation with your partner, what were you doing while they spoke?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Fully focused on understanding their perspective \u2014 reflecting back what I heard",
+        "scores": {
+          "active_listening": 5
+        }
+      },
+      {
+        "id": "b",
+        "text": "Listening, but also building my counter-argument in my head",
+        "scores": {
+          "active_listening": 2
+        }
+      },
+      {
+        "id": "c",
+        "text": "Listening, but my mind wandered and I had to ask them to repeat parts",
+        "scores": {
+          "active_listening": 2
+        }
+      },
+      {
+        "id": "d",
+        "text": "Listening for the specific facts I could respond to, filtering out the emotional content",
+        "scores": {
+          "active_listening": 2
+        }
+      }
+    ],
+    "tier_role": "core",
+    "trap": false,
+    "consistency_group": "listen_to_understand",
+    "opacity": 0.6,
+    "cross_scores": [],
+    "universal": true,
+    "adaptations_needed": [],
+    "tags": [
+      "communication",
+      "relationship",
+      "gottman",
+      "listening"
+    ]
+  },
+  {
+    "dimension": "active_listening",
+    "question_type": "partner_perspective",
+    "text": "Would your partner say that when they talk to you, they feel truly heard \u2014 or just tolerated?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Truly heard \u2014 they know I take their words seriously",
+        "scores": {
+          "active_listening": 5
+        }
+      },
+      {
+        "id": "b",
+        "text": "Usually heard, but sometimes I get that 'are you even listening?' look",
+        "scores": {
+          "active_listening": 3
+        }
+      },
+      {
+        "id": "c",
+        "text": "Tolerated \u2014 I think they feel I'm enduring the conversation rather than engaging",
+        "scores": {
+          "active_listening": 1
+        }
+      },
+      {
+        "id": "d",
+        "text": "They'd say I hear the words but miss the feelings behind them",
+        "scores": {
+          "active_listening": 2
+        }
+      }
+    ],
+    "tier_role": "core",
+    "trap": false,
+    "consistency_group": "listen_to_understand",
+    "opacity": 0.5,
+    "cross_scores": [
+      {
+        "assessment": "attachment_style",
+        "dimension": "availability_responsiveness",
+        "weight": 0.5
+      }
+    ],
+    "universal": true,
+    "adaptations_needed": [],
+    "tags": [
+      "communication",
+      "relationship",
+      "gottman",
+      "listening"
+    ]
+  },
+  {
+    "dimension": "active_listening",
+    "question_type": "scenario",
+    "text": "Your partner says 'I had the worst day.' You respond with:",
+    "options": [
+      {
+        "id": "a",
+        "text": "'Tell me what happened' \u2014 and genuinely want to know",
+        "scores": {
+          "active_listening": 5
+        }
+      },
+      {
+        "id": "b",
+        "text": "'Yeah, me too' \u2014 and pivot to my own bad day",
+        "scores": {
+          "active_listening": 1
+        }
+      },
+      {
+        "id": "c",
+        "text": "'That sucks. What can I do?' \u2014 solutions-oriented",
+        "scores": {
+          "active_listening": 3
+        }
+      },
+      {
+        "id": "d",
+        "text": "'I'm sorry, babe' \u2014 genuine sympathy but I don't probe further",
+        "scores": {
+          "active_listening": 3
+        }
+      }
+    ],
+    "tier_role": "triangulation",
+    "trap": false,
+    "consistency_group": "listening_vs_fixing",
+    "opacity": 0.6,
+    "cross_scores": [
+      {
+        "assessment": "communication_style",
+        "dimension": "bid_recognition",
+        "weight": 0.4
+      }
+    ],
+    "universal": true,
+    "adaptations_needed": [],
+    "tags": [
+      "communication",
+      "relationship",
+      "gottman",
+      "listening"
+    ]
+  },
+  {
+    "dimension": "active_listening",
+    "question_type": "somatic",
+    "text": "When your partner is speaking and you disagree strongly, what happens in your body?",
+    "options": [
+      {
+        "id": "a",
+        "text": "I feel tension building \u2014 my jaw tightens, I want to interrupt",
+        "scores": {
+          "active_listening": 2
+        }
+      },
+      {
+        "id": "b",
+        "text": "I feel a pull to look away or disengage \u2014 it's hard to stay present with disagreement",
+        "scores": {
+          "active_listening": 2
+        }
+      },
+      {
+        "id": "c",
+        "text": "I notice the disagreement but deliberately stay open \u2014 breathing, eye contact, patience",
+        "scores": {
+          "active_listening": 5
+        }
+      },
+      {
+        "id": "d",
+        "text": "I go numb \u2014 I stop emotionally processing and just wait for them to finish",
+        "scores": {
+          "active_listening": 1
+        }
+      }
+    ],
+    "tier_role": "triangulation",
+    "trap": false,
+    "consistency_group": "listen_to_understand",
+    "opacity": 0.8,
+    "cross_scores": [
+      {
+        "assessment": "emotional_regulation",
+        "dimension": "distress_tolerance",
+        "weight": 0.5
+      }
+    ],
+    "universal": true,
+    "adaptations_needed": [],
+    "tags": [
+      "communication",
+      "relationship",
+      "gottman",
+      "listening",
+      "somatic"
+    ]
+  },
+  {
+    "dimension": "active_listening",
+    "question_type": "temporal",
+    "text": "How has the quality of your listening in your relationship changed over time?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Better \u2014 I've learned to sit with their perspective before reacting",
+        "scores": {
+          "active_listening": 5
+        }
+      },
+      {
+        "id": "b",
+        "text": "Worse \u2014 familiarity has made me tune out or assume I know what they'll say",
+        "scores": {
+          "active_listening": 1
+        }
+      },
+      {
+        "id": "c",
+        "text": "About the same \u2014 I've always been either good or bad at this",
+        "scores": {
+          "active_listening": 3
+        }
+      },
+      {
+        "id": "d",
+        "text": "It depends on the topic \u2014 I listen well for some things, tune out for others",
+        "scores": {
+          "active_listening": 3
+        }
+      }
+    ],
+    "tier_role": "triangulation",
+    "trap": false,
+    "consistency_group": "listen_to_understand",
+    "opacity": 0.5,
+    "cross_scores": [],
+    "universal": true,
+    "adaptations_needed": [],
+    "tags": [
+      "communication",
+      "relationship",
+      "gottman",
+      "listening",
+      "temporal"
+    ]
+  },
+  {
+    "dimension": "active_listening",
+    "question_type": "forced_choice",
+    "text": "When your partner pauses mid-sentence to gather their thoughts, you're more likely to:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Wait in silence \u2014 give them space to find their words",
+        "scores": {
+          "active_listening": 5
+        }
+      },
+      {
+        "id": "b",
+        "text": "Fill the silence \u2014 finish their sentence or prompt them along",
+        "scores": {
+          "active_listening": 2
+        }
+      }
+    ],
+    "tier_role": "triangulation",
+    "trap": false,
+    "consistency_group": "listening_patience",
+    "opacity": 0.6,
+    "cross_scores": [],
+    "universal": true,
+    "adaptations_needed": [],
+    "tags": [
+      "communication",
+      "relationship",
+      "gottman",
+      "listening"
+    ]
+  },
+  {
+    "dimension": "active_listening",
+    "question_type": "scenario",
+    "text": "Your partner is explaining why something you did upset them. Halfway through, you realize they've misunderstood your intentions. What do you do?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Let them finish completely. Acknowledge their experience. THEN share my intent.",
+        "scores": {
+          "active_listening": 5
+        }
+      },
+      {
+        "id": "b",
+        "text": "Interrupt to clarify \u2014 there's no point in letting them build on a wrong assumption",
+        "scores": {
+          "active_listening": 2
+        }
+      },
+      {
+        "id": "c",
+        "text": "Get frustrated \u2014 they're not seeing it right and it feels unfair",
+        "scores": {
+          "active_listening": 1
+        }
+      },
+      {
+        "id": "d",
+        "text": "Wait for a pause, then gently say 'Can I share what was going through my mind?'",
+        "scores": {
+          "active_listening": 4
+        }
+      }
+    ],
+    "tier_role": "triangulation",
+    "trap": false,
+    "consistency_group": "listen_to_understand",
+    "opacity": 0.7,
+    "cross_scores": [
+      {
+        "assessment": "four_horsemen",
+        "dimension": "four_horsemen",
+        "weight": 0.3
+      }
+    ],
+    "universal": true,
+    "adaptations_needed": [],
+    "tags": [
+      "communication",
+      "relationship",
+      "gottman",
+      "listening"
+    ]
+  },
+  {
+    "dimension": "active_listening",
+    "question_type": "behavioral_recall",
+    "text": "In conversations with your partner, how often do you reflect back what you heard before responding with your own thoughts?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Regularly \u2014 'So what I'm hearing is...' or 'You're saying that...'",
+        "scores": {
+          "active_listening": 5
+        }
+      },
+      {
+        "id": "b",
+        "text": "Occasionally \u2014 when the stakes are high or I'm not sure I understood",
+        "scores": {
+          "active_listening": 3
+        }
+      },
+      {
+        "id": "c",
+        "text": "Rarely \u2014 I just respond to what I think they said",
+        "scores": {
+          "active_listening": 2
+        }
+      },
+      {
+        "id": "d",
+        "text": "Never \u2014 that would feel weird and clinical in a relationship",
+        "scores": {
+          "active_listening": 2
+        }
+      }
+    ],
+    "tier_role": "triangulation",
+    "trap": false,
+    "consistency_group": "listen_to_understand",
+    "opacity": 0.5,
+    "cross_scores": [],
+    "universal": true,
+    "adaptations_needed": [],
+    "tags": [
+      "communication",
+      "relationship",
+      "gottman",
+      "listening"
+    ]
+  },
+  {
+    "dimension": "active_listening",
+    "question_type": "partner_perspective",
+    "text": "When your partner says 'You're not listening,' what's actually happening?",
+    "options": [
+      {
+        "id": "a",
+        "text": "I was listening to the words but not the emotion \u2014 they felt unheard",
+        "scores": {
+          "active_listening": 3
+        }
+      },
+      {
+        "id": "b",
+        "text": "I was distracted \u2014 phone, TV, or my own thoughts",
+        "scores": {
+          "active_listening": 2
+        }
+      },
+      {
+        "id": "c",
+        "text": "I was listening but my body language didn't show it",
+        "scores": {
+          "active_listening": 3
+        }
+      },
+      {
+        "id": "d",
+        "text": "This rarely happens \u2014 they usually feel heard by me",
+        "scores": {
+          "active_listening": 5
+        }
+      }
+    ],
+    "tier_role": "triangulation",
+    "trap": false,
+    "consistency_group": "listening_patience",
+    "opacity": 0.6,
+    "cross_scores": [],
+    "universal": true,
+    "adaptations_needed": [],
+    "tags": [
+      "communication",
+      "relationship",
+      "gottman",
+      "listening"
+    ]
+  },
+  {
+    "dimension": "active_listening",
+    "question_type": "scenario",
+    "text": "Your partner starts telling you something and then says 'never mind, it's not important.' What do you do?",
+    "options": [
+      {
+        "id": "a",
+        "text": "'It seemed important. I'd like to hear it if you want to share.'",
+        "scores": {
+          "active_listening": 5,
+          "bid_recognition": 5
+        }
+      },
+      {
+        "id": "b",
+        "text": "Let it go \u2014 if it's important, they'll bring it up again",
+        "scores": {
+          "active_listening": 2
+        }
+      },
+      {
+        "id": "c",
+        "text": "'Okay' \u2014 and move on without much thought",
+        "scores": {
+          "active_listening": 1
+        }
+      },
+      {
+        "id": "d",
+        "text": "Feel guilty but don't follow up \u2014 I worry about being pushy",
+        "scores": {
+          "active_listening": 3
+        }
+      }
+    ],
+    "tier_role": "triangulation",
+    "trap": false,
+    "consistency_group": "listening_vs_fixing",
+    "opacity": 0.7,
+    "cross_scores": [
+      {
+        "assessment": "communication_style",
+        "dimension": "bid_recognition",
+        "weight": 0.5
+      }
+    ],
+    "universal": true,
+    "adaptations_needed": [],
+    "tags": [
+      "communication",
+      "relationship",
+      "gottman",
+      "listening"
+    ]
+  },
+  {
+    "dimension": "active_listening",
+    "question_type": "somatic",
+    "text": "When you're genuinely listening to your partner \u2014 not just waiting to talk \u2014 what does that feel like in your body?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Stillness and openness \u2014 like my whole body is oriented toward them",
+        "scores": {
+          "active_listening": 5
+        }
+      },
+      {
+        "id": "b",
+        "text": "Effort \u2014 it takes deliberate energy to stay focused",
+        "scores": {
+          "active_listening": 3
+        }
+      },
+      {
+        "id": "c",
+        "text": "I'm not sure \u2014 I don't notice a distinct physical state when I'm listening",
+        "scores": {
+          "active_listening": 2
+        }
+      },
+      {
+        "id": "d",
+        "text": "Restlessness \u2014 I have thoughts that want to come out",
+        "scores": {
+          "active_listening": 2
+        }
+      }
+    ],
+    "tier_role": "triangulation",
+    "trap": false,
+    "consistency_group": "listen_to_understand",
+    "opacity": 0.8,
+    "cross_scores": [
+      {
+        "assessment": "emotional_regulation",
+        "dimension": "present_moment_awareness",
+        "weight": 0.4
+      }
+    ],
+    "universal": true,
+    "adaptations_needed": [],
+    "tags": [
+      "communication",
+      "relationship",
+      "gottman",
+      "listening",
+      "somatic"
+    ]
+  },
+  {
+    "dimension": "active_listening",
+    "question_type": "temporal",
+    "text": "Think about how conversations with your partner typically flow. How often does 'but' appear early in your responses?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Often \u2014 'I hear you, BUT...' is a habit I recognize",
+        "scores": {
+          "active_listening": 2
+        }
+      },
+      {
+        "id": "b",
+        "text": "Sometimes \u2014 I try to start with 'and' instead of 'but' but it's a work in progress",
+        "scores": {
+          "active_listening": 3
+        }
+      },
+      {
+        "id": "c",
+        "text": "Rarely \u2014 I've learned that 'but' erases everything before it",
+        "scores": {
+          "active_listening": 5
+        }
+      },
+      {
+        "id": "d",
+        "text": "I don't track my language that closely",
+        "scores": {
+          "active_listening": 2
+        }
+      }
+    ],
+    "tier_role": "triangulation",
+    "trap": false,
+    "consistency_group": "listen_to_understand",
+    "opacity": 0.6,
+    "cross_scores": [],
+    "universal": true,
+    "adaptations_needed": [],
+    "tags": [
+      "communication",
+      "relationship",
+      "gottman",
+      "listening",
+      "temporal"
+    ]
+  },
+  {
+    "dimension": "active_listening",
+    "question_type": "behavioral_recall",
+    "text": "When your partner shares something emotionally difficult, what kind of questions do you ask?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Deepening questions \u2014 'What was that like for you?' 'How did that make you feel?'",
+        "scores": {
+          "active_listening": 5
+        }
+      },
+      {
+        "id": "b",
+        "text": "Clarifying questions \u2014 'When did this happen? Who was there?'",
+        "scores": {
+          "active_listening": 3
+        }
+      },
+      {
+        "id": "c",
+        "text": "Solution questions \u2014 'Have you tried X? What about Y?'",
+        "scores": {
+          "active_listening": 2
+        }
+      },
+      {
+        "id": "d",
+        "text": "I mostly don't ask questions \u2014 I offer comfort or just listen silently",
+        "scores": {
+          "active_listening": 3
+        }
+      }
+    ],
+    "tier_role": "triangulation",
+    "trap": false,
+    "consistency_group": "listening_vs_fixing",
+    "opacity": 0.6,
+    "cross_scores": [],
+    "universal": true,
+    "adaptations_needed": [],
+    "tags": [
+      "communication",
+      "relationship",
+      "gottman",
+      "listening"
+    ]
+  },
+  {
+    "dimension": "active_listening",
+    "question_type": "scenario",
+    "text": "I'm a good listener \u2014 people always come to me for advice because they know I'll give them a straight answer.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Exactly \u2014 good listening means providing wise counsel",
+        "scores": {
+          "active_listening": 2
+        }
+      },
+      {
+        "id": "b",
+        "text": "Partly \u2014 but good listening is more about understanding than advising",
+        "scores": {
+          "active_listening": 4
+        }
+      },
+      {
+        "id": "c",
+        "text": "Being sought for advice isn't the same as being a good listener \u2014 it might mean I'm a good fixer",
+        "scores": {
+          "active_listening": 5
+        }
+      },
+      {
+        "id": "d",
+        "text": "I give advice because I care, not because I'm trying to fix",
+        "scores": {
+          "active_listening": 2
+        }
+      }
+    ],
+    "tier_role": "trap",
+    "trap": true,
+    "consistency_group": "listening_vs_fixing",
+    "opacity": 0.9,
+    "cross_scores": [],
+    "universal": true,
+    "adaptations_needed": [],
+    "tags": [
+      "communication",
+      "relationship",
+      "gottman",
+      "listening",
+      "trap"
+    ]
+  },
+  {
+    "dimension": "active_listening",
+    "question_type": "partner_perspective",
+    "text": "I listen carefully to my partner, even when I think they're wrong. But I also owe them my honest perspective.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Absolutely \u2014 listening and then sharing honest feedback is the respectful approach",
+        "scores": {
+          "active_listening": 3
+        }
+      },
+      {
+        "id": "b",
+        "text": "True, but I need to make sure they feel fully heard before I share my view",
+        "scores": {
+          "active_listening": 5
+        }
+      },
+      {
+        "id": "c",
+        "text": "Sometimes 'sharing my honest perspective' is code for dismissing theirs",
+        "scores": {
+          "active_listening": 4
+        }
+      },
+      {
+        "id": "d",
+        "text": "I owe them my presence more than my opinion",
+        "scores": {
+          "active_listening": 4
+        }
+      }
+    ],
+    "tier_role": "trap",
+    "trap": true,
+    "consistency_group": "listening_vs_fixing",
+    "opacity": 0.9,
+    "cross_scores": [],
+    "universal": true,
+    "adaptations_needed": [],
+    "tags": [
+      "communication",
+      "relationship",
+      "gottman",
+      "listening",
+      "trap"
+    ]
+  },
+  {
+    "dimension": "active_listening",
+    "question_type": "forced_choice",
+    "text": "I always try to see my partner's side of things \u2014 I'm empathetic to a fault.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Strongly agree \u2014 I often lose myself in their perspective",
+        "scores": {
+          "active_listening": 3,
+          "soft_startup": 2
+        }
+      },
+      {
+        "id": "b",
+        "text": "Somewhat agree \u2014 I'm good at this but it's genuine, not performative",
+        "scores": {
+          "active_listening": 4
+        }
+      },
+      {
+        "id": "c",
+        "text": "Somewhat disagree \u2014 I try but my own views usually dominate",
+        "scores": {
+          "active_listening": 3
+        }
+      },
+      {
+        "id": "d",
+        "text": "Strongly disagree \u2014 empathy isn't my strongest suit",
+        "scores": {
+          "active_listening": 2
+        }
+      }
+    ],
+    "tier_role": "trap",
+    "trap": true,
+    "consistency_group": "listen_to_understand",
+    "opacity": 0.9,
+    "cross_scores": [
+      {
+        "assessment": "boundary_style",
+        "dimension": "self_abandonment",
+        "weight": 0.5
+      }
+    ],
+    "universal": true,
+    "adaptations_needed": [],
+    "tags": [
+      "communication",
+      "relationship",
+      "gottman",
+      "listening",
+      "trap"
+    ]
+  },
+  {
+    "dimension": "active_listening",
+    "question_type": "scenario",
+    "text": "My partner sometimes takes forever to get to the point. I'm patient, but eventually I need to move the conversation along.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Agreed \u2014 being efficient with communication respects both our time",
+        "scores": {
+          "active_listening": 2
+        }
+      },
+      {
+        "id": "b",
+        "text": "I feel this way but I'm learning that their 'rambling' IS the point \u2014 they're processing out loud",
+        "scores": {
+          "active_listening": 5
+        }
+      },
+      {
+        "id": "c",
+        "text": "I try to be patient but I catch myself finishing their sentences",
+        "scores": {
+          "active_listening": 3
+        }
+      },
+      {
+        "id": "d",
+        "text": "Everyone has a different communication pace \u2014 mine isn't more valid than theirs",
+        "scores": {
+          "active_listening": 4
+        }
+      }
+    ],
+    "tier_role": "trap",
+    "trap": true,
+    "consistency_group": "listening_patience",
+    "opacity": 0.9,
+    "cross_scores": [],
+    "universal": true,
+    "adaptations_needed": [],
+    "tags": [
+      "communication",
+      "relationship",
+      "gottman",
+      "listening",
+      "trap"
+    ]
+  },
+  {
+    "dimension": "active_listening",
+    "question_type": "behavioral_recall",
+    "text": "When my partner tells me about a problem, I know the best thing I can do is help them solve it.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Yes \u2014 that's what a supportive partner does",
+        "scores": {
+          "active_listening": 1
+        }
+      },
+      {
+        "id": "b",
+        "text": "Sometimes \u2014 but only after I've asked if they want solutions or just support",
+        "scores": {
+          "active_listening": 5
+        }
+      },
+      {
+        "id": "c",
+        "text": "I've learned the hard way that they usually want to be heard first, not fixed",
+        "scores": {
+          "active_listening": 5
+        }
+      },
+      {
+        "id": "d",
+        "text": "I try to balance listening and solving",
+        "scores": {
+          "active_listening": 3
+        }
+      }
+    ],
+    "tier_role": "trap",
+    "trap": true,
+    "consistency_group": "listening_vs_fixing",
+    "opacity": 0.9,
+    "cross_scores": [],
+    "universal": true,
+    "adaptations_needed": [],
+    "tags": [
+      "communication",
+      "relationship",
+      "gottman",
+      "listening",
+      "trap"
+    ]
+  },
+  {
+    "dimension": "active_listening",
+    "question_type": "partner_perspective",
+    "text": "I have a good memory for conversations \u2014 I can recall exactly what my partner said in past arguments.",
+    "options": [
+      {
+        "id": "a",
+        "text": "True \u2014 and I use this to ensure consistency and accountability",
+        "scores": {
+          "active_listening": 2
+        }
+      },
+      {
+        "id": "b",
+        "text": "True \u2014 but I've learned that bringing up past quotes can feel weaponized",
+        "scores": {
+          "active_listening": 4
+        }
+      },
+      {
+        "id": "c",
+        "text": "Somewhat \u2014 but memory is selective and I might remember differently than they do",
+        "scores": {
+          "active_listening": 4
+        }
+      },
+      {
+        "id": "d",
+        "text": "Not really \u2014 I focus more on the present conversation",
+        "scores": {
+          "active_listening": 3
+        }
+      }
+    ],
+    "tier_role": "trap",
+    "trap": true,
+    "consistency_group": "listen_to_understand",
+    "opacity": 0.9,
+    "cross_scores": [
+      {
+        "assessment": "conflict_resolution",
+        "dimension": "score_keeping",
+        "weight": 0.5
+      }
+    ],
+    "universal": true,
+    "adaptations_needed": [],
+    "tags": [
+      "communication",
+      "relationship",
+      "gottman",
+      "listening",
+      "trap"
+    ]
+  },
+  {
+    "dimension": "active_listening",
+    "question_type": "scenario",
+    "text": "When my partner expresses a feeling I think is irrational, I gently help them see a more balanced perspective.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Yes \u2014 feelings should be grounded in reality",
+        "scores": {
+          "active_listening": 1
+        }
+      },
+      {
+        "id": "b",
+        "text": "Sometimes \u2014 but I validate the feeling first before offering perspective",
+        "scores": {
+          "active_listening": 4
+        }
+      },
+      {
+        "id": "c",
+        "text": "I've learned that correcting someone's feelings is invalidating, not helpful",
+        "scores": {
+          "active_listening": 5
+        }
+      },
+      {
+        "id": "d",
+        "text": "I try not to, but my face probably gives away my skepticism",
+        "scores": {
+          "active_listening": 2
+        }
+      }
+    ],
+    "tier_role": "trap",
+    "trap": true,
+    "consistency_group": "listen_to_understand",
+    "opacity": 0.9,
+    "cross_scores": [
+      {
+        "assessment": "emotional_regulation",
+        "dimension": "emotional_validation",
+        "weight": 0.5
+      }
+    ],
+    "universal": true,
+    "adaptations_needed": [],
+    "tags": [
+      "communication",
+      "relationship",
+      "gottman",
+      "listening",
+      "trap"
+    ]
+  },
+  {
+    "dimension": "active_listening",
+    "question_type": "scenario",
+    "text": "Your partner finishes telling you about something that happened. Before you respond, do you check that you understood correctly?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Yes \u2014 I paraphrase or ask 'Did I get that right?'",
+        "scores": {
+          "active_listening": 5
+        }
+      },
+      {
+        "id": "b",
+        "text": "Sometimes, but usually I'm confident I understood",
+        "scores": {
+          "active_listening": 3
+        }
+      },
+      {
+        "id": "c",
+        "text": "No \u2014 I just respond based on what I think they said",
+        "scores": {
+          "active_listening": 2
+        }
+      },
+      {
+        "id": "d",
+        "text": "Only when the topic is complicated or high-stakes",
+        "scores": {
+          "active_listening": 3
+        }
+      }
+    ],
+    "tier_role": "consistency_check",
+    "trap": false,
+    "consistency_group": "listen_to_understand",
+    "opacity": 0.5,
+    "cross_scores": [],
+    "universal": true,
+    "adaptations_needed": [],
+    "tags": [
+      "communication",
+      "relationship",
+      "gottman",
+      "listening",
+      "consistency"
+    ]
+  },
+  {
+    "dimension": "active_listening",
+    "question_type": "behavioral_recall",
+    "text": "In your last conversation with your partner, did you ask any follow-up questions based on what they shared?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Yes \u2014 multiple questions that showed I was genuinely curious about their experience",
+        "scores": {
+          "active_listening": 5
+        }
+      },
+      {
+        "id": "b",
+        "text": "One or two \u2014 enough to be polite",
+        "scores": {
+          "active_listening": 3
+        }
+      },
+      {
+        "id": "c",
+        "text": "No \u2014 I responded with my own thoughts or experience",
+        "scores": {
+          "active_listening": 2
+        }
+      },
+      {
+        "id": "d",
+        "text": "I don't remember the conversation well enough to say",
+        "scores": {
+          "active_listening": 1
+        }
+      }
+    ],
+    "tier_role": "consistency_check",
+    "trap": false,
+    "consistency_group": "listen_to_understand",
+    "opacity": 0.5,
+    "cross_scores": [],
+    "universal": true,
+    "adaptations_needed": [],
+    "tags": [
+      "communication",
+      "relationship",
+      "gottman",
+      "listening",
+      "consistency"
+    ]
+  },
+  {
+    "dimension": "active_listening",
+    "question_type": "forced_choice",
+    "text": "Be honest: when your partner is talking, are you more often listening to understand, or listening to respond?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Listening to understand \u2014 I genuinely want to know their world",
+        "scores": {
+          "active_listening": 5
+        }
+      },
+      {
+        "id": "b",
+        "text": "Listening to respond \u2014 I'm usually formulating my reply while they speak",
+        "scores": {
+          "active_listening": 2
+        }
+      }
+    ],
+    "tier_role": "consistency_check",
+    "trap": false,
+    "consistency_group": "listen_to_understand",
+    "opacity": 0.4,
+    "cross_scores": [],
+    "universal": true,
+    "adaptations_needed": [],
+    "tags": [
+      "communication",
+      "relationship",
+      "gottman",
+      "listening",
+      "consistency"
+    ]
+  },
+  {
+    "dimension": "active_listening",
+    "question_type": "partner_perspective",
+    "text": "If your partner could change one thing about how you communicate, would 'listen more' be on the list?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Probably not \u2014 listening is one of my strengths",
+        "scores": {
+          "active_listening": 5
+        }
+      },
+      {
+        "id": "b",
+        "text": "Maybe \u2014 not my worst trait but there's room for improvement",
+        "scores": {
+          "active_listening": 3
+        }
+      },
+      {
+        "id": "c",
+        "text": "Likely yes \u2014 they've said as much before",
+        "scores": {
+          "active_listening": 2
+        }
+      },
+      {
+        "id": "d",
+        "text": "Definitely \u2014 it's one of our biggest friction points",
+        "scores": {
+          "active_listening": 1
+        }
+      }
+    ],
+    "tier_role": "consistency_check",
+    "trap": false,
+    "consistency_group": "listen_to_understand",
+    "opacity": 0.5,
+    "cross_scores": [],
+    "universal": true,
+    "adaptations_needed": [],
+    "tags": [
+      "communication",
+      "relationship",
+      "gottman",
+      "listening",
+      "consistency"
+    ]
+  },
+  {
+    "dimension": "active_listening",
+    "question_type": "somatic",
+    "text": "When your partner says something that surprises you \u2014 a feeling you didn't expect or a perspective you hadn't considered \u2014 what does your body do?",
+    "options": [
+      {
+        "id": "a",
+        "text": "I lean in \u2014 surprise creates curiosity, not defensiveness",
+        "scores": {
+          "active_listening": 5
+        }
+      },
+      {
+        "id": "b",
+        "text": "I lean back \u2014 I need a second to process the unexpected",
+        "scores": {
+          "active_listening": 3
+        }
+      },
+      {
+        "id": "c",
+        "text": "I feel a flash of defensiveness \u2014 like I should have already known this",
+        "scores": {
+          "active_listening": 2
+        }
+      },
+      {
+        "id": "d",
+        "text": "I don't notice a physical reaction \u2014 I process surprises cognitively",
+        "scores": {
+          "active_listening": 3
+        }
+      }
+    ],
+    "tier_role": "consistency_check",
+    "trap": false,
+    "consistency_group": "listening_patience",
+    "opacity": 0.7,
+    "cross_scores": [],
+    "universal": true,
+    "adaptations_needed": [],
+    "tags": [
+      "communication",
+      "relationship",
+      "gottman",
+      "listening",
+      "consistency"
+    ]
+  },
+  {
+    "dimension": "active_listening",
+    "question_type": "temporal",
+    "text": "Does your partner share less with you now than they used to? If so, why do you think that is?",
+    "options": [
+      {
+        "id": "a",
+        "text": "They share the same or more \u2014 our communication has deepened",
+        "scores": {
+          "active_listening": 5
+        }
+      },
+      {
+        "id": "b",
+        "text": "Somewhat less \u2014 but I think that's natural as relationships mature",
+        "scores": {
+          "active_listening": 3
+        }
+      },
+      {
+        "id": "c",
+        "text": "Noticeably less \u2014 and it might be because they don't feel heard when they do",
+        "scores": {
+          "active_listening": 1
+        }
+      },
+      {
+        "id": "d",
+        "text": "Less, but it's because they've become more independent, not because I'm a bad listener",
+        "scores": {
+          "active_listening": 3
+        }
+      }
+    ],
+    "tier_role": "consistency_check",
+    "trap": false,
+    "consistency_group": "listen_to_understand",
+    "opacity": 0.6,
+    "cross_scores": [
+      {
+        "assessment": "attachment_style",
+        "dimension": "relationship_security",
+        "weight": 0.4
+      }
+    ],
+    "universal": true,
+    "adaptations_needed": [],
+    "tags": [
+      "communication",
+      "relationship",
+      "gottman",
+      "listening",
+      "consistency"
+    ]
+  },
+  {
+    "dimension": "active_listening",
+    "question_type": "scenario",
+    "text": "Your partner is telling you a story you've heard before. What do you do?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Listen again \u2014 they're sharing it for a reason, and I might hear something new",
+        "scores": {
+          "active_listening": 5
+        }
+      },
+      {
+        "id": "b",
+        "text": "Gently mention I've heard it before but invite them to tell me if there's something new about it",
+        "scores": {
+          "active_listening": 4
+        }
+      },
+      {
+        "id": "c",
+        "text": "Say 'You've told me this one' \u2014 saves us both time",
+        "scores": {
+          "active_listening": 2
+        }
+      },
+      {
+        "id": "d",
+        "text": "Zone out while appearing to listen \u2014 no point in interrupting",
+        "scores": {
+          "active_listening": 1
+        }
+      }
+    ],
+    "tier_role": "consistency_check",
+    "trap": false,
+    "consistency_group": "listening_patience",
+    "opacity": 0.6,
+    "cross_scores": [],
+    "universal": true,
+    "adaptations_needed": [],
+    "tags": [
+      "communication",
+      "relationship",
+      "gottman",
+      "listening",
+      "consistency"
+    ]
+  }
+]

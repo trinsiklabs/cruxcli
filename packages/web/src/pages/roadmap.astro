@@ -1,0 +1,212 @@
+---
+export const prerender = true
+
+import Marketing from '../layouts/Marketing.astro'
+import CTA from '../components/marketing/CTA.astro'
+
+const completed = [
+  {
+    title: "Hard fork from OpenCode",
+    description: "Phases 1-6: fork, rebrand, prompt replacement, bridge absorption, token budgets, build verification. CruxCLI binary compiles and runs independently.",
+    plan: "BUILD_PLAN_001",
+  },
+  {
+    title: "Workspace checkpoints",
+    description: "Automatic git-based snapshots before destructive tool operations. Up to 50 checkpoints per project with restore support.",
+    plan: "BUILD_PLAN_003",
+  },
+  {
+    title: "VS Code extension",
+    description: "Native VS Code extension with keybindings, inline diff, and marketplace distribution. In sdks/vscode/.",
+    plan: "BUILD_PLAN_004",
+  },
+  {
+    title: "Competitive analysis",
+    description: "5-pass research on OpenCode, Claude Code, Gemini CLI, Codex CLI. Feature matrix, moat inventory, gap closure queue documented.",
+    plan: "COMPETITORS.md",
+  },
+  {
+    title: "Key migration documentation",
+    description: "BUILD_PLAN_005 written covering API key migration from environment variables to OS keychain.",
+    plan: "BUILD_PLAN_005",
+  },
+]
+
+const inProgress = [
+  {
+    title: "API key migration",
+    description: "Moving from environment variable-based API key management to a secure credential store. Target: cruxcli auth command using OS keychain (macOS Keychain, Linux libsecret, Windows Credential Manager).",
+  },
+  {
+    title: "CruxDev integration hardening",
+    description: "Structured error reporting, convergence state persistence across restarts, and progress visualization in the TUI. The MCP connection works; reliability and UX need polish.",
+  },
+  {
+    title: "Plugin ecosystem",
+    description: "Formalizing the plugin API. The @cruxcli/plugin package exists but needs documentation, registry support, and a cruxcli plugin add command.",
+  },
+]
+
+const planned = [
+  {
+    title: "Browser automation mode",
+    description: "A Crux mode that knows to suggest Playwright MCP tools for frontend testing and doc scraping. Integration, not reimplementation.",
+  },
+  {
+    title: "Enterprise compliance tier",
+    description: "Audit trail export, SSO/SAML, role-based mode restrictions, approved-model-only policies. Building blocks exist in the 5-gate safety pipeline. Won't build until enterprise demand exists.",
+  },
+  {
+    title: "Memory pipeline",
+    description: "Correction detection feeding into a knowledge base that improves mode prompts over time. The agent gets better at your codebase the longer you use it.",
+  },
+  {
+    title: "Cost visibility",
+    description: "Real-time dollar cost display per session and per mode. Token budgets track tokens; this adds price-per-token mapping.",
+  },
+  {
+    title: "Image/screenshot input",
+    description: "Accept images as context for UI-related tasks. Closing a gap vs Codex CLI.",
+  },
+]
+
+const nonGoals = [
+  {
+    title: "Upstream sync with OpenCode",
+    description: "Clean break. We monitor upstream for good ideas and integrate selectively. No rebase relationship, ever.",
+  },
+  {
+    title: "Building what can be integrated",
+    description: "Browser automation, linting, formatting — these have MCP servers. CruxCLI's mode system points agents at the right tools. We don't rebuild what exists.",
+  },
+  {
+    title: "Node.js runtime support",
+    description: "CruxCLI is Bun-only. This is intentional for faster compilation and smaller binaries.",
+  },
+  {
+    title: "Free hosted service",
+    description: "CruxCLI is a local tool. Users bring their own API keys. We are not building a hosted SaaS.",
+  },
+]
+
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "CruxCLI Roadmap",
+  "itemListElement": [
+    ...completed.map((item, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": item.title,
+      "description": item.description,
+    })),
+    ...inProgress.map((item, i) => ({
+      "@type": "ListItem",
+      "position": completed.length + i + 1,
+      "name": item.title,
+      "description": item.description,
+    })),
+    ...planned.map((item, i) => ({
+      "@type": "ListItem",
+      "position": completed.length + inProgress.length + i + 1,
+      "name": item.title,
+      "description": item.description,
+    })),
+  ]
+}
+---
+
+<Marketing
+  title="Roadmap"
+  description="CruxCLI public roadmap: completed hard fork, checkpoints, VS Code extension. In progress: key migration, CruxDev integration. Planned: browser automation, enterprise compliance, memory pipeline."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(itemListSchema)} slot="head" />
+
+  <section class="py-24">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl sm:text-5xl font-bold text-white tracking-tight">Roadmap</h1>
+      <p class="mt-6 text-lg text-dev-400 leading-relaxed">
+        CruxCLI is an open-source terminal AI coding agent with 24 task-specific modes, token budgets, workspace checkpoints, and a convergence engine. This roadmap shows what we have shipped, what we are building now, and what comes next. Updated March 2026.
+      </p>
+
+      <!-- Completed -->
+      <div class="mt-16">
+        <div class="flex items-center gap-3 mb-8">
+          <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-green-400/10 text-green-400 text-sm font-bold">&#10003;</span>
+          <h2 class="text-2xl font-bold text-white">Completed</h2>
+        </div>
+        <div class="space-y-4">
+          {completed.map((item) => (
+            <div class="bg-dev-900 border border-dev-800 rounded-xl p-6">
+              <div class="flex items-start justify-between gap-4">
+                <div>
+                  <h3 class="text-white font-semibold">{item.title}</h3>
+                  <p class="mt-2 text-sm text-dev-400 leading-relaxed">{item.description}</p>
+                </div>
+                <span class="shrink-0 text-xs text-dev-500 bg-dev-800 px-2 py-1 rounded">{item.plan}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- In Progress -->
+      <div class="mt-16">
+        <div class="flex items-center gap-3 mb-8">
+          <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-accent/10 text-accent text-sm font-bold">&bull;</span>
+          <h2 class="text-2xl font-bold text-white">In progress</h2>
+        </div>
+        <div class="space-y-4">
+          {inProgress.map((item) => (
+            <div class="bg-dev-900 border border-accent/20 rounded-xl p-6">
+              <h3 class="text-white font-semibold">{item.title}</h3>
+              <p class="mt-2 text-sm text-dev-400 leading-relaxed">{item.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Planned -->
+      <div class="mt-16">
+        <div class="flex items-center gap-3 mb-8">
+          <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-dev-700/50 text-dev-500 text-sm font-bold">&#9675;</span>
+          <h2 class="text-2xl font-bold text-white">Planned</h2>
+        </div>
+        <div class="space-y-4">
+          {planned.map((item) => (
+            <div class="bg-dev-900 border border-dev-800 rounded-xl p-6">
+              <h3 class="text-white font-semibold">{item.title}</h3>
+              <p class="mt-2 text-sm text-dev-400 leading-relaxed">{item.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Non-Goals -->
+      <div class="mt-16">
+        <div class="flex items-center gap-3 mb-8">
+          <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-dev-800 text-dev-500 text-sm font-bold">&mdash;</span>
+          <h2 class="text-2xl font-bold text-white">Non-goals</h2>
+        </div>
+        <p class="text-sm text-dev-400 mb-6">
+          These are intentional exclusions, not missing features. We will not build these.
+        </p>
+        <div class="space-y-4">
+          {nonGoals.map((item) => (
+            <div class="bg-dev-900/50 border border-dev-800/50 rounded-xl p-6">
+              <h3 class="text-dev-300 font-semibold">{item.title}</h3>
+              <p class="mt-2 text-sm text-dev-500 leading-relaxed">{item.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTA
+    heading="Help build CruxCLI"
+    description="CruxCLI is open source (MIT). Contributions, feedback, and bug reports welcome."
+    primaryCta={{ text: "View on GitHub", href: "https://github.com/trinsiklabs/cruxcli" }}
+    secondaryCta={{ text: "Install CruxCLI", href: "/docs" }}
+  />
+</Marketing>

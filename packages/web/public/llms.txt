@@ -1,0 +1,54 @@
+# CruxCLI
+
+> CruxCLI is a provider-agnostic terminal AI coding agent with intelligence built in. Open source (MIT), 75+ LLM providers, 24 task-specific modes, token budgets, workspace checkpoints, and CruxDev convergence engine integration.
+
+## Key Facts
+
+- Name: CruxCLI
+- Category: Terminal AI coding agent
+- License: MIT (open source)
+- Runtime: Bun
+- Providers: 75+ (Anthropic, OpenAI, Google, Azure, Bedrock, OpenRouter, Ollama, and more)
+- Modes: 24 task-specific modes with model tier mapping
+- Tests: 1,204 passing
+- Typecheck: 13/13 packages clean
+- Architecture: Client/server (HTTP on port 4096)
+- LSP: 30+ language servers supported
+- Website: https://cruxvibe.io
+- GitHub: https://github.com/trinsiklabs/cruxcli
+- Organization: Trinsik Labs
+
+## Pages
+
+### Documentation
+- [Getting Started](https://cruxvibe.io/docs): Installation and configuration guide
+- [Documentation](https://cruxvibe.io/docs): Full reference documentation
+
+### Features
+- [Features](https://cruxvibe.io/features): Mode system, token budgets, checkpoints, LSP, plugins, provider support
+- [Provider-Agnostic](https://cruxvibe.io/lp/provider-agnostic): How CruxCLI works with any LLM provider
+- [No Execution Cap](https://cruxvibe.io/lp/no-execution-cap): Token budgets replace step-count limits
+- [Convergence](https://cruxvibe.io/lp/convergence): How CruxCLI verifies code completion
+
+### Comparisons
+- [Compare](https://cruxvibe.io/vs): Hub comparing CruxCLI to 4 competitors
+- [CruxCLI vs OpenCode](https://cruxvibe.io/vs/opencode): Intelligence layer vs community size
+- [CruxCLI vs Claude Code](https://cruxvibe.io/vs/claude-code): Open source vs first-party model access
+- [CruxCLI vs Gemini CLI](https://cruxvibe.io/vs/gemini-cli): 24 modes vs free tier
+- [CruxCLI vs Codex CLI](https://cruxvibe.io/vs/codex-cli): LSP/plugins vs Rust performance
+
+### Roadmap
+- [Roadmap](https://cruxvibe.io/roadmap): Completed, in-progress, and planned work
+
+## Unique Capabilities (Moats)
+
+1. **Mode → Model Tier Mapping**: 24 task-specific modes automatically select the right model tier (strong/balanced/fast)
+2. **Token Budget System**: Per-mode token budgets replacing step-count limits (75% warning, 90% hard stop)
+3. **CruxDev Convergence Engine**: Autonomous audit-fix loops until two consecutive clean passes
+4. **Workspace Checkpoints**: Auto git-based snapshots before destructive operations (up to 50 per project)
+5. **Client/Server + LSP**: HTTP server with 30+ language server integrations
+6. **Crux Intelligence Layer**: 24 mode prompts, correction detection, continuous learning — native in binary
+
+## Full Content
+
+For full text content of all pages, see: https://cruxvibe.io/llms-full.txt

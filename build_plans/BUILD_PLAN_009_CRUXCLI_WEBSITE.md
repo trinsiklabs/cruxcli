@@ -46,9 +46,9 @@
 
 ### Checklist — Phase 0
 
-- [ ] 0.1 Confirm product identity (name, tagline, domain)
-- [ ] 0.2 Verify logo files exist and are usable
-- [ ] 0.3 Confirm engine selection (Astro + Tailwind, keep Starlight at /docs)
+- [x] 0.1 Confirm product identity (name, tagline, domain)
+- [x] 0.2 Verify logo files exist and are usable
+- [x] 0.3 Confirm engine selection (Astro + Tailwind, keep Starlight at /docs)
 
 ---
 
@@ -87,10 +87,10 @@ Use existing `docs/COMPETITORS.md` data. Audit competitor websites:
 
 ### Checklist — Phase 1
 
-- [ ] 1.1 Document stakeholder goals and constraints
-- [ ] 1.2 Define user personas and JTBD
-- [ ] 1.3 Audit 4 competitor websites (navigation, content, conversion strategy, SEO)
-- [ ] 1.4 Document functional/content/technical/legal requirements
+- [x] 1.1 Document stakeholder goals and constraints
+- [x] 1.2 Define user personas and JTBD
+- [x] 1.3 Audit 4 competitor websites (navigation, content, conversion strategy, SEO)
+- [x] 1.4 Document functional/content/technical/legal requirements
 
 ---
 
@@ -119,9 +119,9 @@ CruxCLI's website is a developer-focused marketing site for senior developers ev
 
 ### Checklist — Phase 2
 
-- [ ] 2.1 Write site strategy statement
-- [ ] 2.2 Define conversion goals (primary, secondary, micro)
-- [ ] 2.3 Set success metrics with targets
+- [x] 2.1 Write site strategy statement
+- [x] 2.2 Define conversion goals (primary, secondary, micro)
+- [x] 2.3 Set success metrics with targets
 
 ---
 
@@ -159,9 +159,9 @@ CruxCLI's website is a developer-focused marketing site for senior developers ev
 
 ### Checklist — Phase 3
 
-- [ ] 3.1 Complete page inventory with purpose, audience, CTA, SEO target
-- [ ] 3.2 Map content sources to each page
-- [ ] 3.3 Define voice and tone guidelines
+- [x] 3.1 Complete page inventory with purpose, audience, CTA, SEO target
+- [x] 3.2 Map content sources to each page
+- [x] 3.3 Define voice and tone guidelines
 
 ---
 
@@ -199,9 +199,9 @@ Crux (runcrux.io) | CruxDev (cruxdev.dev) | CruxCLI (cruxvibe.io) | GitHub
 
 ### Checklist — Phase 4
 
-- [ ] 4.1 Create sitemap
-- [ ] 4.2 Define primary nav and footer nav
-- [ ] 4.3 Define URL structure
+- [x] 4.1 Create sitemap
+- [x] 4.2 Define primary nav and footer nav
+- [x] 4.3 Define URL structure
 
 ---
 
@@ -297,14 +297,14 @@ Per SEO_AND_GEO_REFERENCE.md §1.5:
 
 ### Checklist — Phase 5
 
-- [ ] 5.1 Build 5-tier keyword strategy with Tier 3-4 opportunities
-- [ ] 5.2 Create docs/SEO_KEYWORDS.md keyword registry
-- [ ] 5.3 Plan /lp/ landing pages (at least 3 for Tier 2-4 keywords)
-- [ ] 5.4 Define structured data per page type (6 types)
-- [ ] 5.5 Plan llms.txt and llms-full.txt content
-- [ ] 5.6 Define AI visibility patterns (answer-first, statistics, definitions, question headings)
-- [ ] 5.7 Set AI crawler policy (allow all)
-- [ ] 5.8 Map content clusters (pillar + spoke)
+- [x] 5.1 Build 5-tier keyword strategy with Tier 3-4 opportunities
+- [x] 5.2 Create docs/SEO_KEYWORDS.md keyword registry
+- [x] 5.3 Plan /lp/ landing pages (at least 3 for Tier 2-4 keywords)
+- [x] 5.4 Define structured data per page type (6 types)
+- [x] 5.5 Plan llms.txt and llms-full.txt content
+- [x] 5.6 Define AI visibility patterns (answer-first, statistics, definitions, question headings)
+- [x] 5.7 Set AI crawler policy (allow all)
+- [x] 5.8 Map content clusters (pillar + spoke)
 
 ---
 
@@ -345,9 +345,9 @@ Per SEO_AND_GEO_REFERENCE.md §1.5:
 
 ### Checklist — Phase 6
 
-- [ ] 6.1 Create `src/styles/marketing.css` with CruxDev color tokens
-- [ ] 6.2 Create `src/layouts/Marketing.astro` (sticky nav, footer, SEO meta, Schema.org)
-- [ ] 6.3 Create reusable components (Hero, TrustBar, FeatureCard, ComparisonTable, CTA)
+- [x] 6.1 Create `src/styles/marketing.css` with CruxDev color tokens
+- [x] 6.2 Create `src/layouts/Marketing.astro` (sticky nav, footer, SEO meta, Schema.org)
+- [x] 6.3 Create reusable components (Hero, TrustBar, FeatureCard, ComparisonTable, CTA)
 
 ---
 
@@ -382,10 +382,10 @@ Per SEO_AND_GEO_REFERENCE.md §1.5:
 
 ### Checklist — Phase 7
 
-- [ ] 7.1 Add Tailwind to packages/web dependencies
-- [ ] 7.2 Update astro.config.mjs with Tailwind vite plugin
-- [ ] 7.3 Verify Starlight docs still work at /docs
-- [ ] 7.4 `npm run build` succeeds with marketing + docs pages
+- [x] 7.1 Add Tailwind to packages/web dependencies
+- [x] 7.2 Update astro.config.mjs with Tailwind vite plugin
+- [x] 7.3 Verify Starlight docs still work at /docs
+- [x] 7.4 `npm run build` succeeds with marketing + docs pages
 
 ---
 
@@ -395,55 +395,55 @@ Per SEO_AND_GEO_REFERENCE.md §1.5:
 
 ### 8.1 Homepage
 
-- [ ] 8.1.1 Hero: tagline, description, dual CTAs (Install + GitHub)
-- [ ] 8.1.2 Trust bar: test count (1204), typecheck (13/13), providers (75+), modes (24)
-- [ ] 8.1.3 Problem/solution: "Without CruxCLI" vs "With CruxCLI" comparison cards
-- [ ] 8.1.4 Moat showcase: 6 unique advantages from COMPETITORS.md
-- [ ] 8.1.5 How it works: Install → Configure → Launch → Build
-- [ ] 8.1.6 Provider mentions: OpenRouter, Anthropic, OpenAI, Google, Ollama
-- [ ] 8.1.7 Final CTA
+- [x] 8.1.1 Hero: tagline, description, dual CTAs (Install + GitHub)
+- [x] 8.1.2 Trust bar: test count (1204), typecheck (13/13), providers (75+), modes (24)
+- [x] 8.1.3 Problem/solution: "Without CruxCLI" vs "With CruxCLI" comparison cards
+- [x] 8.1.4 Moat showcase: 6 unique advantages from COMPETITORS.md
+- [x] 8.1.5 How it works: Install → Configure → Launch → Build
+- [x] 8.1.6 Provider mentions: OpenRouter, Anthropic, OpenAI, Google, Ollama
+- [x] 8.1.7 Final CTA
 
 ### 8.2 Features Page
 
-- [ ] 8.2.1 Feature cards: mode→model tiers, token budgets, checkpoints, client/server, LSP, plugins/MCP, provider-agnostic, CruxDev integration
-- [ ] 8.2.2 Each feature: title, description, code example or config snippet
-- [ ] 8.2.3 Comparison table: CruxCLI vs generic agents (feature matrix subset)
+- [x] 8.2.1 Feature cards: mode→model tiers, token budgets, checkpoints, client/server, LSP, plugins/MCP, provider-agnostic, CruxDev integration
+- [x] 8.2.2 Each feature: title, description, code example or config snippet
+- [x] 8.2.3 Comparison table: CruxCLI vs generic agents (feature matrix subset)
 
 ### 8.3 Comparison Pages
 
-- [ ] 8.3.1 `/vs` hub: list all 4 competitors with stars, summary, link
-- [ ] 8.3.2 `/vs/opencode`: feature table, where we win (intelligence layer), where they win (community), honest
-- [ ] 8.3.3 `/vs/claude-code`: feature table, where we win (open source, provider-agnostic), where they win (first-party model access)
-- [ ] 8.3.4 `/vs/gemini-cli`: feature table, where we win (modes, convergence), where they win (free tier)
-- [ ] 8.3.5 `/vs/codex-cli`: feature table, where we win (LSP, plugins), where they win (Rust performance)
-- [ ] 8.3.6 SEO: title "[CruxCLI] vs [Competitor] — Features & Comparison 2026", FAQPage schema
-- [ ] 8.3.7 Verify all claims against COMPETITORS.md
+- [x] 8.3.1 `/vs` hub: list all 4 competitors with stars, summary, link
+- [x] 8.3.2 `/vs/opencode`: feature table, where we win (intelligence layer), where they win (community), honest
+- [x] 8.3.3 `/vs/claude-code`: feature table, where we win (open source, provider-agnostic), where they win (first-party model access)
+- [x] 8.3.4 `/vs/gemini-cli`: feature table, where we win (modes, convergence), where they win (free tier)
+- [x] 8.3.5 `/vs/codex-cli`: feature table, where we win (LSP, plugins), where they win (Rust performance)
+- [x] 8.3.6 SEO: title "[CruxCLI] vs [Competitor] — Features & Comparison 2026", FAQPage schema
+- [x] 8.3.7 Verify all claims against COMPETITORS.md
 
 ### 8.4 Roadmap Page
 
-- [ ] 8.4.1 Completed: hard fork, checkpoints, VS Code, competitors, Key migration docs
-- [ ] 8.4.2 In progress: Key migration, CruxDev integration
-- [ ] 8.4.3 Planned: browser automation, enterprise compliance, memory pipeline
-- [ ] 8.4.4 Non-goals: upstream sync, building what can be integrated
+- [x] 8.4.1 Completed: hard fork, checkpoints, VS Code, competitors, Key migration docs
+- [x] 8.4.2 In progress: Key migration, CruxDev integration
+- [x] 8.4.3 Planned: browser automation, enterprise compliance, memory pipeline
+- [x] 8.4.4 Non-goals: upstream sync, building what can be integrated
 
 ### 8.5 Landing Pages (/lp/)
 
-- [ ] 8.5.1 Create `/lp/no-execution-cap` — answers "AI agent stops before finishing" (Tier 3 keyword)
-- [ ] 8.5.2 Create `/lp/provider-agnostic` — answers "use any LLM with coding agent" (Tier 2 keyword)
-- [ ] 8.5.3 Create `/lp/convergence` — answers "how to know when AI code is done" (Tier 4 keyword)
-- [ ] 8.5.4 Each landing page: answer in first 40-80 words, 800-2000 words depth, internal links to nav pages, CTA, schema
-- [ ] 8.5.5 All /lp/ pages in sitemap.xml but NOT in nav
+- [x] 8.5.1 Create `/lp/no-execution-cap` — answers "AI agent stops before finishing" (Tier 3 keyword)
+- [x] 8.5.2 Create `/lp/provider-agnostic` — answers "use any LLM with coding agent" (Tier 2 keyword)
+- [x] 8.5.3 Create `/lp/convergence` — answers "how to know when AI code is done" (Tier 4 keyword)
+- [x] 8.5.4 Each landing page: answer in first 40-80 words, 800-2000 words depth, internal links to nav pages, CTA, schema
+- [x] 8.5.5 All /lp/ pages in sitemap.xml but NOT in nav
 
 ### 8.6 SEO & GEO Assets
 
-- [ ] 8.6.1 Create `/llms.txt` — structured Markdown index (sections: Docs, Features, Compare, Blog)
-- [ ] 8.6.2 Create `/llms-full.txt` — full text dump of all key content for LLM context windows
-- [ ] 8.6.3 Create `docs/SEO_KEYWORDS.md` — keyword registry with all 5 tiers
-- [ ] 8.6.4 XML sitemap auto-generated (includes /lp/* pages)
-- [ ] 8.6.5 robots.txt allowing all crawlers, referencing sitemap
-- [ ] 8.6.6 All pages use answer-first pattern (lead paragraph answers the query in 40-80 words)
-- [ ] 8.6.7 All pages include concrete statistics where applicable (test count, provider count, etc.)
-- [ ] 8.6.8 Consistent brand name "CruxCLI" across all content (never "Crux CLI", "cruxcli", "CRUXCLI")
+- [x] 8.6.1 Create `/llms.txt` — structured Markdown index (sections: Docs, Features, Compare, Blog)
+- [x] 8.6.2 Create `/llms-full.txt` — full text dump of all key content for LLM context windows
+- [x] 8.6.3 Create `docs/SEO_KEYWORDS.md` — keyword registry with all 5 tiers
+- [x] 8.6.4 XML sitemap auto-generated (includes /lp/* pages)
+- [x] 8.6.5 robots.txt allowing all crawlers, referencing sitemap
+- [x] 8.6.6 All pages use answer-first pattern (lead paragraph answers the query in 40-80 words)
+- [x] 8.6.7 All pages include concrete statistics where applicable (test count, provider count, etc.)
+- [x] 8.6.8 Consistent brand name "CruxCLI" across all content (never "Crux CLI", "cruxcli", "CRUXCLI")
 
 ---
 

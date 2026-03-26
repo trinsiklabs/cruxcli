@@ -1,0 +1,281 @@
+---
+export const prerender = true
+
+import Marketing from '../layouts/Marketing.astro'
+import Hero from '../components/marketing/Hero.astro'
+import FeatureCard from '../components/marketing/FeatureCard.astro'
+import ComparisonTable from '../components/marketing/ComparisonTable.astro'
+import CTA from '../components/marketing/CTA.astro'
+---
+
+<Marketing
+  title="Features"
+  description="CruxCLI features: 24 task-specific modes with model tier mapping, token budgets, workspace checkpoints, client/server architecture, LSP integration, MCP plugins, and 75+ provider support."
+>
+  <Hero
+    tagline="Every feature built for developers who ship"
+    description="CruxCLI is a provider-agnostic terminal AI coding agent with 24 task-specific modes, per-mode token budgets, workspace checkpoints, client/server architecture, LSP integration for 30+ languages, and MCP plugin support. 1,204 tests passing, 13/13 packages typechecking."
+    primaryCta={{ text: "Install CruxCLI", href: "/docs" }}
+    secondaryCta={{ text: "Compare to alternatives", href: "/vs" }}
+  />
+
+  <!-- Feature Cards -->
+  <section class="py-20">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- Mode → Model Tiers -->
+      <div class="grid lg:grid-cols-2 gap-8 items-start mb-16">
+        <div>
+          <h2 class="text-2xl font-bold text-white">Mode → Model Tier Mapping</h2>
+          <p class="mt-4 text-dev-400 leading-relaxed">
+            24 task-specific modes each map to a model tier. When you ask CruxCLI to review code, it picks a strong reasoning model. When you ask it to format imports, it picks a fast cheap model. You control cost without micromanaging model selection.
+          </p>
+          <p class="mt-3 text-dev-400 leading-relaxed">
+            No other terminal agent does this. OpenCode, Claude Code, Gemini CLI, and Codex CLI all use a single model for every task regardless of complexity.
+          </p>
+        </div>
+        <div class="bg-dev-900 border border-dev-800 rounded-xl p-6">
+          <p class="text-xs text-dev-500 mb-3">cruxcli.jsonc</p>
+          <pre class="text-sm text-dev-300 leading-relaxed overflow-x-auto"><code>{`{
+  "modes": {
+    "code-review": {
+      "tier": "strong",    // Opus, GPT-5, Gemini Ultra
+      "budget": 50000
+    },
+    "format": {
+      "tier": "fast",      // Haiku, GPT-4o-mini, Flash
+      "budget": 5000
+    },
+    "debug": {
+      "tier": "strong",
+      "budget": 80000
+    }
+  }
+}`}</code></pre>
+        </div>
+      </div>
+
+      <!-- Token Budgets -->
+      <div class="grid lg:grid-cols-2 gap-8 items-start mb-16">
+        <div class="lg:order-2">
+          <h2 class="text-2xl font-bold text-white">Token Budget System</h2>
+          <p class="mt-4 text-dev-400 leading-relaxed">
+            Per-mode token budgets replace step-count limits. Every mode has a configurable token budget with a warning threshold at 75% and a hard limit at 90%. When the agent approaches the limit, it wraps up gracefully instead of stopping mid-edit.
+          </p>
+          <p class="mt-3 text-dev-400 leading-relaxed">
+            Step counts are a blunt instrument: 10 tool calls might use 500 tokens or 50,000. Token budgets measure actual cost.
+          </p>
+        </div>
+        <div class="bg-dev-900 border border-dev-800 rounded-xl p-6 lg:order-1">
+          <p class="text-xs text-dev-500 mb-3">Token budget in action</p>
+          <pre class="text-sm text-dev-300 leading-relaxed overflow-x-auto"><code>{`> debug failing test in auth module
+
+Mode: debug (tier: strong, budget: 80,000 tokens)
+[============================----]  72% (57,600 / 80,000)
+⚠ Approaching token limit — wrapping up
+
+Found: race condition in session refresh.
+Applied fix, all 47 auth tests pass.
+Tokens used: 63,200 / 80,000`}</code></pre>
+        </div>
+      </div>
+
+      <!-- Workspace Checkpoints -->
+      <div class="grid lg:grid-cols-2 gap-8 items-start mb-16">
+        <div>
+          <h2 class="text-2xl font-bold text-white">Workspace Checkpoints</h2>
+          <p class="mt-4 text-dev-400 leading-relaxed">
+            Before every destructive tool call (edit, write, bash, patch), CruxCLI takes a git-based snapshot. Up to 50 checkpoints per project. Restore to any point with <code class="text-dev-300">cruxcli checkpoint restore</code>.
+          </p>
+          <p class="mt-3 text-dev-400 leading-relaxed">
+            Not a full file copy. Built on git tree hashing for minimal storage overhead. Your project stays clean.
+          </p>
+        </div>
+        <div class="bg-dev-900 border border-dev-800 rounded-xl p-6">
+          <p class="text-xs text-dev-500 mb-3">Terminal</p>
+          <pre class="text-sm text-dev-300 leading-relaxed overflow-x-auto"><code>{`$ cruxcli checkpoint list
+#  Time       Mode      Files Changed
+1  14:23:01   refactor  src/auth/index.ts, src/auth/session.ts
+2  14:22:45   debug     src/server/routes.ts
+3  14:21:30   code      src/cli/cmd/run.ts
+
+$ cruxcli checkpoint restore 2
+Restored workspace to checkpoint #2 (14:22:45)`}</code></pre>
+        </div>
+      </div>
+
+      <!-- Client/Server Architecture -->
+      <div class="grid lg:grid-cols-2 gap-8 items-start mb-16">
+        <div class="lg:order-2">
+          <h2 class="text-2xl font-bold text-white">Client/Server Architecture</h2>
+          <p class="mt-4 text-dev-400 leading-relaxed">
+            CruxCLI starts a local HTTP server (Hono-based, port 4096). The TUI, web app, desktop app (Tauri/Electron), and VS Code extension all connect as clients. Run the agent on a remote machine and drive it from your phone.
+          </p>
+          <p class="mt-3 text-dev-400 leading-relaxed">
+            Only CruxCLI and OpenCode have this architecture. Claude Code, Gemini CLI, and Codex CLI are monolithic processes.
+          </p>
+        </div>
+        <div class="bg-dev-900 border border-dev-800 rounded-xl p-6 lg:order-1">
+          <p class="text-xs text-dev-500 mb-3">Architecture</p>
+          <pre class="text-sm text-dev-300 leading-relaxed overflow-x-auto"><code>{`cruxcli serve  →  HTTP server on :4096
+
+Clients:
+  ├── TUI         (cruxcli — default)
+  ├── Web UI      (http://localhost:4096)
+  ├── VS Code     (CruxCLI extension)
+  ├── Desktop     (Tauri / Electron)
+  └── Custom      (any HTTP client)`}</code></pre>
+        </div>
+      </div>
+
+      <!-- LSP Integration -->
+      <div class="grid lg:grid-cols-2 gap-8 items-start mb-16">
+        <div>
+          <h2 class="text-2xl font-bold text-white">LSP Integration</h2>
+          <p class="mt-4 text-dev-400 leading-relaxed">
+            Built-in Language Server Protocol client supporting 30+ language servers. The agent gets real diagnostics, symbol lookup, and go-to-definition — not just string matching. Auto-detects the right server per language.
+          </p>
+          <p class="mt-3 text-dev-400 leading-relaxed">
+            Only CruxCLI and OpenCode have LSP integration. Every other terminal agent relies on regex and string matching for code understanding.
+          </p>
+        </div>
+        <div class="bg-dev-900 border border-dev-800 rounded-xl p-6">
+          <p class="text-xs text-dev-500 mb-3">LSP diagnostics in agent context</p>
+          <pre class="text-sm text-dev-300 leading-relaxed overflow-x-auto"><code>{`> fix type errors in session module
+
+LSP: typescript-language-server
+3 diagnostics found:
+  src/session/index.ts:42 — Type 'string' not assignable to 'SessionId'
+  src/session/llm.ts:108 — Property 'model' missing
+  src/session/status.ts:23 — Argument of type 'null'
+
+Fixing all 3... Done. 0 diagnostics remaining.`}</code></pre>
+        </div>
+      </div>
+
+      <!-- Plugins & MCP -->
+      <div class="grid lg:grid-cols-2 gap-8 items-start mb-16">
+        <div class="lg:order-2">
+          <h2 class="text-2xl font-bold text-white">Plugins and MCP</h2>
+          <p class="mt-4 text-dev-400 leading-relaxed">
+            Full MCP (Model Context Protocol) client supporting stdio, SSE, and StreamableHTTP transports. Connect external tool servers, databases, APIs. Plugin API lets packages contribute custom tools and hook into the execution lifecycle.
+          </p>
+          <p class="mt-3 text-dev-400 leading-relaxed">
+            Built-in plugins for Codex auth, Copilot auth, and GitLab auth. Add third-party plugins with <code class="text-dev-300">cruxcli plugin add</code>.
+          </p>
+        </div>
+        <div class="bg-dev-900 border border-dev-800 rounded-xl p-6 lg:order-1">
+          <p class="text-xs text-dev-500 mb-3">cruxcli.jsonc — MCP config</p>
+          <pre class="text-sm text-dev-300 leading-relaxed overflow-x-auto"><code>{`{
+  "mcp": {
+    "playwright": {
+      "command": "npx",
+      "args": ["@playwright/mcp-server"],
+      "transport": "stdio"
+    },
+    "postgres": {
+      "url": "http://localhost:3001/sse",
+      "transport": "sse"
+    }
+  }
+}`}</code></pre>
+        </div>
+      </div>
+
+      <!-- Provider-Agnostic -->
+      <div class="grid lg:grid-cols-2 gap-8 items-start mb-16">
+        <div>
+          <h2 class="text-2xl font-bold text-white">Provider-Agnostic</h2>
+          <p class="mt-4 text-dev-400 leading-relaxed">
+            Works with 75+ LLM providers out of the box. Anthropic, OpenAI, Google, Azure, Bedrock, Vertex, OpenRouter, xAI, Mistral, Groq, DeepInfra, Cerebras, Cohere, TogetherAI, Perplexity, Ollama, and more. Runtime model fetching from models.dev with offline fallback.
+          </p>
+          <p class="mt-3 text-dev-400 leading-relaxed">
+            Switch providers by changing one environment variable. No code changes, no config rewrites.
+          </p>
+        </div>
+        <div class="bg-dev-900 border border-dev-800 rounded-xl p-6">
+          <p class="text-xs text-dev-500 mb-3">Switch providers in seconds</p>
+          <pre class="text-sm text-dev-300 leading-relaxed overflow-x-auto"><code>{`# Use Anthropic
+export ANTHROPIC_API_KEY=sk-ant-...
+cruxcli
+
+# Use OpenAI instead
+export OPENAI_API_KEY=sk-...
+cruxcli
+
+# Use a local model via Ollama
+export OLLAMA_HOST=http://localhost:11434
+cruxcli`}</code></pre>
+        </div>
+      </div>
+
+      <!-- CruxDev Integration -->
+      <div class="grid lg:grid-cols-2 gap-8 items-start">
+        <div class="lg:order-2">
+          <h2 class="text-2xl font-bold text-white">CruxDev Integration</h2>
+          <p class="mt-4 text-dev-400 leading-relaxed">
+            CruxCLI connects to the CruxDev convergence engine via MCP. CruxDev drives autonomous audit-fix-re-audit loops — the agent doesn't stop when it thinks it's done, it stops when two consecutive independent clean passes confirm it's done.
+          </p>
+          <p class="mt-3 text-dev-400 leading-relaxed">
+            No other terminal agent has a convergence methodology. They all rely on the user to decide when code is complete.
+          </p>
+        </div>
+        <div class="bg-dev-900 border border-dev-800 rounded-xl p-6 lg:order-1">
+          <p class="text-xs text-dev-500 mb-3">CruxDev convergence loop</p>
+          <pre class="text-sm text-dev-300 leading-relaxed overflow-x-auto"><code>{`> converge BUILD_PLAN_001
+
+Round 1: 12 issues found, 12 fixed
+Round 2: 3 issues found, 3 fixed
+Round 3: 0 issues found ✓
+Round 4: 0 issues found ✓
+
+Converged — two consecutive clean passes.
+All 1,204 tests passing.`}</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison Table -->
+  <section class="py-20 border-t border-dev-800">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-white text-center tracking-tight">
+        CruxCLI vs generic agents
+      </h2>
+      <p class="mt-4 text-center text-dev-400 max-w-2xl mx-auto mb-12">
+        Feature comparison based on publicly available documentation as of March 2026.
+      </p>
+
+      <ComparisonTable
+        products={["CruxCLI", "OpenCode", "Claude Code", "Gemini CLI", "Codex CLI"]}
+        features={[
+          { name: "Open source", values: { "CruxCLI": true, "OpenCode": true, "Claude Code": false, "Gemini CLI": true, "Codex CLI": true } },
+          { name: "Provider-agnostic", values: { "CruxCLI": true, "OpenCode": true, "Claude Code": false, "Gemini CLI": false, "Codex CLI": false } },
+          { name: "Mode → model tier mapping", values: { "CruxCLI": true, "OpenCode": false, "Claude Code": false, "Gemini CLI": false, "Codex CLI": false } },
+          { name: "Token budget system", values: { "CruxCLI": true, "OpenCode": false, "Claude Code": false, "Gemini CLI": false, "Codex CLI": false } },
+          { name: "Convergence engine", values: { "CruxCLI": true, "OpenCode": false, "Claude Code": false, "Gemini CLI": false, "Codex CLI": false } },
+          { name: "Workspace checkpoints", values: { "CruxCLI": true, "OpenCode": false, "Claude Code": "Worktree", "Gemini CLI": false, "Codex CLI": false } },
+          { name: "Client/server architecture", values: { "CruxCLI": true, "OpenCode": true, "Claude Code": false, "Gemini CLI": false, "Codex CLI": false } },
+          { name: "LSP integration", values: { "CruxCLI": true, "OpenCode": true, "Claude Code": false, "Gemini CLI": false, "Codex CLI": false } },
+          { name: "Plugin API", values: { "CruxCLI": true, "OpenCode": true, "Claude Code": false, "Gemini CLI": false, "Codex CLI": false } },
+          { name: "Custom modes", values: { "CruxCLI": "24 modes", "OpenCode": true, "Claude Code": false, "Gemini CLI": "Plan Mode", "Codex CLI": false } },
+          { name: "MCP support", values: { "CruxCLI": true, "OpenCode": true, "Claude Code": true, "Gemini CLI": true, "Codex CLI": false } },
+          { name: "VS Code extension", values: { "CruxCLI": true, "OpenCode": true, "Claude Code": true, "Gemini CLI": false, "Codex CLI": false } },
+        ]}
+      />
+
+      <p class="mt-6 text-xs text-dev-500 text-center">
+        Data sourced from official documentation and GitHub repositories. Last verified March 2026.
+        <a href="/vs" class="text-accent hover:text-accent-hover ml-1">See detailed comparisons &rarr;</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <CTA
+    heading="Try CruxCLI today"
+    description="One command to install. Bring your own API key. Start building."
+    primaryCta={{ text: "Install CruxCLI", href: "/docs" }}
+    secondaryCta={{ text: "Read the docs", href: "/docs" }}
+  />
+</Marketing>

@@ -1,0 +1,169 @@
+# CruxCLI — Full Content Index
+
+> CruxCLI is a provider-agnostic terminal AI coding agent with intelligence built in. Open source (MIT), 75+ LLM providers, 24 task-specific modes, token budgets, workspace checkpoints, and CruxDev convergence engine integration. 1,204 tests passing, 13/13 packages typechecking.
+
+---
+
+## Homepage (https://cruxvibe.io/)
+
+CruxCLI is a terminal AI coding agent that works with any LLM provider. 24 task-specific modes map to model tiers automatically, token budgets replace step-count limits, and workspace checkpoints protect your code. Open source, self-hostable, 1,204 tests passing.
+
+### Trust metrics
+- 1,204 tests passing
+- 13/13 packages typecheck
+- 75+ LLM providers
+- 24 task-specific modes
+
+### Problem / Solution
+Without CruxCLI: One model for everything. Step-count limits. No safety net. Locked to one provider. No convergence signal.
+With CruxCLI: Mode-to-model tier mapping. Token budgets. Workspace checkpoints. 75+ providers. CruxDev convergence.
+
+### Six unique advantages
+1. Mode → Model Tier Mapping: 24 modes automatically select the right model tier. Debugging gets a stronger model than formatting.
+2. Token Budget System: Per-mode token budgets replace step-count limits. Warning at 75%, hard stop at 90%.
+3. CruxDev Convergence Engine: Autonomous audit-fix-re-audit loops until two consecutive clean passes.
+4. Workspace Checkpoints: Automatic git-based snapshots before every destructive tool call. Up to 50 per project.
+5. Client/Server + LSP: HTTP server on port 4096 with 30+ language server integrations.
+6. Crux Intelligence Layer: 24 mode prompts, correction detection, continuous learning — native in binary.
+
+### How it works
+1. Install: npm i -g cruxcli
+2. Configure: export ANTHROPIC_API_KEY=sk-...
+3. Launch: cruxcli
+4. Build: > refactor auth module
+
+### Supported providers
+OpenRouter, Anthropic, OpenAI, Google, Ollama, Azure, Bedrock, Vertex, xAI, Mistral, Groq, DeepInfra, Cerebras, Cohere, TogetherAI, Perplexity, and 60+ more.
+
+---
+
+## Features (https://cruxvibe.io/features)
+
+CruxCLI is a provider-agnostic terminal AI coding agent with 24 task-specific modes, per-mode token budgets, workspace checkpoints, client/server architecture, LSP integration for 30+ languages, and MCP plugin support.
+
+### Mode → Model Tier Mapping
+24 task-specific modes each map to a model tier. Code review uses a strong reasoning model. Formatting uses a fast cheap model. No other terminal agent does this.
+
+### Token Budget System
+Per-mode token budgets replace step-count limits. Every mode has a configurable token budget with warning at 75% and hard limit at 90%. Step counts are a blunt instrument. Token budgets measure actual cost.
+
+### Workspace Checkpoints
+Before every destructive tool call (edit, write, bash, patch), CruxCLI takes a git-based snapshot. Up to 50 checkpoints per project. Restore with cruxcli checkpoint restore.
+
+### Client/Server Architecture
+Local HTTP server (Hono-based, port 4096). TUI, web app, desktop app (Tauri/Electron), and VS Code extension connect as clients. Only CruxCLI and OpenCode have this architecture.
+
+### LSP Integration
+Built-in Language Server Protocol client supporting 30+ language servers. Real diagnostics, symbol lookup, go-to-definition. Only CruxCLI and OpenCode have LSP integration.
+
+### Plugins and MCP
+Full MCP client (stdio, SSE, StreamableHTTP). Plugin API for custom tools. Built-in plugins for Codex auth, Copilot auth, GitLab auth.
+
+### Provider-Agnostic
+75+ LLM providers. Switch by changing one environment variable. Runtime model fetching from models.dev with offline fallback.
+
+### CruxDev Integration
+Convergence engine via MCP. Autonomous audit-fix-re-audit loops. Two consecutive clean passes = converged.
+
+---
+
+## CruxCLI vs OpenCode (https://cruxvibe.io/vs/opencode)
+
+CruxCLI is a hard fork of OpenCode that adds an intelligence layer. Both are open source, provider-agnostic, with 75+ provider support, LSP integration, and plugin APIs. CruxCLI adds 24 modes with model tier mapping, token budgets, checkpoints, and convergence. OpenCode has 129,357 stars and 800+ contributors.
+
+Where CruxCLI wins: Intelligence layer (24 modes, model tier mapping), token budgets, workspace checkpoints, CruxDev convergence.
+Where OpenCode wins: Community (129k stars, 800+ contributors), GitLab integration, free Zen tier, near-daily releases.
+
+---
+
+## CruxCLI vs Claude Code (https://cruxvibe.io/vs/claude-code)
+
+CruxCLI is open source (MIT), provider-agnostic (75+ providers), with 24 modes and token budgets. Claude Code is proprietary, Anthropic-only, with first-party Opus 4.6 access, 1M context window, and 64k/128k output limits.
+
+Where CruxCLI wins: Open source, provider-agnostic, plugin API, LSP, mode system, convergence.
+Where Claude Code wins: First-party Opus 4.6 access, 1M context window, cost visibility, multi-agent workflows, brand recognition (82k stars).
+
+---
+
+## CruxCLI vs Gemini CLI (https://cruxvibe.io/vs/gemini-cli)
+
+CruxCLI is provider-agnostic with 24 modes, token budgets, and convergence. Gemini CLI is Google-only with a free tier, 1M context, and Google Search grounding. 98,907 stars in under two months.
+
+Where CruxCLI wins: 24 modes, convergence, provider flexibility, LSP, plugins.
+Where Gemini CLI wins: Free tier, Google Search grounding, community (99k stars), 1M context window.
+
+---
+
+## CruxCLI vs Codex CLI (https://cruxvibe.io/vs/codex-cli)
+
+CruxCLI has LSP integration, plugin API, client/server architecture, and 24 modes. Codex CLI is Rust-based with multi-agent workflows and image input, locked to OpenAI.
+
+Where CruxCLI wins: LSP (30+ servers), plugin API, client/server, provider flexibility.
+Where Codex CLI wins: Rust performance, multi-agent workflows, screenshot input, OpenAI backing (67k stars).
+
+---
+
+## Roadmap (https://cruxvibe.io/roadmap)
+
+### Completed
+- Hard fork from OpenCode (BUILD_PLAN_001)
+- Workspace checkpoints (BUILD_PLAN_003)
+- VS Code extension (BUILD_PLAN_004)
+- Competitive analysis (COMPETITORS.md)
+- Key migration documentation (BUILD_PLAN_005)
+
+### In Progress
+- API key migration (environment variables → OS keychain)
+- CruxDev integration hardening
+- Plugin ecosystem formalization
+
+### Planned
+- Browser automation mode
+- Enterprise compliance tier
+- Memory pipeline
+- Cost visibility
+- Image/screenshot input
+
+### Non-Goals
+- Upstream sync with OpenCode (clean break)
+- Building what can be integrated (use MCP servers)
+- Node.js runtime support (Bun-only)
+- Free hosted service (local tool, BYOK)
+
+---
+
+## Token Budgets (https://cruxvibe.io/lp/no-execution-cap)
+
+Most AI coding agents stop mid-task because of step-count execution limits (25-50 tool calls). CruxCLI replaces step-count limits with per-mode token budgets that measure actual token consumption. Warning at 75%, graceful wrap-up, hard stop at 90%. Each of 24 modes has its own budget matched to task complexity.
+
+---
+
+## Provider-Agnostic (https://cruxvibe.io/lp/provider-agnostic)
+
+CruxCLI supports 75+ LLM providers: Anthropic, OpenAI, Google, Azure, Bedrock, Vertex, OpenRouter, Ollama, and more. Switch by changing one environment variable. Mode → model tier mapping works across all providers. Local models via Ollama for air-gapped environments.
+
+---
+
+## Convergence (https://cruxvibe.io/lp/convergence)
+
+CruxCLI integrates with CruxDev's convergence engine. Autonomous audit-fix-re-audit loops run until two consecutive independent clean passes verify code correctness. No other terminal AI agent has convergence methodology. All others rely on model judgment or user decision.
+
+---
+
+## Technical Details
+
+- Binary size: ~110MB compiled
+- Runtime: Bun
+- Architecture: Client/server (Hono HTTP server on port 4096)
+- Database: SQLite (Drizzle ORM)
+- TUI: Ink (React for CLI)
+- Frontends: TUI, Web, Desktop (Tauri/Electron), VS Code
+- LSP: 30+ language servers auto-detected
+- MCP: stdio, SSE, StreamableHTTP transports
+- Checkpoints: Git tree hashing, up to 50 per project
+- Tests: 1,204 passing (Vitest)
+- Typecheck: 13/13 packages (TypeScript)
+- License: MIT
+- Organization: Trinsik Labs
+- Website: https://cruxvibe.io
+- GitHub: https://github.com/trinsiklabs/cruxcli

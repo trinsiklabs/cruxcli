@@ -1,0 +1,179 @@
+---
+export const prerender = true
+
+import Marketing from '../../layouts/Marketing.astro'
+import ComparisonTable from '../../components/marketing/ComparisonTable.astro'
+import CTA from '../../components/marketing/CTA.astro'
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the difference between CruxCLI and Codex CLI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "CruxCLI is a TypeScript/Bun-based terminal agent with LSP integration, plugin API, client/server architecture, and 24 task-specific modes. Codex CLI is OpenAI's Rust-based agent with multi-agent workflows and screenshot input, but locked to OpenAI models with no LSP or plugin support."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can CruxCLI use OpenAI models?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. CruxCLI supports OpenAI as a provider. Set your OPENAI_API_KEY and use GPT-5, o3, o4-mini, or any OpenAI model. CruxCLI can also use 75+ other providers simultaneously."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Codex CLI faster than CruxCLI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Codex CLI is written in Rust and has lower memory usage and faster startup. CruxCLI is compiled with Bun, which is fast but not Rust-fast. For most coding tasks, the LLM response time dominates — the CLI overhead is negligible."
+      }
+    }
+  ]
+}
+---
+
+<Marketing
+  title="CruxCLI vs Codex CLI — Features & Comparison 2026"
+  description="CruxCLI vs Codex CLI comparison. CruxCLI has LSP integration, plugin API, and 24 modes. Codex CLI has Rust performance and multi-agent workflows. Honest feature analysis."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head" />
+
+  <section class="py-24">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="text-sm text-dev-500 mb-8">
+        <a href="/vs" class="hover:text-white transition-colors">Compare</a>
+        <span class="mx-2">/</span>
+        <span class="text-dev-300">CruxCLI vs Codex CLI</span>
+      </nav>
+
+      <h1 class="text-4xl sm:text-5xl font-bold text-white tracking-tight">
+        CruxCLI vs Codex CLI
+      </h1>
+      <p class="mt-6 text-lg text-dev-400 leading-relaxed max-w-3xl">
+        CruxCLI and Codex CLI are both open-source terminal AI coding agents, built on different technology stacks with different strengths. CruxCLI is TypeScript/Bun-based with LSP integration for 30+ language servers, a plugin API, client/server architecture, and 24 task-specific modes with model tier mapping. Codex CLI is OpenAI's Rust-based agent with multi-agent workflows, screenshot/image input, and lower memory usage, but is locked to OpenAI models with no LSP integration or plugin support.
+      </p>
+
+      <div class="mt-16">
+        <h2 class="text-2xl font-bold text-white mb-8">Feature comparison</h2>
+        <ComparisonTable
+          products={["CruxCLI", "Codex CLI"]}
+          features={[
+            { name: "Open source", values: { "CruxCLI": "MIT", "Codex CLI": "Apache-2.0" } },
+            { name: "Provider-agnostic", values: { "CruxCLI": "75+ providers", "Codex CLI": "OpenAI only" } },
+            { name: "Mode → model tier mapping", values: { "CruxCLI": "24 modes", "Codex CLI": false } },
+            { name: "Token budget system", values: { "CruxCLI": true, "Codex CLI": false } },
+            { name: "Convergence engine", values: { "CruxCLI": true, "Codex CLI": false } },
+            { name: "Workspace checkpoints", values: { "CruxCLI": true, "Codex CLI": false } },
+            { name: "Client/server architecture", values: { "CruxCLI": true, "Codex CLI": false } },
+            { name: "LSP integration", values: { "CruxCLI": "30+ servers", "Codex CLI": false } },
+            { name: "Plugin API", values: { "CruxCLI": true, "Codex CLI": false } },
+            { name: "MCP support", values: { "CruxCLI": true, "Codex CLI": false } },
+            { name: "VS Code extension", values: { "CruxCLI": true, "Codex CLI": false } },
+            { name: "Rust-based", values: { "CruxCLI": false, "Codex CLI": true } },
+            { name: "Multi-agent workflows", values: { "CruxCLI": false, "Codex CLI": true } },
+            { name: "Screenshot/image input", values: { "CruxCLI": false, "Codex CLI": true } },
+            { name: "GitHub stars", values: { "CruxCLI": "New", "Codex CLI": "67k" } },
+          ]}
+        />
+      </div>
+
+      <div class="mt-16 grid md:grid-cols-2 gap-12">
+        <div>
+          <h2 class="text-2xl font-bold text-white mb-6">Where CruxCLI wins</h2>
+          <div class="space-y-6">
+            <div>
+              <h3 class="text-lg font-semibold text-white">LSP integration</h3>
+              <p class="mt-2 text-sm text-dev-400 leading-relaxed">
+                CruxCLI's built-in LSP client connects to 30+ language servers, providing real diagnostics, symbol lookup, and go-to-definition. Codex CLI has no LSP support — it relies on string matching and regex for code understanding.
+              </p>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-white">Plugin API and MCP</h3>
+              <p class="mt-2 text-sm text-dev-400 leading-relaxed">
+                CruxCLI has a plugin API for custom tools and full MCP client support (stdio, SSE, StreamableHTTP). Codex CLI has neither — its extensibility is limited to what OpenAI builds in.
+              </p>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-white">Client/server architecture</h3>
+              <p class="mt-2 text-sm text-dev-400 leading-relaxed">
+                CruxCLI's HTTP server on port 4096 enables multiple frontends: TUI, web, desktop, VS Code. Codex CLI is a monolithic process with no remote-drivable sessions.
+              </p>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-white">Provider flexibility</h3>
+              <p class="mt-2 text-sm text-dev-400 leading-relaxed">
+                CruxCLI supports 75+ providers. Codex CLI is locked to OpenAI models (o3, o4-mini). If you want to use Claude, Gemini, or local models, you need a different tool.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-bold text-white mb-6">Where Codex CLI wins</h2>
+          <div class="space-y-6">
+            <div>
+              <h3 class="text-lg font-semibold text-white">Rust performance</h3>
+              <p class="mt-2 text-sm text-dev-400 leading-relaxed">
+                Codex CLI is written in Rust with lower memory usage and faster startup than CruxCLI's Bun-compiled binary. For most coding tasks the LLM response time dominates, but the CLI overhead matters for quick operations.
+              </p>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-white">Multi-agent workflows</h3>
+              <p class="mt-2 text-sm text-dev-400 leading-relaxed">
+                Codex CLI supports multi-agent workflows where multiple agents work on different parts of a codebase simultaneously. CruxCLI has subagent support but not multi-agent orchestration at this level.
+              </p>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-white">Screenshot and image input</h3>
+              <p class="mt-2 text-sm text-dev-400 leading-relaxed">
+                Codex CLI can accept screenshots and images as input, useful for UI-related tasks. CruxCLI does not currently support image input. This is a gap we plan to close.
+              </p>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-white">OpenAI backing</h3>
+              <p class="mt-2 text-sm text-dev-400 leading-relaxed">
+                67,280 stars and OpenAI's resources behind development. Codex CLI will get early access to new OpenAI models and features.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-16">
+        <h2 class="text-2xl font-bold text-white mb-8">Frequently asked questions</h2>
+        <div class="space-y-6">
+          <div class="bg-dev-900 border border-dev-800 rounded-xl p-6">
+            <h3 class="text-white font-semibold">What is the difference between CruxCLI and Codex CLI?</h3>
+            <p class="mt-3 text-sm text-dev-400 leading-relaxed">
+              CruxCLI is a TypeScript/Bun-based terminal agent with LSP integration, plugin API, client/server architecture, and 24 task-specific modes. Codex CLI is OpenAI's Rust-based agent with multi-agent workflows and screenshot input, but locked to OpenAI models with no LSP or plugin support.
+            </p>
+          </div>
+          <div class="bg-dev-900 border border-dev-800 rounded-xl p-6">
+            <h3 class="text-white font-semibold">Can CruxCLI use OpenAI models?</h3>
+            <p class="mt-3 text-sm text-dev-400 leading-relaxed">
+              Yes. CruxCLI supports OpenAI as a provider. Set your OPENAI_API_KEY and use GPT-5, o3, o4-mini, or any OpenAI model. CruxCLI can also use 75+ other providers simultaneously.
+            </p>
+          </div>
+          <div class="bg-dev-900 border border-dev-800 rounded-xl p-6">
+            <h3 class="text-white font-semibold">Is Codex CLI faster than CruxCLI?</h3>
+            <p class="mt-3 text-sm text-dev-400 leading-relaxed">
+              Codex CLI is written in Rust and has lower memory usage and faster startup. CruxCLI is compiled with Bun, which is fast but not Rust-fast. For most coding tasks, the LLM response time dominates — the CLI overhead is negligible.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTA
+    heading="Try CruxCLI"
+    description="Use OpenAI, Claude, Gemini, or any model. LSP-powered code intelligence."
+    primaryCta={{ text: "Install CruxCLI", href: "/docs" }}
+    secondaryCta={{ text: "View on GitHub", href: "https://github.com/trinsiklabs/cruxcli" }}
+  />
+</Marketing>

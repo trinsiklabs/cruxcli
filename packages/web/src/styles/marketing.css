@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+/*
+ * CruxCLI Marketing Design System
+ * Color tokens match CruxDev (cruxdev.dev) for ecosystem brand cohesion.
+ * System font stack — no custom fonts, fast loading.
+ */
+
+@theme {
+  /* CruxDev color palette */
+  --color-dev-950: #09090b;
+  --color-dev-900: #18181b;
+  --color-dev-800: #27272a;
+  --color-dev-700: #3f3f46;
+  --color-dev-600: #52525b;
+  --color-dev-500: #71717a;
+  --color-dev-400: #a1a1aa;
+  --color-dev-300: #d4d4d8;
+  --color-dev-200: #e4e4e7;
+  --color-dev-100: #f4f4f5;
+
+  /* Accent (violet) */
+  --color-accent: #8b5cf6;
+  --color-accent-hover: #7c3aed;
+}
