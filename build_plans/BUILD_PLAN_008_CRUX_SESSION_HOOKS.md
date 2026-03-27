@@ -1,7 +1,7 @@
 # BUILD_PLAN_008: Crux Session Hooks for CruxCLI
 
 **Created:** 2026-03-25
-**Status:** NOT STARTED
+**Status:** CONVERGED (all phases implemented; stale state side-effects addressed by BUILD_PLAN_012; auto-provisioning needs Rust migration update)
 **Goal:** Wire CruxCLI's event bus to Crux MCP tools so session state is automatically maintained — files tracked, decisions captured, corrections detected, interactions logged. No LLM cooperation required.
 
 **Constraint:** All hooks use the existing Bus event system — no polling, no timers.

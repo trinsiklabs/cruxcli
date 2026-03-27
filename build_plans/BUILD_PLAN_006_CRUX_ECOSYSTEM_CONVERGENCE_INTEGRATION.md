@@ -1,7 +1,7 @@
 # BUILD_PLAN_006_CRUX_ECOSYSTEM_CONVERGENCE_INTEGRATION
 
 **Created:** 2026-03-25  
-**Status:** NOT STARTED  
+**Status:** DEFERRED — file paths reference Python (Crux/CruxDev migrated to Rust); goals valid but plan needs full rewrite against Rust codebases. Split WAL/idempotency (1.7-1.10) and protocol docs (Phase 2) into separate plans when ready.
 **Goal:** Tightly weave Crux, CruxDev, and CruxCLI with CruxDev-first protocol guarantees, cross-tool parity, and unified model-tier routing.  
 **Scope:** Cross-repo changes in `/Users/user/personal/crux`, `/Users/user/personal/cruxdev`, `/Users/user/personal/cruxcli`.
 **Rule:** Contract-first. CruxDev remains tool-agnostic and first-class for Claude Code, OpenCode, CruxCLI, and future clients.  
