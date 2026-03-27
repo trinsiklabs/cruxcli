@@ -1,0 +1,78 @@
+name: release-cli
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version (e.g., 0.2.0)"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.repository == 'trinsiklabs/cruxcli'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+        working-directory: packages/cruxcli
+
+      - name: Build all targets
+        run: bun run script/build.ts
+        working-directory: packages/cruxcli
+        env:
+          CRUXCLI_VERSION: ${{ inputs.version }}
+
+      - name: Package archives
+        working-directory: packages/cruxcli/dist
+        run: |
+          for dir in cruxcli-*/; do
+            name="${dir%/}"
+            if [[ "$name" == *windows* ]]; then
+              (cd "$dir" && zip -r "../../${name}.zip" .)
+            else
+              tar -czf "${name}.tar.gz" -C "$dir" .
+            fi
+          done
+          ls -lh *.tar.gz *.zip 2>/dev/null
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ inputs.version }}
+          name: CruxCLI v${{ inputs.version }}
+          draft: true
+          files: |
+            packages/cruxcli/dist/*.tar.gz
+            packages/cruxcli/dist/*.zip
+          body: |
+            ## CruxCLI v${{ inputs.version }}
+
+            ### Install
+            ```bash
+            curl -fsSL https://cruxcli.ai/install | bash
+            # or
+            npm i -g cruxcli@latest
+            ```
+
+            ### Platform Binaries
+            | Platform | Architecture | File |
+            |----------|-------------|------|
+            | macOS | Apple Silicon | `cruxcli-darwin-arm64.tar.gz` |
+            | macOS | Intel | `cruxcli-darwin-x64.tar.gz` |
+            | Linux | arm64 | `cruxcli-linux-arm64.tar.gz` |
+            | Linux | x64 | `cruxcli-linux-x64.tar.gz` |
+            | Linux | x64 (no AVX2) | `cruxcli-linux-x64-baseline.tar.gz` |
+            | Linux | arm64 (musl) | `cruxcli-linux-arm64-musl.tar.gz` |
+            | Linux | x64 (musl) | `cruxcli-linux-x64-musl.tar.gz` |
+            | Linux | x64 (musl, no AVX2) | `cruxcli-linux-x64-musl-baseline.tar.gz` |
+            | Windows | x64 | `cruxcli-windows-x64.zip` |
