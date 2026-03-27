@@ -22,9 +22,11 @@ jobs:
         with:
           bun-version: latest
 
+      - name: Remove broken workspace dependency
+        run: sed -i 's/"ghostty-web": "github:trinsiklabs\/ghostty-web#main"//' packages/app/package.json
+
       - name: Install dependencies
-        run: bun install --no-save
-        working-directory: packages/cruxcli
+        run: bun install
 
       - name: Build all targets
         run: bun run script/build.ts
