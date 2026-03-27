@@ -120,26 +120,21 @@
     "crux": {
       "type": "local",
       "command": [
-        "/Users/user/personal/crux/.venv/bin/python",
-        "-m",
-        "scripts.lib.crux_mcp_server"
+        "/Users/user/personal/crux/target/release/crux",
+        "mcp",
+        "start"
       ],
       "environment": {
-        "PYTHONPATH": "/Users/user/personal/crux",
-        "CRUX_PROJECT": "/Users/user/personal/cruxcli",
         "CRUX_HOME": "/Users/user"
       }
     },
     "cruxdev": {
       "type": "local",
       "command": [
-        "/opt/homebrew/opt/python@3.14/bin/python3.14",
-        "-m",
-        "src.mcp_server"
-      ],
-      "environment": {
-        "PYTHONPATH": "/Users/user/personal/cruxdev"
-      }
+        "/Users/user/personal/cruxdev/rust/target/release/cruxdev",
+        "mcp",
+        "start"
+      ]
     }
   },
   "tools": {

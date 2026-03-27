@@ -3,3 +3,17 @@ dist
 gen
 app.log
 src/provider/models-snapshot.ts
+
+# CruxDev security — NEVER commit these
+**/tasks/*.output
+**/-Users-*
+*.key
+*.pem
+*_deploy
+.env
+.env.local
+.env.production
+.env.*.local
+.crux/
+.cruxdev/convergence_state/
+*.jsonl

@@ -1,0 +1,9 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 /Users/user/personal/cruxdev/src/bus/hook_runner.py cruxcli"
+      }
+    ]
+  }
+}
