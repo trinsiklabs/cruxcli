@@ -285,6 +285,7 @@ export namespace SessionPrompt {
     let structuredOutput: unknown | undefined
 
     let step = 0
+    let needsModePrompt = true
     const session = await Session.get(sessionID)
     while (true) {
       SessionStatus.set(sessionID, { type: "busy" })
@@ -546,6 +547,7 @@ export namespace SessionPrompt {
           model: lastUser.model,
           auto: true,
         })
+        needsModePrompt = true
         continue
       }
 
@@ -642,7 +644,9 @@ export namespace SessionPrompt {
       await Plugin.trigger("experimental.chat.messages.transform", {}, { messages: msgs })
 
       // Build system prompt, adding structured output instruction if needed
-      const system = [...(await SystemPrompt.environment(model)), ...(await InstructionPrompt.system())]
+      // Mode prompt only on first step and after compaction to reduce token overhead
+      const system = [...(await SystemPrompt.environment(model, { includeModePrompt: needsModePrompt })), ...(await InstructionPrompt.system())]
+      needsModePrompt = false
       const format = lastUser.format ?? { type: "text" }
       if (format.type === "json_schema") {
         system.push(STRUCTURED_OUTPUT_SYSTEM_PROMPT)

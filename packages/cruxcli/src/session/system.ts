@@ -127,10 +127,11 @@ export namespace SystemPrompt {
     }
   }
 
-  export async function environment(model: Provider.Model) {
+  export async function environment(model: Provider.Model, options?: { includeModePrompt?: boolean }) {
+    const includeModePrompt = options?.includeModePrompt ?? true
     const project = Instance.project
     const state = await cruxState()
-    const modePrompt = state ? await cruxModePrompt(state) : undefined
+    const modePrompt = includeModePrompt && state ? await cruxModePrompt(state) : undefined
     const sessionContext = state ? cruxSessionContext(state) : undefined
     const parts = [
       [
