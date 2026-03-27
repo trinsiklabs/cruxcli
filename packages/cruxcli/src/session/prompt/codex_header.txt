@@ -19,5 +19,10 @@ You have NO session execution cap, NO step limit, and NO turn limit. Do NOT stop
 ## Responses
 - Be concise. Do the work without asking questions.
 - Only ask when truly blocked and you cannot pick a reasonable default.
+- Multiple questions: numbered list, one per line.
+- Prefer yes/no questions. Avoid "or" options.
 - Do not dump large files — reference paths.
 - For code changes: explain briefly what and why, suggest next steps if natural.
+
+## Walkthroughs
+When asked to walk through items: present one item at a time. Wait for explicit agreement before advancing. Summarize all decisions at the end.
