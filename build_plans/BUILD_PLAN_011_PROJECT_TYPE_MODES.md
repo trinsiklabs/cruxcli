@@ -2,7 +2,7 @@
 
 **Created:** 2026-03-25
 **Last Updated:** 2026-03-27
-**Status:** IN PROGRESS
+**Status:** CONVERGED
 **Goal:** Create 5 new Crux modes for non-developer project types (author, entrepreneur, podcaster, newsletter, youtuber) following the existing mode template. Modes are installed in `~/.crux/modes/` and automatically injected by CruxCLI's Crux integration.
 
 **Constraint:** Modes follow `~/.crux/modes/_template.md` structure exactly.

@@ -2,7 +2,7 @@
 
 **Created:** 2026-03-25
 **Last Updated:** 2026-03-27
-**Status:** NOT STARTED
+**Status:** IN PROGRESS
 **Goal:** Tighten the integration between Crux, CruxDev, and CruxCLI — protocol versioning, tier-aware convergence, language-specific modes, and CruxCLI convergence UX.
 
 **Constraint:** Crux and CruxDev are Rust. CruxCLI is TypeScript. No Python.
@@ -28,11 +28,11 @@
 
 ### Checklist — Phase 1
 
-- [ ] 1.1 Add `protocol_version: "1.0"` field to ConvergenceState in `engine/state.rs`
-- [ ] 1.2 Return protocol_version in `start_convergence` and `convergence_status` responses
-- [ ] 1.3 Add version check in `convergence_submit_result` — reject if client sends incompatible version
-- [ ] 1.4 Document protocol version in CruxDev README or docs
-- [ ] 1.5 Tests for version handshake and rejection
+- [x] 1.1 Add `protocol_version: "1.0"` field to ConvergenceState in `engine/state.rs`
+- [x] 1.2 Return protocol_version in `start_convergence` and `convergence_status` responses
+- [x] 1.3 Add version check in `convergence_submit_result` — reject if client sends incompatible version
+- [x] 1.4 Document protocol version in CruxDev README or docs
+- [x] 1.5 Tests for version handshake and rejection
 
 ---
 
@@ -42,12 +42,12 @@
 
 ### Checklist — Phase 2
 
-- [ ] 2.1 In CruxDev `router.rs`: set `recommended_tier` on every Task based on task type (audit→standard, security→frontier, title→micro)
-- [ ] 2.2 In Crux `models.rs`: verify `task_tier()` mapping covers all CruxDev task types
-- [ ] 2.3 In CruxCLI `llm.ts`: when processing a convergence task, use `get_model_for_task` MCP tool to resolve tier→model
-- [ ] 2.4 Add fallback chain: task tier → mode tier → user default → provider default
-- [ ] 2.5 Log tier selection: requested tier, resolved model, fallback reason
-- [ ] 2.6 Tests for tier routing across representative task types
+- [x] 2.1 In CruxDev `router.rs`: set `recommended_tier` on every Task based on task type (audit→standard, security→frontier, title→micro)
+- [x] 2.2 In Crux `models.rs`: verify `task_tier()` mapping covers all CruxDev task types
+- [x] 2.3 In CruxCLI `llm.ts`: when processing a convergence task, use `get_model_for_task` MCP tool to resolve tier→model
+- [x] 2.4 Add fallback chain: task tier → mode tier → user default → provider default
+- [x] 2.5 Log tier selection: requested tier, resolved model, fallback reason
+- [x] 2.6 Tests for tier routing across representative task types
 
 ---
 
@@ -57,13 +57,13 @@
 
 ### Checklist — Phase 3
 
-- [ ] 3.1 Create `~/.crux/modes/build-ts.md` — TypeScript/JavaScript development mode (Bun, Node, npm, ESM)
-- [ ] 3.2 Create `~/.crux/modes/build-rs.md` — Rust development mode (Cargo, ownership, lifetimes, unsafe)
-- [ ] 3.3 Create `~/.crux/modes/build-go.md` — Go development mode (modules, goroutines, interfaces)
-- [ ] 3.4 Update Crux `context.rs` detect_project_type: TypeScript→build-ts (was build-py), Rust→build-rs (was build-py), Go→build-go
-- [ ] 3.5 Update `models.rs` mode_tier mappings for new modes
-- [ ] 3.6 Each mode follows `_template.md` structure (150-200 words)
-- [ ] 3.7 Tests for detection→mode mapping
+- [x] 3.1 Create `~/.crux/modes/build-ts.md` — TypeScript/JavaScript development mode (Bun, Node, npm, ESM)
+- [x] 3.2 Create `~/.crux/modes/build-rs.md` — Rust development mode (Cargo, ownership, lifetimes, unsafe)
+- [x] 3.3 Create `~/.crux/modes/build-go.md` — Go development mode (modules, goroutines, interfaces)
+- [x] 3.4 Update Crux `context.rs` detect_project_type: TypeScript→build-ts (was build-py), Rust→build-rs (was build-py), Go→build-go
+- [x] 3.5 Update `models.rs` mode_tier mappings for new modes
+- [x] 3.6 Each mode follows `_template.md` structure (150-200 words)
+- [x] 3.7 Tests for detection→mode mapping
 
 ---
 
@@ -73,12 +73,12 @@
 
 ### Checklist — Phase 4
 
-- [ ] 4.1 Add `cruxcli converge <plan>` CLI command that calls CruxDev `start_convergence` via MCP
-- [ ] 4.2 Display convergence progress: phase, round, clean passes, findings count
-- [ ] 4.3 Persist `convergence_id` to `.cruxcli/convergence.json` for resume on restart
-- [ ] 4.4 On restart: detect active convergence, offer resume
-- [ ] 4.5 Show escalation reason clearly when convergence escalates
-- [ ] 4.6 Tests for CLI command, resume, and escalation display
+- [x] 4.1 Add `cruxcli converge <plan>` CLI command that calls CruxDev `start_convergence` via MCP
+- [x] 4.2 Display convergence progress: phase, round, clean passes, findings count
+- [x] 4.3 Persist `convergence_id` to `.cruxcli/convergence.json` for resume on restart
+- [x] 4.4 On restart: detect active convergence, offer resume
+- [x] 4.5 Show escalation reason clearly when convergence escalates
+- [x] 4.6 Tests for CLI command, resume, and escalation display
 
 ---
 
@@ -88,18 +88,18 @@
 
 ### Checklist — Phase 5
 
-- [ ] 5.1 Start convergence in CruxCLI → CruxDev processes → Crux provides model tier → full loop completes
-- [ ] 5.2 Verify tier recommendation flows: CruxDev task → Crux get_model_for_task → CruxCLI model resolution
-- [ ] 5.3 Verify project type detection → correct mode → correct tier chain
-- [ ] 5.4 Verify session bus messages flow between all three projects
-- [ ] 5.5 All three test suites pass: `cargo test` (Crux), `cargo test` (CruxDev), `bun test` (CruxCLI)
+- [x] 5.1 Start convergence in CruxCLI → CruxDev processes → Crux provides model tier → full loop completes
+- [x] 5.2 Verify tier recommendation flows: CruxDev task → Crux get_model_for_task → CruxCLI model resolution
+- [x] 5.3 Verify project type detection → correct mode → correct tier chain
+- [x] 5.4 Verify session bus messages flow between all three projects
+- [x] 5.5 All three test suites pass: `cargo test` (Crux), `cargo test` (CruxDev), `bun test` (CruxCLI)
 
 ---
 
 ## Post-Execution Convergence Checklist
 
-- [ ] Documentation convergence: update docs/ARCHITECTURE.md with convergence integration
-- [ ] Inbox check: check_inbox() for messages from other sessions
+- [x] Documentation convergence: update docs/ARCHITECTURE.md with convergence integration
+- [x] Inbox check: check_inbox() for messages from other sessions
 
 ---
 

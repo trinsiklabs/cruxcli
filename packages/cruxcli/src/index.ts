@@ -16,6 +16,7 @@ import { ServeCommand } from "./cli/cmd/serve"
 import { WorkspaceServeCommand } from "./cli/cmd/workspace-serve"
 import { Filesystem } from "./util/filesystem"
 import { CheckpointCommand } from "./cli/cmd/checkpoint"
+import { ConvergeCommand } from "./cli/cmd/converge"
 import { DebugCommand } from "./cli/cmd/debug"
 import { StatsCommand } from "./cli/cmd/stats"
 import { McpCommand } from "./cli/cmd/mcp"
@@ -135,6 +136,7 @@ let cli = yargs(hideBin(process.argv))
   .command(RunCommand)
   .command(GenerateCommand)
   .command(CheckpointCommand)
+  .command(ConvergeCommand)
   .command(DebugCommand)
   .command(AuthCommand)
   .command(AgentCommand)
