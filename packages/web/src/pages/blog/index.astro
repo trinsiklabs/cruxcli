@@ -1,0 +1,46 @@
+---
+import Marketing from '../../layouts/Marketing.astro'
+import { getCollection } from 'astro:content'
+
+export const prerender = true
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+---
+
+<Marketing title="Blog" description="Engineering updates, product announcements, and methodology insights from the CruxCLI team.">
+  <section class="py-20 sm:py-28">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl font-bold text-white mb-4">Blog</h1>
+      <p class="text-dev-400 text-lg mb-12">Engineering updates, product announcements, and methodology insights.</p>
+
+      {posts.length === 0 ? (
+        <p class="text-dev-500">No posts yet. Check back soon.</p>
+      ) : (
+        <div class="space-y-8">
+          {posts.map((post) => (
+            <article class="bg-dev-900 border border-dev-700 rounded-xl p-8 hover:border-dev-600 transition-colors">
+              <a href={`/blog/${post.id}`} class="block">
+                <div class="flex items-center gap-3 text-sm text-dev-500 mb-3">
+                  <time datetime={post.data.pubDate.toISOString()}>
+                    {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                  </time>
+                  <span class="bg-accent/20 text-accent px-2 py-0.5 rounded text-xs font-medium">{post.data.category}</span>
+                </div>
+                <h2 class="text-xl font-semibold text-white mb-2">{post.data.title}</h2>
+                <p class="text-dev-400">{post.data.description}</p>
+                {post.data.tags.length > 0 && (
+                  <div class="flex gap-2 mt-4">
+                    {post.data.tags.map((tag: string) => (
+                      <span class="text-xs text-dev-500 bg-dev-800 px-2 py-1 rounded">{tag}</span>
+                    ))}
+                  </div>
+                )}
+              </a>
+            </article>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+</Marketing>
