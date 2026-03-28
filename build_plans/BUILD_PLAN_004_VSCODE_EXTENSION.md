@@ -1,7 +1,7 @@
 # BUILD_PLAN_004: VS Code Extension Polish + Publish
 
 **Created:** 2026-03-23
-**Status:** NOT STARTED
+**Status:** CONVERGED
 **Goal:** Fix branding, add status bar + UX improvements, and publish the CruxCLI VS Code extension to the marketplace.
 
 **Constraint:** Keep the thin terminal-based architecture — no webviews or heavy UI.

@@ -2,7 +2,7 @@
 
 **Created:** 2026-03-25
 **Last Updated:** 2026-03-27
-**Status:** IN PROGRESS
+**Status:** CONVERGED
 **Goal:** Tighten the integration between Crux, CruxDev, and CruxCLI — protocol versioning, tier-aware convergence, language-specific modes, and CruxCLI convergence UX.
 
 **Constraint:** Crux and CruxDev are Rust. CruxCLI is TypeScript. No Python.

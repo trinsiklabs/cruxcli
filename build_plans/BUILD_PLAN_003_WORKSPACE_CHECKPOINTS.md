@@ -1,7 +1,7 @@
 # BUILD_PLAN_003: Workspace Checkpoints
 
 **Created:** 2026-03-23
-**Status:** NOT STARTED
+**Status:** CONVERGED
 **Goal:** Add automatic and manual workspace checkpointing so users can snapshot and restore file state before risky operations. Builds on the existing `Snapshot` system.
 
 **Constraint:** Reuse existing `Snapshot.track()` / `Snapshot.restore()` — no new git plumbing.
