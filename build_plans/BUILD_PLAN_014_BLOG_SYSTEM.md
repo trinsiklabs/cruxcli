@@ -1,7 +1,7 @@
 # BUILD_PLAN_014: Blog System
 
 **Created:** 2026-03-28
-**Status:** NOT STARTED
+**Status:** IN PROGRESS
 **Goal:** Set up Astro blog with content collections, RSS feed, pagination, tagging, and BIP pipeline integration per CruxDev BLOG_PATTERNS.md.
 
 **Constraint:** Follow CruxDev BLOG_PATTERNS.md, BLOG_POST_PATTERNS.md, BLOG_PAGINATION_PATTERNS.md, BLOG_TAGGING_PATTERNS.md.
@@ -23,12 +23,12 @@
 
 ### Checklist — Phase 1
 
-- [ ] 1.1 Add blog collection to content.config.ts with Zod schema (title, description, pubDate, author, tags, category, draft)
-- [ ] 1.2 Create /blog/index.astro — list all posts sorted by date, with category badges and tags
-- [ ] 1.3 Create /blog/[...slug].astro — individual post pages with Marketing layout
-- [ ] 1.4 Create first blog post (announcement)
-- [ ] 1.5 Add "Blog" link to Marketing.astro nav
-- [ ] 1.6 Verify build succeeds with blog pages
+- [x] 1.1 Add blog collection to content.config.ts with Zod schema (title, description, pubDate, author, tags, category, draft)
+- [x] 1.2 Create /blog/index.astro — list all posts sorted by date, with category badges and tags
+- [x] 1.3 Create /blog/[...slug].astro — individual post pages with Marketing layout
+- [x] 1.4 Create first blog post (announcement)
+- [x] 1.5 Add "Blog" link to Marketing.astro nav
+- [x] 1.6 Verify build succeeds with blog pages
 
 ---
 
@@ -38,10 +38,10 @@
 
 ### Checklist — Phase 2
 
-- [ ] 2.1 Install @astrojs/rss package
-- [ ] 2.2 Create /blog/rss.xml.ts endpoint
-- [ ] 2.3 Add RSS link tag to Marketing.astro head
-- [ ] 2.4 Verify RSS validates
+- [x] 2.1 Install @astrojs/rss package
+- [x] 2.2 Create /blog/rss.xml.ts endpoint
+- [x] 2.3 Add RSS link tag to Marketing.astro head
+- [x] 2.4 Verify RSS validates
 
 ---
 
@@ -51,9 +51,9 @@
 
 ### Checklist — Phase 3
 
-- [ ] 3.1 Verify .cruxdev/evolution/posts/ drafts can be promoted to src/content/blog/
-- [ ] 3.2 Add publish_drafts flow: copy from evolution/posts → content/blog with frontmatter
-- [ ] 3.3 Test: converge a build plan, verify blog draft appears, promote to blog, build, deploy
+- [x] 3.1 Verify .cruxdev/evolution/posts/ drafts can be promoted to src/content/blog/
+- [x] 3.2 Add publish_drafts flow: copy from evolution/posts → content/blog with frontmatter
+- [x] 3.3 Test: converge a build plan, verify blog draft appears, promote to blog, build, deploy
 
 ---
 

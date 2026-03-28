@@ -57,7 +57,6 @@
     "@thisbeyond/solid-dnd": "0.7.5",
     "diff": "catalog:",
     "fuzzysort": "catalog:",
-    "ghostty-web": "github:trinsiklabs/ghostty-web#main",
     "luxon": "catalog:",
     "marked": "catalog:",
     "marked-shiki": "catalog:",

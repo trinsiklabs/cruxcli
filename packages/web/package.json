@@ -34,7 +34,8 @@
     "solid-js": "catalog:",
     "tailwindcss": "^4.1.0",
     "toolbeam-docs-theme": "0.4.8",
-    "vscode-languageserver-types": "3.17.5"
+    "vscode-languageserver-types": "3.17.5",
+    "@astrojs/rss": "^4.0.0"
   },
   "devDependencies": {
     "cruxcli": "workspace:*",
