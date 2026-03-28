@@ -1,0 +1,24 @@
+[project]
+name = "cruxcli"
+repo = "trinsiklabs/cruxcli"
+url = "https://cruxcli.io"
+
+[typefully]
+api_key_env = "TYPEFULLY_API_KEY"
+social_set_id = 288244
+max_posts_per_day = 3
+enabled = true
+
+[github]
+repos = ["trinsiklabs/cruxcli"]
+issue_monitoring_enabled = true
+issue_dry_run = false
+
+[content]
+website_repo = "trinsiklabs/cruxcli"
+blog_dir = "packages/web/src/content/blog"
+vs_dir = "docs/vs"
+
+[metrics]
+tracking_enabled = true
+metrics_file = ".cruxdev/growth/metrics.jsonl"
